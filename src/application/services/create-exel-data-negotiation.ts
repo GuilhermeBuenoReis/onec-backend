@@ -7,6 +7,7 @@ export class PartnerService {
   ) {}
 
   async create({
+    id,
     title,
     client,
     user,
@@ -20,6 +21,7 @@ export class PartnerService {
     averageGuide,
   }: ExelDataNegotiation): Promise<ExelDataNegotiation | null> {
     const exelDataNegotiation = new ExelDataNegotiation(
+      id,
       title,
       client,
       user,
