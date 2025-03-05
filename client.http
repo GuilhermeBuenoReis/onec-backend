@@ -1,0 +1,14 @@
+GET http://localhost:3333/
+Accept: application/json
+
+### Teste de upload de Excel (arquivo na raiz)
+### Upload Excel file
+  POST http://localhost:3333/upload-partners
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="Negociações - Funil de venda 20-03 (1).xlsx"
+Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+< ./Negociações - Funil de venda 20-03 (1).xlsx
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

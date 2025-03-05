@@ -1,0 +1,1 @@
+ALTER TABLE "excel_data_negotiations" ALTER COLUMN "startsDate" SET DATA TYPE text;

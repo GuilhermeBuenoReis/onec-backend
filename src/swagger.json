@@ -1,0 +1,787 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "onec",
+    "version": "1.0.0"
+  },
+  "components": {
+    "schemas": {}
+  },
+  "paths": {
+    "/partners": {
+      "post": {
+        "operationId": "createPartner",
+        "tags": [
+          "partners"
+        ],
+        "description": "Create a new partner",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "cpfOrCnpj": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "state": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "commission": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "portal": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "channelHead": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "regional": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "coordinator": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "agent": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "indicator": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "contract": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "phone": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "nullable": true
+                  },
+                  "responsible": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "name",
+                  "cpfOrCnpj",
+                  "city",
+                  "state",
+                  "commission",
+                  "portal",
+                  "channelHead",
+                  "regional",
+                  "coordinator",
+                  "agent",
+                  "indicator",
+                  "contract",
+                  "phone",
+                  "email",
+                  "responsible"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPartners",
+        "tags": [
+          "partners"
+        ],
+        "description": "Get a list of partners",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "cpfOrCnpj": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "state": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "commission": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "portal": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "channelHead": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "regional": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "coordinator": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "agent": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "indicator": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "contract": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "phone": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "email": {
+                        "type": "string",
+                        "format": "email",
+                        "nullable": true
+                      },
+                      "responsible": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "cpfOrCnpj",
+                      "city",
+                      "state",
+                      "commission",
+                      "portal",
+                      "channelHead",
+                      "regional",
+                      "coordinator",
+                      "agent",
+                      "indicator",
+                      "contract",
+                      "phone",
+                      "email",
+                      "responsible"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/partners/{id}": {
+      "put": {
+        "operationId": "updatePartner",
+        "tags": [
+          "partners"
+        ],
+        "description": "Update a partner",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "cpfOrCnpj": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "state": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "commission": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "portal": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "channelHead": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "regional": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "coordinator": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "agent": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "indicator": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "contract": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "phone": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "nullable": true
+                  },
+                  "responsible": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePartner",
+        "tags": [
+          "partners"
+        ],
+        "description": "Delete a partner",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/negotiation": {
+      "post": {
+        "operationId": "createDataNegotiation",
+        "tags": [
+          "DataNegotiations"
+        ],
+        "description": "Create a new DataNegotiation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "client": {
+                    "type": "string"
+                  },
+                  "user": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "string"
+                  },
+                  "step": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "startsDate": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "observation": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "averageGuide": {
+                    "type": "number",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "title",
+                  "client",
+                  "user",
+                  "tags",
+                  "step",
+                  "status",
+                  "value",
+                  "startsDate",
+                  "observation",
+                  "averageGuide"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getNegotiation",
+        "tags": [
+          "negotiation"
+        ],
+        "description": "Get a list of Negotiation",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "client": {
+                        "type": "string"
+                      },
+                      "user": {
+                        "type": "string"
+                      },
+                      "tags": {
+                        "type": "string"
+                      },
+                      "step": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "number"
+                      },
+                      "startsDate": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "observation": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "averageGuide": {
+                        "type": "number",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "client",
+                      "user",
+                      "tags",
+                      "step",
+                      "status",
+                      "value",
+                      "startsDate",
+                      "observation",
+                      "averageGuide"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/negotiation/{id}": {
+      "put": {
+        "operationId": "updateNegotiation",
+        "tags": [
+          "negotiation"
+        ],
+        "description": "Update a Negotiation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "client": {
+                    "type": "string"
+                  },
+                  "user": {
+                    "type": "string"
+                  },
+                  "tags": {
+                    "type": "string"
+                  },
+                  "step": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "number"
+                  },
+                  "startsDate": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "observation": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "averageGuide": {
+                    "type": "number",
+                    "nullable": true
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePartner",
+        "tags": [
+          "negotiation"
+        ],
+        "description": "Delete a negotiation",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
