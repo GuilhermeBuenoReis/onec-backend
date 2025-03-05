@@ -43,6 +43,13 @@
       "when": 1741196557409,
       "tag": "0005_broken_blink",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1741205337305,
+      "tag": "0006_skinny_ezekiel_stane",
+      "breakpoints": true
     }
   ]
 }

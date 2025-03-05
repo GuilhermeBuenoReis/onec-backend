@@ -40,6 +40,9 @@ export const excelDataNegotiationTable = pgTable('excel_data_negotiations', {
 });
 
 export const contractTable = pgTable('contract_table', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
   city: text('city'),
   client: text('clients').notNull(),
   state: text('state'),

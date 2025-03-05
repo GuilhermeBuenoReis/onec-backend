@@ -1,0 +1,1 @@
+ALTER TABLE "contract_table" ADD COLUMN "id" text PRIMARY KEY NOT NULL;

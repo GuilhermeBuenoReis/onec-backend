@@ -72,7 +72,7 @@ app
   });
 
 if (env.NODE_ENV === 'development') {
-  const specFile = resolve(__dirname, '../swagger.json');
+  const specFile = resolve(__dirname, '../../swagger.json');
 
   app.ready().then(() => {
     const spec = JSON.stringify(app.swagger(), null, 2);

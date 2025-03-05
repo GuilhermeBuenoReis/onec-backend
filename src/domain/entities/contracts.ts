@@ -1,6 +1,9 @@
+import { createId } from '@paralleldrive/cuid2';
+
 export class Contract {
   constructor(
-    public id: string,
+    // biome-ignore lint/style/useDefaultParameterLast: <explanation>
+    public id: string = createId(),
     public city: string | null,
     public client: string,
     public state: string | null,
@@ -15,7 +18,7 @@ export class Contract {
     public status: string | null,
     public averageGuide: number | null,
     public partner: string | null,
-    public partnerCommssion: number | null,
+    public partnerCommission: number | null,
     public counter: string | null,
     public email: string | null
   ) {}
