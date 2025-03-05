@@ -1,5 +1,6 @@
 export class Contract {
   constructor(
+    public id: string,
     public city: string | null,
     public client: string,
     public state: string | null,

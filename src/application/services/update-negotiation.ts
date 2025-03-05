@@ -1,7 +1,7 @@
 import type { ExelDataNegotiation } from '../../domain/entities/ExelDataNegotiation';
 import type { ExelDataNegotiationRepository } from '../../domain/repositories/ExelDataNegotiation';
 
-export class UpdatePartner {
+export class UpdateNegotiation {
   constructor(
     private exelDataNegotiationRepository: ExelDataNegotiationRepository
   ) {}

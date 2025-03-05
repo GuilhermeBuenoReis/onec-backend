@@ -1,6 +1,6 @@
 import type { ExelDataNegotiationRepository } from '../../domain/repositories/ExelDataNegotiation';
 
-export class DeletePartner {
+export class DeleteNegotiation {
   constructor(
     private exelDataNegotiationRepository: ExelDataNegotiationRepository
   ) {}
