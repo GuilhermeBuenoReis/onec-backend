@@ -26,6 +26,10 @@ import { createContractRoute } from '../routes/create-contract';
 import { getContractRoute } from '../routes/get-contracts';
 import { updateContractRoute } from '../routes/update-contract';
 import { deleteContractRoute } from '../routes/delete-contracts';
+import { authenticateUserRoute } from '../routes/authenticate-user';
+import { getProfileUser } from '../routes/get-profile-user';
+import { updateUserRoute } from '../routes/update-user';
+import { deleteUserRoute } from '../routes/delete-user';
 
 config();
 
@@ -69,6 +73,10 @@ app.register(createContractRoute);
 app.register(getContractRoute);
 app.register(updateContractRoute);
 app.register(deleteContractRoute);
+app.register(authenticateUserRoute);
+app.register(getProfileUser);
+app.register(updateUserRoute);
+app.register(deleteUserRoute);
 
 app
   .listen({

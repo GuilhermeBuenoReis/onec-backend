@@ -7,7 +7,7 @@
     "build": "tsup src",
     "dev": "tsx watch --env-file=.env src/infrastructure/server.ts",
     "start": "node dist/http/server.js",
-    "seed": "tsx --env-file=.env src/db/seed.ts",
+    "seed": "tsx --env-file=.env src/infrastructure/db/seed.ts",
     "pretest": "npm run db:migrate:test",
     "pretest:watch": "npm run db:migrate:test",
     "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
@@ -25,6 +25,7 @@
     "@fastify/swagger": "^9.4.2",
     "@fastify/swagger-ui": "^5.2.2",
     "@paralleldrive/cuid2": "^2.2.2",
+    "bcrypt": "^5.1.1",
     "cloudinary": "^2.5.1",
     "dayjs": "^1.11.13",
     "dotenv": "^16.4.7",
@@ -41,11 +42,24 @@
     "@biomejs/biome": "^1.9.4",
     "@faker-js/faker": "^9.5.0",
     "@tsconfig/node22": "^22.0.0",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^22.13.4",
     "dotenv-cli": "^8.0.0",
     "drizzle-kit": "^0.30.4",
     "tsup": "^8.3.6",
     "tsx": "^4.19.3",
     "typescript": "^5.7.3"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@biomejs/biome",
+      "bcrypt",
+      "esbuild"
+    ],
+    "onlyBuiltDependencies": [
+      "@biomejs/biome",
+      "bcrypt",
+      "esbuild"
+    ]
   }
 }

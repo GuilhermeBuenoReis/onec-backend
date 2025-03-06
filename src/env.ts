@@ -8,6 +8,10 @@ const envSchema = z.object({
 
   DATABASE_URL: z.string().url(),
   JWT_SECRET: z.string(),
+  ADMIN1_EMAIL: z.string(),
+  ADMIN1_PASSWORD: z.string(),
+  ADMIN2_EMAIL: z.string(),
+  ADMIN2_PASSWORD: z.string(),
 });
 
 export const env = envSchema.parse(process.env);

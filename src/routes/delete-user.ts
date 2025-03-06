@@ -1,17 +1,17 @@
 import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { DrizzlePartnerRepository } from '../infrastructure/db/cruds/drizzle-partner-repository';
+import { DrizzleUserRepository } from '../infrastructure/db/cruds/drizzle-user-repository';
 import { authenticateUserHook } from '../http/hooks/authenticate';
 
-export const deletePartnerRoute: FastifyPluginAsyncZod = async app => {
+export const deleteUserRoute: FastifyPluginAsyncZod = async app => {
   app.delete(
-    '/partners/:id',
+    '/users/:id',
     {
       onRequest: [authenticateUserHook],
       schema: {
-        operationId: 'deletePartner',
-        tags: ['partners'],
-        description: 'Delete a partner',
+        operationId: 'deleteUser',
+        tags: ['Users'],
+        description: 'Delete an existing User',
         params: z.object({
           id: z.string(),
         }),
@@ -19,7 +19,7 @@ export const deletePartnerRoute: FastifyPluginAsyncZod = async app => {
           200: z.object({
             message: z.string(),
           }),
-          404: z.object({
+          400: z.object({
             message: z.string(),
           }),
         },
@@ -27,16 +27,17 @@ export const deletePartnerRoute: FastifyPluginAsyncZod = async app => {
     },
     async (request, reply) => {
       const { id } = request.params;
-      const partnerRepository = new DrizzlePartnerRepository();
-      const deleted = await partnerRepository.delete(id);
+      const userRepository = new DrizzleUserRepository();
+
+      const deleted = await userRepository.delete(id);
 
       if (!deleted) {
-        return reply.status(404).send({ message: 'Parceiro não encontrado' });
+        return reply.status(400).send({ message: 'Erro ao excluir usuário' });
       }
 
       return reply
         .status(200)
-        .send({ message: 'Parceiro deletado com sucesso' });
+        .send({ message: 'Usuário excluído com sucesso' });
     }
   );
 };

@@ -61,3 +61,12 @@ export const contractTable = pgTable('contract_table', {
   counter: text('counter'),
   email: text('email'),
 });
+
+export const userTable = pgTable('users', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  email: text('email').notNull().unique(),
+  passwordHash: text('password_hash').notNull(),
+  role: text('role').notNull(),
+});

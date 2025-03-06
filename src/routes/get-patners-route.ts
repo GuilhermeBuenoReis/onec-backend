@@ -1,11 +1,13 @@
 import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import { DrizzlePartnerRepository } from '../infrastructure/db/cruds/drizzle-partner-repository';
+import { authenticateUserHook } from '../http/hooks/authenticate';
 
 export const getPartnersRoute: FastifyPluginAsyncZod = async app => {
   app.get(
     '/partners',
     {
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'getPartners',
         tags: ['partners'],
