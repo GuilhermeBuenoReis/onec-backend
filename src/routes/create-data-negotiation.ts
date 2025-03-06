@@ -1,11 +1,10 @@
 import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import { DrizzleExelDataNegotiationRepository } from '../infrastructure/db/cruds/drizzle-data-negotiation-repository';
-import { transformExcelData } from '../mappers/negotiation-mapper';
 
 export const createDataNegotiationRoute: FastifyPluginAsyncZod = async app => {
   app.post(
-    '/negotiation',
+    '/S',
     {
       schema: {
         operationId: 'createDataNegotiation',

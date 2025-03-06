@@ -20,7 +20,7 @@ export class CreateContract {
     status,
     averageGuide,
     partner,
-    partnerCommssion,
+    partnerCommission,
     counter,
     email,
   }: Contract): Promise<Contract | null> {
@@ -40,7 +40,7 @@ export class CreateContract {
       status,
       averageGuide,
       partner,
-      partnerCommssion,
+      partnerCommission,
       counter,
       email
     );

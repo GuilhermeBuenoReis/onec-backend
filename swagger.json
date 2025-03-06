@@ -427,7 +427,7 @@
         }
       }
     },
-    "/negotiation": {
+    "/S": {
       "post": {
         "operationId": "createDataNegotiation",
         "tags": [
@@ -546,7 +546,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/negotiation": {
       "get": {
         "operationId": "getNegotiation",
         "tags": [
@@ -731,6 +733,468 @@
           "negotiation"
         ],
         "description": "Delete a negotiation",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contract": {
+      "post": {
+        "operationId": "createDatacontract",
+        "tags": [
+          "contract"
+        ],
+        "description": "Create a new Datacontract",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "client": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "cnpj": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "sindic": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "year": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "matter": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "forecast": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "contractTotal": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "percentage": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "signedContract": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "averageGuide": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "partner": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "partnerCommission": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "counter": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "email": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "city",
+                  "client",
+                  "state",
+                  "cnpj",
+                  "sindic",
+                  "year",
+                  "matter",
+                  "forecast",
+                  "contractTotal",
+                  "percentage",
+                  "signedContract",
+                  "status",
+                  "averageGuide",
+                  "partner",
+                  "partnerCommission",
+                  "counter",
+                  "email"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getcontract",
+        "tags": [
+          "contract"
+        ],
+        "description": "Get a list of contract",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "client": {
+                        "type": "string"
+                      },
+                      "state": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "cnpj": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "sindic": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "year": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "matter": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "forecast": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "contractTotal": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "percentage": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "signedContract": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "status": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "averageGuide": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "partner": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "partnerCommission": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "counter": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "email": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "city",
+                      "client",
+                      "state",
+                      "cnpj",
+                      "sindic",
+                      "year",
+                      "matter",
+                      "forecast",
+                      "contractTotal",
+                      "percentage",
+                      "signedContract",
+                      "status",
+                      "averageGuide",
+                      "partner",
+                      "partnerCommission",
+                      "counter",
+                      "email"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contract/{id}": {
+      "put": {
+        "operationId": "updateContract",
+        "tags": [
+          "contract"
+        ],
+        "description": "Update a contract",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "client": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "cnpj": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "sindic": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "year": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "matter": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "forecast": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "contractTotal": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "percentage": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "signedContract": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "averageGuide": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "partner": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "partnerCommission": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "counter": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "email": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deletePartner",
+        "tags": [
+          "contract"
+        ],
+        "description": "Delete a contract",
         "parameters": [
           {
             "schema": {

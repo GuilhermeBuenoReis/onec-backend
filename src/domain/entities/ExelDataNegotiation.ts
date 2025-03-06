@@ -1,6 +1,9 @@
+import { createId } from '@paralleldrive/cuid2';
+
 export class ExelDataNegotiation {
   constructor(
-    public id: string,
+    // biome-ignore lint/style/useDefaultParameterLast: <explanation>
+    public id: string = createId(),
     public title: string,
     public client: string,
     public user: string,

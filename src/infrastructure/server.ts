@@ -22,6 +22,10 @@ import { createDataNegotiationRoute } from '../routes/create-data-negotiation';
 import { getNegotiationRoute } from '../routes/get-negotiation';
 import { updateNegotiationRoute } from '../routes/update-negotiation';
 import { deleteNegotiationRoute } from '../routes/delete-negotiation';
+import { createContractRoute } from '../routes/create-contract';
+import { getContractRoute } from '../routes/get-contracts';
+import { updateContractRoute } from '../routes/update-contract';
+import { deleteContractRoute } from '../routes/delete-contracts';
 
 config();
 
@@ -61,6 +65,10 @@ app.register(createDataNegotiationRoute);
 app.register(getNegotiationRoute);
 app.register(updateNegotiationRoute);
 app.register(deleteNegotiationRoute);
+app.register(createContractRoute);
+app.register(getContractRoute);
+app.register(updateContractRoute);
+app.register(deleteContractRoute);
 
 app
   .listen({

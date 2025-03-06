@@ -10,7 +10,7 @@ export class DrizzleExelDataNegotiationRepository
   async create({
     partnerId,
     ...data
-  }: ExelDataNegotiation): Promise<ExelDataNegotiation | null> {
+  }: Omit<ExelDataNegotiation, 'id'>): Promise<ExelDataNegotiation | null> {
     const response = await db
       .insert(excelDataNegotiationTable)
       .values({
