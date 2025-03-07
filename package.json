@@ -12,7 +12,8 @@
     "pretest:watch": "npm run db:migrate:test",
     "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
     "test": "dotenv -e .env.test -- vitest run",
-    "test:watch": "dotenv -e .env.test -- vitest"
+    "test:watch": "dotenv -e .env.test -- vitest",
+    "test:ci": "vitest run"
   },
   "keywords": [],
   "author": "",
@@ -52,15 +53,7 @@
     "vitest": "^3.0.8"
   },
   "pnpm": {
-    "ignoredBuiltDependencies": [
-      "@biomejs/biome",
-      "bcrypt",
-      "esbuild"
-    ],
-    "onlyBuiltDependencies": [
-      "@biomejs/biome",
-      "bcrypt",
-      "esbuild"
-    ]
+    "ignoredBuiltDependencies": ["@biomejs/biome", "bcrypt", "esbuild"],
+    "onlyBuiltDependencies": ["@biomejs/biome", "bcrypt", "esbuild"]
   }
 }
