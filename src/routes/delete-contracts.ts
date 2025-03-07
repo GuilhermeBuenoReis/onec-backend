@@ -9,7 +9,7 @@ export const deleteContractRoute: FastifyPluginAsyncZod = async app => {
     {
       onRequest: [authenticateUserHook],
       schema: {
-        operationId: 'deletePartner',
+        operationId: 'deleteContract',
         tags: ['contract'],
         description: 'Delete a contract',
         params: z.object({

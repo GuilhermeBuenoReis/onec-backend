@@ -579,13 +579,15 @@
                         "type": "string"
                       },
                       "step": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                       },
                       "status": {
                         "type": "string"
                       },
                       "value": {
-                        "type": "number"
+                        "type": "number",
+                        "nullable": true
                       },
                       "startsDate": {
                         "type": "string",
@@ -726,7 +728,7 @@
         }
       },
       "delete": {
-        "operationId": "deletePartner",
+        "operationId": "deleteNegotiation",
         "tags": [
           "negotiation"
         ],
@@ -785,7 +787,7 @@
     },
     "/contract": {
       "post": {
-        "operationId": "createDatacontract",
+        "operationId": "createContract",
         "tags": [
           "contract"
         ],
@@ -935,7 +937,7 @@
         }
       },
       "get": {
-        "operationId": "getcontract",
+        "operationId": "getContract",
         "tags": [
           "contract"
         ],
@@ -1188,7 +1190,7 @@
         }
       },
       "delete": {
-        "operationId": "deletePartner",
+        "operationId": "deleteContract",
         "tags": [
           "contract"
         ],
@@ -1320,7 +1322,7 @@
     },
     "/users": {
       "get": {
-        "operationId": "listUsers",
+        "operationId": "getProfileUser",
         "tags": [
           "Users"
         ],

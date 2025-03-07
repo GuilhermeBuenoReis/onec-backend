@@ -9,7 +9,7 @@ export const createContractRoute: FastifyPluginAsyncZod = async app => {
     {
       onRequest: [authenticateUserHook],
       schema: {
-        operationId: 'createDatacontract',
+        operationId: 'createContract',
         tags: ['contract'],
         description: 'Create a new Datacontract',
         body: z.object({
