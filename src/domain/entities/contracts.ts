@@ -21,5 +21,13 @@ export class Contract {
     public partnerCommission: number | null,
     public counter: string | null,
     public email: string | null
-  ) {}
+  ) {
+    if (!this.client) {
+      throw new Error('Erro ao encontrar o cliente!');
+    }
+
+    if (!id || id.trim() === '') {
+      throw new Error('Não foi encontrado o contrato para ser deletado!');
+    }
+  }
 }

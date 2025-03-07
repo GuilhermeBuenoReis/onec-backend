@@ -45,6 +45,10 @@ export class CreateContract {
       email
     );
 
+    if (contract.client) {
+      throw new Error('O cliente é obrigatório!');
+    }
+
     return await this.contractRepository.create(contract);
   }
 }

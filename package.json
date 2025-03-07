@@ -34,7 +34,6 @@
     "fastify-type-provider-zod": "^4.0.2",
     "jose": "^5.10.0",
     "postgres": "^3.4.5",
-    "vitest": "^3.0.6",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
     "zod": "^3.24.2"
   },
@@ -48,7 +47,9 @@
     "drizzle-kit": "^0.30.4",
     "tsup": "^8.3.6",
     "tsx": "^4.19.3",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0",
+    "vitest": "^3.0.8"
   },
   "pnpm": {
     "ignoredBuiltDependencies": [
