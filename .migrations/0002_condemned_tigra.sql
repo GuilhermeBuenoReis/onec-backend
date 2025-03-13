@@ -1,1 +1,0 @@
-ALTER TABLE "excel_data_negotiations" ADD CONSTRAINT "excel_data_negotiations_partner_id_partners_id_fk" FOREIGN KEY ("partner_id") REFERENCES "public"."partners"("id") ON DELETE no action ON UPDATE no action;

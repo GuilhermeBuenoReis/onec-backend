@@ -9,7 +9,7 @@ export const authenticateUserRoute: FastifyPluginAsyncZod = async app => {
     '/login',
     {
       schema: {
-        operationId: 'authenticateUserRoute',
+        operationId: 'authenticateUser',
         tags: ['Authentication'],
         description:
           'Realiza o login do usuário e retorna o token JWT com validade de 60 dias',

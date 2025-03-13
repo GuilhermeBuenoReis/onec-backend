@@ -30,6 +30,11 @@ import { authenticateUserRoute } from '../routes/authenticate-user';
 import { getProfileUser } from '../routes/get-profile-user';
 import { updateUserRoute } from '../routes/update-user';
 import { deleteUserRoute } from '../routes/delete-user';
+import { getContractStatusCountRoute } from '../routes/get-status-count';
+import { createPendingRoute } from '../routes/create-new-pending-route';
+import { getPendingsRoute } from '../routes/get-pendings';
+import { deletePendingRoute } from '../routes/delete-pending';
+import { updatePendingRoute } from '../routes/update-pending';
 
 config();
 
@@ -77,6 +82,11 @@ app.register(authenticateUserRoute);
 app.register(getProfileUser);
 app.register(updateUserRoute);
 app.register(deleteUserRoute);
+app.register(getContractStatusCountRoute);
+app.register(createPendingRoute);
+app.register(getPendingsRoute);
+app.register(deletePendingRoute);
+app.register(updatePendingRoute);
 
 app
   .listen({

@@ -1,4 +1,4 @@
-import type { ExelDataNegotiation } from '../../../domain/entities/ExelDataNegotiation';
+import { ExelDataNegotiation } from '../../../domain/entities/ExelDataNegotiation';
 import type { ExelDataNegotiationRepository } from '../../../domain/repositories/ExelDataNegotiation';
 import { db } from '..';
 import { excelDataNegotiationTable } from '../schema';
@@ -7,34 +7,48 @@ import { eq } from 'drizzle-orm';
 export class DrizzleExelDataNegotiationRepository
   implements ExelDataNegotiationRepository
 {
-  async create({
-    partnerId,
-    ...data
-  }: Omit<ExelDataNegotiation, 'id'>): Promise<ExelDataNegotiation | null> {
+  async create(
+    data: Omit<ExelDataNegotiation, 'id'>
+  ): Promise<ExelDataNegotiation | null> {
+    const negotiation = new ExelDataNegotiation(
+      undefined,
+      data.title,
+      data.client,
+      data.user,
+      data.tags,
+      data.status,
+      data.step,
+      data.value,
+      data.startsDate,
+      data.observation,
+      data.partnerId,
+      data.averageGuide
+    );
+
     const response = await db
       .insert(excelDataNegotiationTable)
       .values({
-        title: data.title,
-        client: data.client,
-        user: data.user,
-        tags: data.tags,
-        step: data.step,
-        status: data.status,
-        value: data.value,
-        startsDate: data.startsDate,
-        observation: data.observation,
-        averageGuide: data.averageGuide,
-        partnerId,
+        title: negotiation.title,
+        client: negotiation.client,
+        user: negotiation.user,
+        tags: negotiation.tags,
+        step: negotiation.step,
+        status: negotiation.status,
+        value: negotiation.value,
+        startsDate: negotiation.startsDate,
+        observation: negotiation.observation,
+        partnerId: negotiation.partnerId,
+        averageGuide: negotiation.averageGuide,
       })
       .returning();
 
-    const dataNegotiation = response[0];
+    const createdNegotiation = response[0];
 
-    if (!dataNegotiation) {
-      throw new Error('Dados do parceiro incorretos!');
+    if (!createdNegotiation) {
+      throw new Error('Dados da negociação incorretos!');
     }
 
-    return dataNegotiation;
+    return createdNegotiation;
   }
 
   async select(): Promise<ExelDataNegotiation[]> {

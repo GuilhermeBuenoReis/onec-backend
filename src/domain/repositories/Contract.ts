@@ -5,4 +5,5 @@ export interface ContractRepository {
   select(): Promise<Contract[]>;
   update(id: string, data: Partial<Contract>): Promise<Contract | null>;
   delete(id: string): Promise<boolean>;
+  selectStatusCount(): Promise<{ status: string; count: number }[]>;
 }

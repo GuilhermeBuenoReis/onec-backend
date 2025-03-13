@@ -73,7 +73,6 @@
                   },
                   "email": {
                     "type": "string",
-                    "format": "email",
                     "nullable": true
                   },
                   "responsible": {
@@ -441,25 +440,36 @@
                 "type": "object",
                 "properties": {
                   "title": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "client": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "user": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "tags": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "step": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "status": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "value": {
-                    "type": "number"
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "partnerId": {
+                    "type": "string",
+                    "nullable": true
                   },
                   "startsDate": {
                     "type": "string",
@@ -482,6 +492,7 @@
                   "step",
                   "status",
                   "value",
+                  "partnerId",
                   "startsDate",
                   "observation",
                   "averageGuide"
@@ -492,16 +503,6 @@
           },
           "required": true
         },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "query",
-            "name": "id",
-            "required": true
-          }
-        ],
         "responses": {
           "201": {
             "description": "Default Response",
@@ -803,7 +804,8 @@
                     "nullable": true
                   },
                   "client": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "state": {
                     "type": "string",
@@ -1249,7 +1251,7 @@
     },
     "/login": {
       "post": {
-        "operationId": "authenticateUserRoute",
+        "operationId": "authenticateUser",
         "tags": [
           "Authentication"
         ],
@@ -1499,6 +1501,386 @@
             }
           },
           "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contract/status-count": {
+      "get": {
+        "operationId": "getContractStatusCount",
+        "tags": [
+          "contract"
+        ],
+        "description": "Get contract status count",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "string"
+                      },
+                      "count": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "status",
+                      "count"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pendings": {
+      "post": {
+        "operationId": "createPending",
+        "tags": [
+          "pendings"
+        ],
+        "description": "Create a new pending",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "client": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "callReason": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Aberto",
+                      "Encaminhado",
+                      "Pendente",
+                      "Concluído"
+                    ],
+                    "nullable": true
+                  },
+                  "priority": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "responsible": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "category": {
+                    "type": "string",
+                    "enum": [
+                      "SAC",
+                      "Atendimento",
+                      "Financeiro",
+                      "Diretoria",
+                      "Comercial",
+                      "Auditoria"
+                    ]
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "client",
+                  "callReason",
+                  "status",
+                  "priority",
+                  "responsible",
+                  "category",
+                  "description"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPendings",
+        "tags": [
+          "pendings"
+        ],
+        "description": "Get a list of pendings",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "client": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "callReason": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "status": {
+                        "type": "string",
+                        "enum": [
+                          "Aberto",
+                          "Encaminhado",
+                          "Pendente",
+                          "Concluído"
+                        ],
+                        "nullable": true
+                      },
+                      "priority": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "responsible": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "category": {
+                        "type": "string",
+                        "enum": [
+                          "SAC",
+                          "Atendimento",
+                          "Financeiro",
+                          "Diretoria",
+                          "Comercial",
+                          "Auditoria"
+                        ],
+                        "nullable": true
+                      },
+                      "description": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "client",
+                      "callReason",
+                      "status",
+                      "priority",
+                      "responsible",
+                      "category",
+                      "description"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pendings/{id}": {
+      "delete": {
+        "operationId": "deletePending",
+        "tags": [
+          "pendings"
+        ],
+        "description": "Delete a pending",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updatePending",
+        "tags": [
+          "pendings"
+        ],
+        "description": "Update a pending",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "client": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "callReason": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Aberto",
+                      "Encaminhado",
+                      "Pendente",
+                      "Concluído"
+                    ],
+                    "nullable": true
+                  },
+                  "priority": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "responsible": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "category": {
+                    "type": "string",
+                    "enum": [
+                      "SAC",
+                      "Atendimento",
+                      "Financeiro",
+                      "Diretoria",
+                      "Comercial",
+                      "Auditoria"
+                    ],
+                    "nullable": true
+                  },
+                  "description": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
             "description": "Default Response",
             "content": {
               "application/json": {

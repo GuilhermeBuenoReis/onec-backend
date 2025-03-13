@@ -1,1 +1,0 @@
-ALTER TABLE "excel_data_negotiations" ADD COLUMN "startsDate" timestamp;

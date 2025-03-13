@@ -7,22 +7,20 @@ export const createDataNegotiationRoute: FastifyPluginAsyncZod = async app => {
   app.post(
     '/negotiation',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'createDataNegotiation',
         tags: ['DataNegotiations'],
         description: 'Create a new DataNegotiation',
-        querystring: z.object({
-          id: z.string(),
-        }),
         body: z.object({
-          title: z.string(),
-          client: z.string(),
-          user: z.string(),
-          tags: z.string(),
-          step: z.string(),
-          status: z.string(),
-          value: z.number(),
+          title: z.string().nullable(),
+          client: z.string().nullable(),
+          user: z.string().nullable(),
+          tags: z.string().nullable(),
+          step: z.string().nullable(),
+          status: z.string().nullable(),
+          value: z.number().nullable(),
+          partnerId: z.string().nullable(),
           startsDate: z.string().nullable(),
           observation: z.string().nullable(),
           averageGuide: z.number().nullable(),
@@ -50,10 +48,10 @@ export const createDataNegotiationRoute: FastifyPluginAsyncZod = async app => {
         status,
         value,
         startsDate,
+        partnerId,
         observation,
         averageGuide,
       } = request.body;
-      const partnerId = request.query.id;
 
       await drizzleOrm.create({
         title,

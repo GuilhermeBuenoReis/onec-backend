@@ -1,29 +1,8 @@
 import type { ContractRepository } from '../../../domain/repositories/Contract';
 import { db } from '..';
 import { contractTable, partnerTable } from '../schema';
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 import { Contract } from '../../../domain/entities/contracts';
-
-/*
-    id,
-    city,
-    client,
-    state,
-    cnpj,
-    sindic,
-    year,
-    matter,
-    forecast,
-    contractTotal,
-    percentage,
-    signedContract,
-    status,
-    averageGuide,
-    partner,
-    partnerCommssion,
-    counter,
-    email,
-*/
 
 export class DrizzleContractRepository implements ContractRepository {
   async create(contractData: Omit<Contract, 'id'>): Promise<Contract | null> {
@@ -122,5 +101,19 @@ export class DrizzleContractRepository implements ContractRepository {
       .returning();
 
     return response.length > 0;
+  }
+  async selectStatusCount(): Promise<{ status: string; count: number }[]> {
+    const response = await db
+      .select({
+        status: contractTable.status,
+        count: sql<number>`COUNT(*)`,
+      })
+      .from(contractTable)
+      .groupBy(contractTable.status);
+
+    return response.map(item => ({
+      status: item.status ?? 'unknown',
+      count: item.count,
+    }));
   }
 }

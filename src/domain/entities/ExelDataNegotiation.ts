@@ -5,11 +5,11 @@ export class ExelDataNegotiation {
   constructor(
     // biome-ignore lint/style/useDefaultParameterLast: <explanation>
     public id: string = createId(),
-    public title: string,
-    public client: string,
-    public user: string,
-    public tags: string,
-    public status: string,
+    public title: string | null,
+    public client: string | null,
+    public user: string | null,
+    public tags: string | null,
+    public status: string | null,
     public step: string | null,
     public value: number | null,
     public startsDate: string | null,
