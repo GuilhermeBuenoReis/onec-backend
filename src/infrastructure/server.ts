@@ -35,6 +35,10 @@ import { createPendingRoute } from '../routes/create-new-pending-route';
 import { getPendingsRoute } from '../routes/get-pendings';
 import { deletePendingRoute } from '../routes/delete-pending';
 import { updatePendingRoute } from '../routes/update-pending';
+import { createPortalControllRoute } from '../routes/create-portal-controll-route';
+import { getPortalControllsRoute } from '../routes/get-portal-controlls';
+import { deletePortalControllRoute } from '../routes/delete-portal-controll-route';
+import { updatePortalControllRoute } from '../routes/update-portal-controll';
 
 config();
 
@@ -87,6 +91,10 @@ app.register(createPendingRoute);
 app.register(getPendingsRoute);
 app.register(deletePendingRoute);
 app.register(updatePendingRoute);
+app.register(createPortalControllRoute);
+app.register(getPortalControllsRoute);
+app.register(deletePortalControllRoute);
+app.register(updatePortalControllRoute);
 
 app
   .listen({

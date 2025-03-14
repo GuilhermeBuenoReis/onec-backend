@@ -1901,6 +1901,327 @@
           }
         }
       }
+    },
+    "/portalcontrolls": {
+      "post": {
+        "operationId": "createPortalControll",
+        "tags": [
+          "portalcontrolls"
+        ],
+        "description": "Create a new portalcontroll",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "enterprise": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "product": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "percentageHonorary": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "compensation": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "honorary": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "tax": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "value": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "situation": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "enterprise",
+                  "product",
+                  "percentageHonorary",
+                  "compensation",
+                  "honorary",
+                  "tax",
+                  "value",
+                  "situation"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getPortalControlls",
+        "tags": [
+          "portalcontrolls"
+        ],
+        "description": "Get a list of portalcontrolls",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "enterprise": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "product": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "percentageHonorary": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "compensation": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "honorary": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "tax": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "value": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "situation": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "enterprise",
+                      "product",
+                      "percentageHonorary",
+                      "compensation",
+                      "honorary",
+                      "tax",
+                      "value",
+                      "situation"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/portalcontrolls/{id}": {
+      "delete": {
+        "operationId": "deletePortalControll",
+        "tags": [
+          "portalcontrolls"
+        ],
+        "description": "Delete a portalcontroll",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updatePortalControll",
+        "tags": [
+          "portalcontrolls"
+        ],
+        "description": "Update a portalcontroll",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "enterprise": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "product": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "percentageHonorary": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "compensation": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "honorary": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "tax": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "value": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "situation": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

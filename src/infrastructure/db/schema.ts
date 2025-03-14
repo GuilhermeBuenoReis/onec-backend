@@ -137,7 +137,7 @@ export const pendingTable = pgTable('pending_table', {
     .defaultNow(),
 });
 
-export const portalControll = pgTable('portal_controll', {
+export const portalControllTable = pgTable('portal_controll', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
