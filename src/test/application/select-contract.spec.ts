@@ -1,15 +1,23 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { InMemoryContractRepository } from '../../domain/repositories/memory/inMemoryContractRepository';
-import { Contract } from '../../domain/entities/contracts';
+import { Contract } from '../../domain/entities/Contracts';
+import { InMemoryStatusRepository } from '../../domain/repositories/memory/InMemoryStatusRepository';
 
 describe('select contracs', () => {
   let repository: InMemoryContractRepository;
+  let statusRepository: InMemoryStatusRepository;
 
   beforeEach(() => {
     repository = new InMemoryContractRepository();
+    statusRepository = new InMemoryStatusRepository();
   });
 
   it('shoud be able selects all contracts', async () => {
+    const status = statusRepository.create({
+      id: '123',
+      type: 'Ativo',
+      count: 2,
+    });
     const contractData = {
       id: '2',
       city: 'Cidade Exemplo',
@@ -23,7 +31,7 @@ describe('select contracs', () => {
       contractTotal: '10000',
       percentage: 15,
       signedContract: new Date().toISOString(),
-      status: 'Ativo',
+      statusId: await status,
       averageGuide: 500,
       partner: 'Parceiro Exemplo',
       partnerCommission: 5,
@@ -44,7 +52,7 @@ describe('select contracs', () => {
       contractData.contractTotal,
       contractData.percentage,
       contractData.signedContract,
-      contractData.status,
+      contractData.statusId,
       contractData.averageGuide,
       contractData.partner,
       contractData.partnerCommission,
@@ -64,7 +72,7 @@ describe('select contracs', () => {
       contractData.contractTotal,
       contractData.percentage,
       contractData.signedContract,
-      contractData.status,
+      contractData.statusId,
       contractData.averageGuide,
       contractData.partner,
       contractData.partnerCommission,
