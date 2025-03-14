@@ -7,7 +7,7 @@ export const updatePortalControllRoute: FastifyPluginAsyncZod = async app => {
   app.put(
     '/portalcontrolls/:id',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'updatePortalControll',
         tags: ['portalcontrolls'],

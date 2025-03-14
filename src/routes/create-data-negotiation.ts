@@ -7,7 +7,7 @@ export const createDataNegotiationRoute: FastifyPluginAsyncZod = async app => {
   app.post(
     '/negotiation',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'createDataNegotiation',
         tags: ['DataNegotiations'],

@@ -7,7 +7,7 @@ export const getPendingsRoute: FastifyPluginAsyncZod = async app => {
   app.get(
     '/pendings',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'getPendings',
         tags: ['pendings'],
@@ -34,6 +34,8 @@ export const getPendingsRoute: FastifyPluginAsyncZod = async app => {
                 ])
                 .nullable(),
               description: z.string().nullable(),
+              createdAt: z.date().optional(),
+              updatedAt: z.date().optional(),
             })
           ),
         },

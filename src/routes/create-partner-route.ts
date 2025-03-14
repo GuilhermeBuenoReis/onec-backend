@@ -7,7 +7,7 @@ export const createPartnerRoute: FastifyPluginAsyncZod = async app => {
   app.post(
     '/partners',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'createPartner',
         tags: ['partners'],

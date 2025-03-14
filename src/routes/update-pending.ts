@@ -7,7 +7,7 @@ export const updatePendingRoute: FastifyPluginAsyncZod = async app => {
   app.put(
     '/pendings/:id',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'updatePending',
         tags: ['pendings'],
