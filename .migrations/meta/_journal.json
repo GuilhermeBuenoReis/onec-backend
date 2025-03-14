@@ -36,6 +36,20 @@
       "when": 1741956169078,
       "tag": "0004_public_lionheart",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1741973015209,
+      "tag": "0005_nervous_lilandra",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1741973697098,
+      "tag": "0006_demonic_jigsaw",
+      "breakpoints": true
     }
   ]
 }

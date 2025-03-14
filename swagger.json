@@ -845,7 +845,12 @@
                   },
                   "status": {
                     "type": "string",
-                    "nullable": true
+                    "enum": [
+                      "Ativos",
+                      "Finalizados",
+                      "Em Andamento",
+                      "Em migração"
+                    ]
                   },
                   "averageGuide": {
                     "type": "number",

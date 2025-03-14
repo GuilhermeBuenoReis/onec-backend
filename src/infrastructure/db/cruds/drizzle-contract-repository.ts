@@ -2,7 +2,7 @@ import type { ContractRepository } from '../../../domain/repositories/Contract';
 import { db } from '..';
 import { contractTable, partnerTable } from '../schema';
 import { eq, sql } from 'drizzle-orm';
-import { Contract } from '../../../domain/entities/contracts';
+import { Contract } from '../../../domain/entities/Contracts';
 
 export class DrizzleContractRepository implements ContractRepository {
   async create(contractData: Omit<Contract, 'id'>): Promise<Contract | null> {
@@ -59,6 +59,7 @@ export class DrizzleContractRepository implements ContractRepository {
 
     return createdContract;
   }
+
   async select(): Promise<Contract[]> {
     const response = await db
       .select({

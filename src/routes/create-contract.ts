@@ -24,7 +24,12 @@ export const createContractRoute: FastifyPluginAsyncZod = async app => {
           contractTotal: z.string().nullable(),
           percentage: z.number().nullable(),
           signedContract: z.string().nullable(),
-          status: z.string().nullable(),
+          status: z.enum([
+            'Ativos',
+            'Finalizados',
+            'Em Andamento',
+            'Em migração',
+          ]),
           averageGuide: z.number().nullable(),
           partner: z.string().nullable(),
           partnerCommission: z.number().nullable(),

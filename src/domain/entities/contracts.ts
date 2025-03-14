@@ -1,11 +1,6 @@
 import { createId } from '@paralleldrive/cuid2';
 
-// type statusType = {
-//   Ativos: string;
-//   Finalizados: string;
-//   'Em Andamento': string;
-//   'Em migração': stringe;
-// };
+type statusType = 'Ativos' | 'Finalizados' | 'Em Andamento' | 'Em migração';
 
 export class Contract {
   constructor(
@@ -22,12 +17,7 @@ export class Contract {
     public contractTotal: string | null,
     public percentage: number | null,
     public signedContract: string | null,
-    public status:
-      | 'Ativos'
-      | 'Finalizados'
-      | 'Em Andamento'
-      | 'Em migração'
-      | null,
+    public status: statusType | null,
     public averageGuide: number | null,
     public partner: string | null,
     public partnerCommission: number | null,

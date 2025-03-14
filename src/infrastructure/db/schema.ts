@@ -28,7 +28,7 @@ export const partnerTable = pgTable('partners', {
   phone: text('phone'),
   email: text('email'),
   responsible: text('responsible'),
-  createAt: timestamp('created_at', { withTimezone: true })
+  createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
   updatedAt: timestamp('created_at', { withTimezone: true })
@@ -51,7 +51,21 @@ export const excelDataNegotiationTable = pgTable('excel_data_negotiations', {
   observation: text('observation'),
   partnerId: text('partner_id'),
   averageGuide: real('average_guide'),
-  createAt: timestamp('created_at', { withTimezone: true })
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+export const statusTable = pgTable('status_table', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  type: text('type'),
+  count: integer('count'),
+  createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
   updatedAt: timestamp('created_at', { withTimezone: true })
@@ -74,13 +88,15 @@ export const contractTable = pgTable('contract_table', {
   contractTotal: text('contract_total'),
   percentage: real('percentage'),
   signedContract: text('signed_contract'),
-  status: statusEnum(),
+  status: text('status_id').references(() => statusTable.id, {
+    onDelete: 'set null',
+  }),
   averageGuide: real('average_guide'),
   partner: text('partner'),
   partnerCommission: real('partner_commission'),
   counter: text('counter'),
   email: text('email'),
-  createAt: timestamp('created_at', { withTimezone: true })
+  createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
   updatedAt: timestamp('created_at', { withTimezone: true })
@@ -149,4 +165,10 @@ export const portalControllTable = pgTable('portal_controll', {
   tax: real('tax'),
   value: real('value'),
   situation: text('situation'),
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
 });
