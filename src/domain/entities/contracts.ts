@@ -1,6 +1,5 @@
 import { createId } from '@paralleldrive/cuid2';
-
-type statusType = 'Ativos' | 'Finalizados' | 'Em Andamento' | 'Em migração';
+import type { Status } from './Status';
 
 export class Contract {
   constructor(
@@ -17,7 +16,7 @@ export class Contract {
     public contractTotal: string | null,
     public percentage: number | null,
     public signedContract: string | null,
-    public status: statusType | null,
+    public status: Status | null,
     public averageGuide: number | null,
     public partner: string | null,
     public partnerCommission: number | null,

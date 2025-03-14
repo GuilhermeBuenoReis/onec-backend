@@ -88,7 +88,7 @@ export const contractTable = pgTable('contract_table', {
   contractTotal: text('contract_total'),
   percentage: real('percentage'),
   signedContract: text('signed_contract'),
-  status: text('status_id').references(() => statusTable.id, {
+  statusId: text('status_id').references(() => statusTable.id, {
     onDelete: 'set null',
   }),
   averageGuide: real('average_guide'),

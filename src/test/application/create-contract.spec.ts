@@ -1,15 +1,24 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { InMemoryContractRepository } from '../../domain/repositories/memory/inMemoryContractRepository';
-import { Contract } from '../../domain/entities/contracts';
+import { Contract } from '../../domain/entities/Contracts';
+import { InMemoryStatusRepository } from '../../domain/repositories/memory/InMemoryStatusRepository';
 
 describe('create a new contract', () => {
   let repository: InMemoryContractRepository;
+  let statusRepository: InMemoryStatusRepository;
 
   beforeEach(() => {
     repository = new InMemoryContractRepository();
+    statusRepository = new InMemoryStatusRepository();
   });
 
   it('shoud be able create a new contract', async () => {
+    const status = statusRepository.create({
+      id: '123',
+      type: 'Ativo',
+      count: 2,
+    });
+
     const contractData = {
       id: '1',
       city: 'Cidade Exemplo',
@@ -23,7 +32,7 @@ describe('create a new contract', () => {
       contractTotal: '10000',
       percentage: 15,
       signedContract: new Date().toISOString(),
-      status: 'Ativo',
+      statusId: await status,
       averageGuide: 500,
       partner: 'Parceiro Exemplo',
       partnerCommission: 5,
@@ -44,7 +53,7 @@ describe('create a new contract', () => {
       contractData.contractTotal,
       contractData.percentage,
       contractData.signedContract,
-      contractData.status,
+      contractData.statusId,
       contractData.averageGuide,
       contractData.partner,
       contractData.partnerCommission,
@@ -56,7 +65,14 @@ describe('create a new contract', () => {
     expect(result).toEqual(contract);
     expect(repository['contracts']).toHaveLength(1);
   });
+
   it('shoud not be able to create if you dont have a client', async () => {
+    const status = statusRepository.create({
+      id: '123',
+      type: 'Ativo',
+      count: 2,
+    });
+
     const contractData = {
       id: '1',
       city: 'Cidade Exemplo',
@@ -70,7 +86,7 @@ describe('create a new contract', () => {
       contractTotal: '10000',
       percentage: 15,
       signedContract: new Date().toISOString(),
-      status: 'Ativo',
+      statusId: await status,
       averageGuide: 500,
       partner: 'Parceiro Exemplo',
       partnerCommission: 5,
@@ -92,7 +108,7 @@ describe('create a new contract', () => {
         contractData.contractTotal,
         contractData.percentage,
         contractData.signedContract,
-        contractData.status,
+        contractData.statusId,
         contractData.averageGuide,
         contractData.partner,
         contractData.partnerCommission,
