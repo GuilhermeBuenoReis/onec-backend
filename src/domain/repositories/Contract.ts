@@ -1,4 +1,4 @@
-import type { Contract } from '../../domain/entities/contracts';
+import type { Contract } from '../../domain/entities/Contract';
 
 export interface ContractRepository {
   create(data: Contract): Promise<Contract | null>;

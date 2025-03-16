@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { InMemoryContractRepository } from '../../domain/repositories/memory/inMemoryContractRepository';
-import { Contract } from '../../domain/entities/Contracts';
+import { Contract } from '../../domain/entities/Contract';
 import { InMemoryStatusRepository } from '../../domain/repositories/memory/InMemoryStatusRepository';
 
 describe('select contracs', () => {
