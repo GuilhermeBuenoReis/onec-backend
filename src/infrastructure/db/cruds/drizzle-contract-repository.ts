@@ -1,6 +1,6 @@
 import type { ContractRepository } from '../../../domain/repositories/Contract';
 import { db } from '..';
-import { contractTable, partnerTable } from '../schema';
+import { contractTable } from '../schema';
 import { eq, sql } from 'drizzle-orm';
 import { Contract } from '../../../domain/entities/Contract';
 
@@ -53,6 +53,10 @@ export class DrizzleContractRepository implements ContractRepository {
 
     const createdContract = response[0];
 
+    if (!createdContract.status) {
+      throw new Error('Status não inserido');
+    }
+
     if (!createdContract) {
       throw new Error('Dados do parceiro incorretos!');
     }
@@ -103,18 +107,18 @@ export class DrizzleContractRepository implements ContractRepository {
 
     return response.length > 0;
   }
-  async selectStatusCount(): Promise<{ status: string; count: number }[]> {
-    const response = await db
+
+  async selectCountStatus(): Promise<
+    { status: string | null; count: number }[]
+  > {
+    const result = await db
       .select({
         status: contractTable.status,
-        count: sql<number>`COUNT(*)`,
+        count: sql<number>`COUNT(*)`.as('count'),
       })
       .from(contractTable)
       .groupBy(contractTable.status);
 
-    return response.map(item => ({
-      status: item.status ?? 'unknown',
-      count: item.count,
-    }));
+    return result;
   }
 }

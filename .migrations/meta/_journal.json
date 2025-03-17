@@ -5,50 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1741874278932,
-      "tag": "0000_exotic_deadpool",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1741886084700,
-      "tag": "0001_jazzy_hobgoblin",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1741886166105,
-      "tag": "0002_quick_veda",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1741890769527,
-      "tag": "0003_milky_grim_reaper",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1741956169078,
-      "tag": "0004_public_lionheart",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1741973015209,
-      "tag": "0005_nervous_lilandra",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1741973697098,
-      "tag": "0006_demonic_jigsaw",
+      "when": 1742230113031,
+      "tag": "0000_burly_veda",
       "breakpoints": true
     }
   ]

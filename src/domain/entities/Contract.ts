@@ -1,5 +1,4 @@
 import { createId } from '@paralleldrive/cuid2';
-import type { Status } from './Status';
 
 export class Contract {
   constructor(
@@ -16,7 +15,7 @@ export class Contract {
     public contractTotal: string | null,
     public percentage: number | null,
     public signedContract: string | null,
-    public status: Status | null,
+    public status: string | null,
     public averageGuide: number | null,
     public partner: string | null,
     public partnerCommission: number | null,

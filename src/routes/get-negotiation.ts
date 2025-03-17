@@ -17,10 +17,10 @@ export const getNegotiationRoute: FastifyPluginAsyncZod = async app => {
           200: z.array(
             z.object({
               id: z.string(),
-              title: z.string(),
-              client: z.string(),
-              user: z.string(),
-              tags: z.string(),
+              title: z.string().nullable(),
+              client: z.string().nullable(),
+              user: z.string().nullable(),
+              tags: z.string().nullable(),
               step: z.string().nullable(),
               status: z.string(),
               value: z.number().nullable(),
@@ -36,7 +36,12 @@ export const getNegotiationRoute: FastifyPluginAsyncZod = async app => {
       const drizzleOrm = new DrizzleExelDataNegotiationRepository();
       const negotiations = await drizzleOrm.select();
 
-      return reply.status(200).send(negotiations);
+      const formattedNegotiations = negotiations.map(item => ({
+        ...item,
+        status: item.status ?? '',
+      }));
+
+      return reply.status(200).send(formattedNegotiations);
     }
   );
 };

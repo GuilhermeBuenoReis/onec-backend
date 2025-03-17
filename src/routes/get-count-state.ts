@@ -3,26 +3,19 @@ import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import { DrizzleContractRepository } from '../infrastructure/db/cruds/drizzle-contract-repository';
 import { authenticateUserHook } from '../http/hooks/authenticate';
 
-const expectedStatuses = [
-  'Ativos',
-  'Finalizados',
-  'Em Andamento',
-  'Em migração',
-];
-
 export const getContractStatusCountRoute: FastifyPluginAsyncZod = async app => {
   app.get(
     '/contract/status-count',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'getContractStatusCount',
         tags: ['contract'],
-        description: 'Get contract status count',
+        description: 'Get count of contracts by status',
         response: {
           200: z.array(
             z.object({
-              status: z.string(),
+              status: z.string().nullable(),
               count: z.number(),
             })
           ),
@@ -31,18 +24,14 @@ export const getContractStatusCountRoute: FastifyPluginAsyncZod = async app => {
     },
     async (_, reply) => {
       const drizzleOrm = new DrizzleContractRepository();
-      const statusCounts = await drizzleOrm.selectStatusCount();
+      const statusCounts = await drizzleOrm.selectCountStatus();
 
-      const statusMap = new Map(
-        statusCounts.map(item => [item.status, item.count])
-      );
-
-      const formattedResponse = expectedStatuses.map(status => ({
-        status,
-        count: statusMap.get(status) ?? 0,
+      const formattedStatusCounts = statusCounts.map(item => ({
+        status: item.status,
+        count: Number(item.count),
       }));
 
-      return reply.status(200).send(formattedResponse);
+      return reply.status(200).send(formattedStatusCounts);
     }
   );
 };

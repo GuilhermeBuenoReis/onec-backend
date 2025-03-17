@@ -18,7 +18,7 @@ export const getContractRoute: FastifyPluginAsyncZod = async app => {
             z.object({
               id: z.string(),
               city: z.string().nullable(),
-              client: z.string(),
+              client: z.string().nullable(),
               state: z.string().nullable(),
               cnpj: z.string().nullable(),
               sindic: z.string().nullable(),

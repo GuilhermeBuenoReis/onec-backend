@@ -30,7 +30,6 @@ import { authenticateUserRoute } from '../routes/authenticate-user';
 import { getProfileUser } from '../routes/get-profile-user';
 import { updateUserRoute } from '../routes/update-user';
 import { deleteUserRoute } from '../routes/delete-user';
-import { getContractStatusCountRoute } from '../routes/get-status-count';
 import { createPendingRoute } from '../routes/create-new-pending-route';
 import { getPendingsRoute } from '../routes/get-pendings';
 import { deletePendingRoute } from '../routes/delete-pending';
@@ -39,6 +38,7 @@ import { createPortalControllRoute } from '../routes/create-portal-controll-rout
 import { getPortalControllsRoute } from '../routes/get-portal-controlls';
 import { deletePortalControllRoute } from '../routes/delete-portal-controll-route';
 import { updatePortalControllRoute } from '../routes/update-portal-controll';
+import { getContractStatusCountRoute } from '../routes/get-count-state';
 
 config();
 
@@ -86,7 +86,6 @@ app.register(authenticateUserRoute);
 app.register(getProfileUser);
 app.register(updateUserRoute);
 app.register(deleteUserRoute);
-app.register(getContractStatusCountRoute);
 app.register(createPendingRoute);
 app.register(getPendingsRoute);
 app.register(deletePendingRoute);
@@ -95,6 +94,7 @@ app.register(createPortalControllRoute);
 app.register(getPortalControllsRoute);
 app.register(deletePortalControllRoute);
 app.register(updatePortalControllRoute);
+app.register(getContractStatusCountRoute);
 
 app
   .listen({

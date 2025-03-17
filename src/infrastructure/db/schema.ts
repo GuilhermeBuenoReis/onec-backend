@@ -31,7 +31,7 @@ export const partnerTable = pgTable('partners', {
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
-  updatedAt: timestamp('created_at', { withTimezone: true })
+  updatedAt: timestamp('updated_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
 });
@@ -54,21 +54,7 @@ export const excelDataNegotiationTable = pgTable('excel_data_negotiations', {
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
-  updatedAt: timestamp('created_at', { withTimezone: true })
-    .notNull()
-    .defaultNow(),
-});
-
-export const statusTable = pgTable('status_table', {
-  id: text('id')
-    .primaryKey()
-    .$defaultFn(() => createId()),
-  type: text('type'),
-  count: integer('count'),
-  createdAt: timestamp('created_at', { withTimezone: true })
-    .notNull()
-    .defaultNow(),
-  updatedAt: timestamp('created_at', { withTimezone: true })
+  updatedAt: timestamp('updated_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
 });
@@ -88,9 +74,7 @@ export const contractTable = pgTable('contract_table', {
   contractTotal: text('contract_total'),
   percentage: real('percentage'),
   signedContract: text('signed_contract'),
-  statusId: text('status_id').references(() => statusTable.id, {
-    onDelete: 'set null',
-  }),
+  status: text('status'),
   averageGuide: real('average_guide'),
   partner: text('partner'),
   partnerCommission: real('partner_commission'),
@@ -99,7 +83,7 @@ export const contractTable = pgTable('contract_table', {
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
-  updatedAt: timestamp('created_at', { withTimezone: true })
+  updatedAt: timestamp('updated_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
 });
@@ -125,6 +109,7 @@ export const pendingStatusEnum = pgEnum('pending_status', [
   'Pendente',
   'Concluído',
 ]);
+
 export const pendingCategoryEnum = pgEnum('pending_category', [
   'SAC',
   'Atendimento',

@@ -1,5 +1,4 @@
 import { createId } from '@paralleldrive/cuid2';
-import { ValidationError } from '../../exeptions/validate-error';
 
 export class ExelDataNegotiation {
   constructor(
@@ -16,21 +15,5 @@ export class ExelDataNegotiation {
     public observation: string | null,
     public partnerId: string | null,
     public averageGuide: number | null
-  ) {
-    if (!title) {
-      throw new ValidationError('O título é obrigatório!');
-    }
-    if (!client) {
-      throw new ValidationError('O cliente é obrigatório!');
-    }
-    if (!user) {
-      throw new ValidationError('O usuário é obrigatório!');
-    }
-    if (!tags) {
-      throw new ValidationError('As tags é obrigatório!');
-    }
-    if (!status) {
-      throw new ValidationError('O Status é obrigatório!');
-    }
-  }
+  ) {}
 }

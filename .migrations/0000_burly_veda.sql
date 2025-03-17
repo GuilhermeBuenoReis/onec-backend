@@ -14,13 +14,14 @@ CREATE TABLE "contract_table" (
 	"contract_total" text,
 	"percentage" real,
 	"signed_contract" text,
-	"status" "status",
+	"status" text,
 	"average_guide" real,
 	"partner" text,
 	"partner_commission" real,
 	"counter" text,
 	"email" text,
-	"created_at" timestamp with time zone DEFAULT now() NOT NULL
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "excel_data_negotiations" (
@@ -36,7 +37,8 @@ CREATE TABLE "excel_data_negotiations" (
 	"observation" text,
 	"partner_id" text,
 	"average_guide" real,
-	"created_at" timestamp with time zone DEFAULT now() NOT NULL
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "partners" (
@@ -56,7 +58,8 @@ CREATE TABLE "partners" (
 	"phone" text,
 	"email" text,
 	"responsible" text,
-	"created_at" timestamp with time zone DEFAULT now() NOT NULL
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "pending_table" (
@@ -68,7 +71,22 @@ CREATE TABLE "pending_table" (
 	"Responsible" text,
 	"category" "pending_category",
 	"description" text,
-	"created_at" timestamp with time zone DEFAULT now() NOT NULL
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE "portal_controll" (
+	"id" text PRIMARY KEY NOT NULL,
+	"enterprise" text,
+	"product" text,
+	"percentage_honorary" real,
+	"compensation" real,
+	"honorary" real,
+	"tax" real,
+	"value" real,
+	"situation" text,
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE "users_table" (
@@ -77,5 +95,6 @@ CREATE TABLE "users_table" (
 	"password_hash" text NOT NULL,
 	"role" text NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
 	CONSTRAINT "users_table_email_unique" UNIQUE("email")
 );
