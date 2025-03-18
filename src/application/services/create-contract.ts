@@ -1,4 +1,4 @@
-import { Contract } from '../../domain/entities/Contracts';
+import { Contract } from '../../domain/entities/Contract';
 import type { ContractRepository } from '../../domain/repositories/Contract';
 
 export class CreateContract {

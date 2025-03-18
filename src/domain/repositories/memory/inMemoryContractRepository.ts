@@ -1,4 +1,4 @@
-import type { Contract } from '../../entities/contracts';
+import type { Contract } from '../../entities/Contract';
 import type { ContractRepository } from '../../repositories/Contract';
 
 export class InMemoryContractRepository implements ContractRepository {
@@ -40,5 +40,11 @@ export class InMemoryContractRepository implements ContractRepository {
     }
     this.contracts.splice(contractIndex, 1);
     return true;
+  }
+
+  selectCountStatus(): Promise<
+    { status: string | null; count: number }[] | null
+  > {
+    return this.selectCountStatus();
   }
 }
