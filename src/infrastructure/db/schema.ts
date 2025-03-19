@@ -13,8 +13,8 @@ export const partnerTable = pgTable('partners', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
-  name: text('name').notNull(),
-  cpfOrCnpj: text('cpf_or_cnpj').notNull(),
+  name: text('name'),
+  cpfOrCnpj: text('cpf_or_cnpj'),
   city: text('city'),
   state: text('state'),
   commission: real('commission'),

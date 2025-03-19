@@ -16,6 +16,11 @@ async function seedUsers() {
       password: env.ADMIN2_PASSWORD,
       role: 'admin',
     },
+    {
+      email: env.ADMIN3_EMAIL,
+      password: env.ADMIN3_PASSWORD,
+      role: 'admin',
+    },
   ];
 
   for (const user of adminUsers) {

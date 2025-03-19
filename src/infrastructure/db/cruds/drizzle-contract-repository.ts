@@ -53,10 +53,6 @@ export class DrizzleContractRepository implements ContractRepository {
 
     const createdContract = response[0];
 
-    if (!createdContract.status) {
-      throw new Error('Status não inserido');
-    }
-
     if (!createdContract) {
       throw new Error('Dados do parceiro incorretos!');
     }
@@ -120,5 +116,19 @@ export class DrizzleContractRepository implements ContractRepository {
       .groupBy(contractTable.status);
 
     return result;
+  }
+
+  async selectStatusFilter(statusFilter: string) {
+    const response = await db
+      .select({
+        id: contractTable.id,
+        status: contractTable.status,
+        count: sql<number>`COUNT(*)`.as('count'),
+      })
+      .from(contractTable)
+      .where(eq(contractTable.status, statusFilter))
+      .groupBy(contractTable.id, contractTable.status);
+
+    return response;
   }
 }

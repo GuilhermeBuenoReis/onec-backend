@@ -14,6 +14,7 @@ import {
 import { resolve } from 'node:path';
 import { writeFile } from 'node:fs/promises';
 import fastifyMultipart from '@fastify/multipart';
+
 import { createPartnerRoute } from '../routes/create-partner-route';
 import { getPartnersRoute } from '../routes/get-patners-route';
 import { updatePartnerRoute } from '../routes/update-partner-route';
@@ -38,16 +39,20 @@ import { createPortalControllRoute } from '../routes/create-portal-controll-rout
 import { getPortalControllsRoute } from '../routes/get-portal-controlls';
 import { deletePortalControllRoute } from '../routes/delete-portal-controll-route';
 import { updatePortalControllRoute } from '../routes/update-portal-controll';
-import { getContractStatusCountRoute } from '../routes/get-count-state';
+import { getContractStatusCountRoute } from '../routes/get-count-status';
+import { getContractStatusCountByFilter } from '../routes/get-status-filter';
 
 config();
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
+// Configuração do CORS para permitir a origem do frontend e o envio de credenciais
 app.register(fastifyCors, {
-  origin: '*',
+  origin: 'http://localhost:3000',
+  credentials: true,
 });
 
+// Configura os compiladores de validação e serialização
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
@@ -56,6 +61,7 @@ app.register(fastifyJwt, {
 });
 
 app.register(fastifyMultipart);
+
 app.register(fastifySwagger, {
   openapi: {
     info: {
@@ -70,6 +76,7 @@ app.register(fastifySwaggerUi, {
   routePrefix: '/docs',
 });
 
+// Registra as rotas da aplicação
 app.register(createPartnerRoute);
 app.register(getPartnersRoute);
 app.register(updatePartnerRoute);
@@ -95,6 +102,7 @@ app.register(getPortalControllsRoute);
 app.register(deletePortalControllRoute);
 app.register(updatePortalControllRoute);
 app.register(getContractStatusCountRoute);
+app.register(getContractStatusCountByFilter);
 
 app
   .listen({
@@ -105,6 +113,7 @@ app
     console.log('Http server running 🚀🚀');
   });
 
+// Gera o arquivo Swagger em ambiente de desenvolvimento
 if (env.NODE_ENV === 'development') {
   const specFile = resolve(__dirname, '../../swagger.json');
 

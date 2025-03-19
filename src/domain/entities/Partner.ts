@@ -4,8 +4,8 @@ export class Partner {
   constructor(
     // biome-ignore lint/style/useDefaultParameterLast: <explanation>
     public id: string = createId(),
-    public name: string,
-    public cpfOrCnpj: string,
+    public name: string | null,
+    public cpfOrCnpj: string | null,
     public city: string | null,
     public state: string | null,
     public commission: number | null,
@@ -19,9 +19,5 @@ export class Partner {
     public phone: string | null,
     public email: string | null,
     public responsible: string | null
-  ) {
-    if (!name || !cpfOrCnpj) {
-      throw new Error('Parceiro inválido');
-    }
-  }
+  ) {}
 }

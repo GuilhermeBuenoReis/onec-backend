@@ -1,4 +1,3 @@
-// src/application/services/AuthenticationService.ts
 import bcrypt from 'bcrypt';
 import type { UserRepository } from '../../domain/repositories/User';
 import { generateToken } from '../../config/jose';
