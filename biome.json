@@ -25,6 +25,7 @@
         "noNonNullAssertion": "off"
       },
       "complexity": {
+        "noForEach": "off",
         "noUselessConstructor": "off",
         "useLiteralKeys": "off"
       },

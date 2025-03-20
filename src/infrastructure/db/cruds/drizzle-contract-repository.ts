@@ -118,17 +118,13 @@ export class DrizzleContractRepository implements ContractRepository {
     return result;
   }
 
-  async selectStatusFilter(statusFilter: string) {
+  async selectStatusFilter(filter: string) {
     const response = await db
       .select({
-        id: contractTable.id,
         status: contractTable.status,
-        count: sql<number>`COUNT(*)`.as('count'),
       })
       .from(contractTable)
-      .where(eq(contractTable.status, statusFilter))
-      .groupBy(contractTable.id, contractTable.status);
-
+      .where(sql`TRIM(${contractTable.status}) ILIKE ${filter.trim()}`);
     return response;
   }
 }

@@ -40,19 +40,17 @@ import { getPortalControllsRoute } from '../routes/get-portal-controlls';
 import { deletePortalControllRoute } from '../routes/delete-portal-controll-route';
 import { updatePortalControllRoute } from '../routes/update-portal-controll';
 import { getContractStatusCountRoute } from '../routes/get-count-status';
-import { getContractStatusCountByFilter } from '../routes/get-status-filter';
+import { getContractStatusCountByFilterRoute } from '../routes/get-status-filter';
 
 config();
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
-// Configuração do CORS para permitir a origem do frontend e o envio de credenciais
 app.register(fastifyCors, {
   origin: 'http://localhost:3000',
   credentials: true,
 });
 
-// Configura os compiladores de validação e serialização
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
@@ -76,7 +74,6 @@ app.register(fastifySwaggerUi, {
   routePrefix: '/docs',
 });
 
-// Registra as rotas da aplicação
 app.register(createPartnerRoute);
 app.register(getPartnersRoute);
 app.register(updatePartnerRoute);
@@ -102,7 +99,7 @@ app.register(getPortalControllsRoute);
 app.register(deletePortalControllRoute);
 app.register(updatePortalControllRoute);
 app.register(getContractStatusCountRoute);
-app.register(getContractStatusCountByFilter);
+app.register(getContractStatusCountByFilterRoute);
 
 app
   .listen({
@@ -113,7 +110,6 @@ app
     console.log('Http server running 🚀🚀');
   });
 
-// Gera o arquivo Swagger em ambiente de desenvolvimento
 if (env.NODE_ENV === 'development') {
   const specFile = resolve(__dirname, '../../swagger.json');
 

@@ -7,7 +7,6 @@ export const getPartnersRoute: FastifyPluginAsyncZod = async app => {
   app.get(
     '/partners',
     {
-      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'getPartners',
         tags: ['partners'],
@@ -16,8 +15,8 @@ export const getPartnersRoute: FastifyPluginAsyncZod = async app => {
           200: z.array(
             z.object({
               id: z.string(),
-              name: z.string(),
-              cpfOrCnpj: z.string(),
+              name: z.string().nullable(),
+              cpfOrCnpj: z.string().nullable(),
               city: z.string().nullable(),
               state: z.string().nullable(),
               commission: z.number().nullable(),
@@ -29,7 +28,7 @@ export const getPartnersRoute: FastifyPluginAsyncZod = async app => {
               indicator: z.string().nullable(),
               contract: z.string().nullable(),
               phone: z.string().nullable(),
-              email: z.string().email().nullable(),
+              email: z.string().nullable(),
               responsible: z.string().nullable(),
             })
           ),

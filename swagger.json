@@ -141,10 +141,12 @@
                         "type": "string"
                       },
                       "name": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                       },
                       "cpfOrCnpj": {
-                        "type": "string"
+                        "type": "string",
+                        "nullable": true
                       },
                       "city": {
                         "type": "string",
@@ -192,7 +194,6 @@
                       },
                       "email": {
                         "type": "string",
-                        "format": "email",
                         "nullable": true
                       },
                       "responsible": {
@@ -2229,13 +2230,13 @@
         }
       }
     },
-    "/contract/status-filter": {
+    "/contract/status-count/filter": {
       "post": {
-        "operationId": "getContractStatusByFilter",
+        "operationId": "getContractStatusCountByFilter",
         "tags": [
           "contract"
         ],
-        "description": "Get count of contracts by status by Filter",
+        "description": "Get count of contracts by status using a filter",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2265,21 +2266,15 @@
                   "items": {
                     "type": "object",
                     "properties": {
-                      "id": {
-                        "type": "string",
-                        "nullable": true
-                      },
                       "status": {
                         "type": "string",
                         "nullable": true
                       },
                       "count": {
-                        "type": "number",
-                        "nullable": true
+                        "type": "number"
                       }
                     },
                     "required": [
-                      "id",
                       "status",
                       "count"
                     ],
