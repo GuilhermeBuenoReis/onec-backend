@@ -102,4 +102,30 @@ export class DrizzlePartnerRepository implements PartnerRepository {
 
     return response.length > 0;
   }
+
+  async selectOnePartner(id: string): Promise<Partner | null> {
+    const response = await db
+      .select({
+        id: partnerTable.id,
+        name: partnerTable.name,
+        cpfOrCnpj: partnerTable.cpfOrCnpj,
+        city: partnerTable.city,
+        state: partnerTable.state,
+        commission: partnerTable.commission,
+        portal: partnerTable.portal,
+        channelHead: partnerTable.channelHead,
+        regional: partnerTable.regional,
+        coordinator: partnerTable.coordinator,
+        agent: partnerTable.agent,
+        indicator: partnerTable.indicator,
+        contract: partnerTable.contract,
+        phone: partnerTable.phone,
+        email: partnerTable.email,
+        responsible: partnerTable.responsible,
+      })
+      .from(partnerTable)
+      .where(eq(partnerTable.id, id));
+
+    return response[0] ?? null;
+  }
 }

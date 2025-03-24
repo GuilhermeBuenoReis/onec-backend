@@ -41,13 +41,16 @@ import { deletePortalControllRoute } from '../routes/delete-portal-controll-rout
 import { updatePortalControllRoute } from '../routes/update-portal-controll';
 import { getContractStatusCountRoute } from '../routes/get-count-status';
 import { getContractStatusCountByFilterRoute } from '../routes/get-status-filter';
+import { getOnePartnerRoute } from '../routes/get-one-partner';
 
 config();
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 app.register(fastifyCors, {
-  origin: 'http://localhost:3000',
+  origin: (origin, callback) => {
+    callback(null, origin || '*');
+  },
   credentials: true,
 });
 
@@ -100,6 +103,7 @@ app.register(deletePortalControllRoute);
 app.register(updatePortalControllRoute);
 app.register(getContractStatusCountRoute);
 app.register(getContractStatusCountByFilterRoute);
+app.register(getOnePartnerRoute);
 
 app
   .listen({

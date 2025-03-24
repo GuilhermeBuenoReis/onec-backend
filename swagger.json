@@ -417,6 +417,138 @@
             }
           }
         }
+      },
+      "get": {
+        "operationId": "getOnePartner",
+        "tags": [
+          "partners"
+        ],
+        "description": "Get a single partner by id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "cpfOrCnpj": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "city": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "commission": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "portal": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "channelHead": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "regional": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "coordinator": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "agent": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "indicator": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "contract": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "phone": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "email": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "responsible": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "cpfOrCnpj",
+                    "city",
+                    "state",
+                    "commission",
+                    "portal",
+                    "channelHead",
+                    "regional",
+                    "coordinator",
+                    "agent",
+                    "indicator",
+                    "contract",
+                    "phone",
+                    "email",
+                    "responsible"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/negotiation": {
