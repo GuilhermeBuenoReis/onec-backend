@@ -81,4 +81,24 @@ export class DrizzlePendingRepository implements PendingRepository {
 
     return response.length > 0;
   }
+
+  async selectOnePending(id: string): Promise<Pending | null> {
+    const response = await db
+      .select({
+        id: pendingTable.id,
+        client: pendingTable.client,
+        callReason: pendingTable.callReason,
+        status: pendingTable.status,
+        priority: pendingTable.priority,
+        responsible: pendingTable.responsible,
+        category: pendingTable.category,
+        description: pendingTable.description,
+        createdAt: pendingTable.createdAt,
+        updatedAt: pendingTable.updatedAt,
+      })
+      .from(pendingTable)
+      .where(eq(pendingTable.id, id));
+
+    return response[0] ?? null;
+  }
 }

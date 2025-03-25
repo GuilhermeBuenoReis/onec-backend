@@ -2016,6 +2016,18 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "monthOfCalculation": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "competenceMonth": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "contract": {
+                    "type": "number",
+                    "nullable": true
+                  },
                   "enterprise": {
                     "type": "string",
                     "nullable": true
@@ -2050,6 +2062,9 @@
                   }
                 },
                 "required": [
+                  "monthOfCalculation",
+                  "competenceMonth",
+                  "contract",
                   "enterprise",
                   "product",
                   "percentageHonorary",
@@ -2107,6 +2122,18 @@
                         "type": "string",
                         "nullable": true
                       },
+                      "monthOfCalculation": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "competenceMonth": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "contract": {
+                        "type": "number",
+                        "nullable": true
+                      },
                       "enterprise": {
                         "type": "string",
                         "nullable": true
@@ -2142,6 +2169,9 @@
                     },
                     "required": [
                       "id",
+                      "monthOfCalculation",
+                      "competenceMonth",
+                      "contract",
                       "enterprise",
                       "product",
                       "percentageHonorary",
@@ -2412,6 +2442,122 @@
                     ],
                     "additionalProperties": false
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pending/{id}": {
+      "get": {
+        "operationId": "getOnePending",
+        "tags": [
+          "pendings"
+        ],
+        "description": "Get a single pending by id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "client": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "callReason": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "Aberto",
+                        "Encaminhado",
+                        "Pendente",
+                        "Concluído"
+                      ],
+                      "nullable": true
+                    },
+                    "priority": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "responsible": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "category": {
+                      "type": "string",
+                      "enum": [
+                        "SAC",
+                        "Atendimento",
+                        "Financeiro",
+                        "Diretoria",
+                        "Comercial",
+                        "Auditoria"
+                      ],
+                      "nullable": true
+                    },
+                    "description": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "client",
+                    "callReason",
+                    "status",
+                    "priority",
+                    "responsible",
+                    "category",
+                    "description"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
                 }
               }
             }

@@ -7,7 +7,7 @@ export const getPortalControllsRoute: FastifyPluginAsyncZod = async app => {
   app.get(
     '/portalcontrolls',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'getPortalControlls',
         tags: ['portalcontrolls'],
@@ -16,6 +16,9 @@ export const getPortalControllsRoute: FastifyPluginAsyncZod = async app => {
           200: z.array(
             z.object({
               id: z.string().nullable(),
+              monthOfCalculation: z.string().nullable(),
+              competenceMonth: z.string().nullable(),
+              contract: z.number().nullable(),
               enterprise: z.string().nullable(),
               product: z.string().nullable(),
               percentageHonorary: z.number().nullable(),

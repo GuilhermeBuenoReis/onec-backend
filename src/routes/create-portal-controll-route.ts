@@ -39,7 +39,7 @@ export const createPortalControllRoute: FastifyPluginAsyncZod = async app => {
       );
 
       if (!portalcontroll?.id) {
-        throw new Error('Erro ao cadastrar parceiro');
+        throw new Error('Erro ao cadastrar os dados do portal de controle');
       }
 
       return reply.status(201).send({
