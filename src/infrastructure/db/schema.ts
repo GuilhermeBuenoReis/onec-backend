@@ -142,6 +142,10 @@ export const portalControllTable = pgTable('portal_controll', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
+
+  monthOfCalculation: text('month_of_calculation'),
+  competenceMonth: text('competence_month'),
+  contract: real('contract'),
   enterprise: text('enterprise'),
   product: text('product'),
   percentageHonorary: real('percentage_honorary'),

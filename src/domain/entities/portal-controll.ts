@@ -4,6 +4,9 @@ export class PortalControll {
   constructor(
     // biome-ignore lint/style/useDefaultParameterLast: <explanation>
     public id: string = createId(),
+    public monthOfCalculation: string | null,
+    public competenceMonth: string | null,
+    public contract: number | null,
     public enterprise: string | null,
     public product: string | null,
     public percentageHonorary: number | null,

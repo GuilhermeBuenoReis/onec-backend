@@ -12,6 +12,9 @@ export class DrizzlePortalControllRepository
   ): Promise<PortalControll | null> {
     const portalControll = new PortalControll(
       undefined,
+      portalControllData.monthOfCalculation,
+      portalControllData.competenceMonth,
+      portalControllData.contract,
       portalControllData.enterprise,
       portalControllData.product,
       portalControllData.percentageHonorary,
@@ -26,6 +29,9 @@ export class DrizzlePortalControllRepository
       .insert(portalControllTable)
       .values({
         id: portalControll.id,
+        monthOfCalculation: portalControll.monthOfCalculation,
+        competenceMonth: portalControll.competenceMonth,
+        contract: portalControll.contract,
         enterprise: portalControll.enterprise,
         product: portalControll.product,
         percentageHonorary: portalControll.percentageHonorary,
@@ -50,6 +56,9 @@ export class DrizzlePortalControllRepository
     const response = await db
       .select({
         id: portalControllTable.id,
+        monthOfCalculation: portalControllTable.monthOfCalculation,
+        competenceMonth: portalControllTable.competenceMonth,
+        contract: portalControllTable.contract,
         enterprise: portalControllTable.enterprise,
         product: portalControllTable.product,
         percentageHonorary: portalControllTable.percentageHonorary,

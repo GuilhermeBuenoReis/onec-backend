@@ -11,6 +11,9 @@ describe('select contracs', () => {
 
   it('shoud be able selects all portalcontrolls', async () => {
     const portalcontrollData = {
+      monthOfCalculation: '2022-01-01',
+      competenceMonth: '2022-01-01',
+      contract: 1,
       enterprise: 'clinix',
       product: 'app',
       percentageHonorary: 12,
@@ -23,6 +26,9 @@ describe('select contracs', () => {
 
     const portalcontroll1 = new PortalControll(
       undefined,
+      portalcontrollData.monthOfCalculation,
+      portalcontrollData.competenceMonth,
+      portalcontrollData.contract,
       portalcontrollData.enterprise,
       portalcontrollData.product,
       portalcontrollData.percentageHonorary,
@@ -34,6 +40,9 @@ describe('select contracs', () => {
     );
     const portalcontroll2 = new PortalControll(
       undefined,
+      portalcontrollData.monthOfCalculation,
+      portalcontrollData.competenceMonth,
+      portalcontrollData.contract,
       portalcontrollData.enterprise,
       portalcontrollData.product,
       portalcontrollData.percentageHonorary,

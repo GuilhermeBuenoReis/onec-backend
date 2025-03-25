@@ -7,7 +7,7 @@ export const createPendingRoute: FastifyPluginAsyncZod = async app => {
   app.post(
     '/pendings',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'createPending',
         tags: ['pendings'],
