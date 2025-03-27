@@ -43,6 +43,7 @@ import { getContractStatusCountRoute } from '../routes/get-count-status';
 import { getContractStatusCountByFilterRoute } from '../routes/get-status-filter';
 import { getOnePartnerRoute } from '../routes/get-one-partner';
 import { getOnePendingRoute } from '../routes/get-one-pending';
+import { upsertDataNegotiationRoute } from '../routes/upsert-negotiation';
 
 config();
 
@@ -106,6 +107,7 @@ app.register(getContractStatusCountRoute);
 app.register(getContractStatusCountByFilterRoute);
 app.register(getOnePartnerRoute);
 app.register(getOnePendingRoute);
+app.register(upsertDataNegotiationRoute);
 
 app
   .listen({

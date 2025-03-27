@@ -2564,6 +2564,130 @@
           }
         }
       }
+    },
+    "/negotiation/upsert": {
+      "post": {
+        "operationId": "upsertDataNegotiation",
+        "tags": [
+          "DataNegotiations"
+        ],
+        "description": "Upsert de uma negociação. Se já existir um registro com o mesmo title, os campos serão atualizados; caso contrário, um novo registro será criado. Se o title estiver nulo, um valor único temporário é gerado para inserir o registro.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "client": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "user": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "tags": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "step": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "value": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "partnerId": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "startsDate": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "observation": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "averageGuide": {
+                    "type": "number",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "title",
+                  "client",
+                  "user",
+                  "tags",
+                  "step",
+                  "status",
+                  "value",
+                  "partnerId",
+                  "startsDate",
+                  "observation",
+                  "averageGuide"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

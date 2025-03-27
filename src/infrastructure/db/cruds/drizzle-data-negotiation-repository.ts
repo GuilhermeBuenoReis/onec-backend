@@ -1,3 +1,4 @@
+// File: DrizzleExelDataNegotiationRepository.ts
 import { ExelDataNegotiation } from '../../../domain/entities/ExelDataNegotiation';
 import type { ExelDataNegotiationRepository } from '../../../domain/repositories/ExelDataNegotiation';
 import { db } from '..';
@@ -9,7 +10,7 @@ export class DrizzleExelDataNegotiationRepository
 {
   async create(
     data: Omit<ExelDataNegotiation, 'id'>
-  ): Promise<ExelDataNegotiation | null> {
+  ): Promise<ExelDataNegotiation> {
     const negotiation = new ExelDataNegotiation(
       undefined,
       data.title,
@@ -92,5 +93,64 @@ export class DrizzleExelDataNegotiationRepository
       .returning();
 
     return response.length > 0;
+  }
+
+  async upsert(
+    data: Omit<ExelDataNegotiation, 'id'>
+  ): Promise<ExelDataNegotiation> {
+    if (!data.title) {
+      const newData = {
+        ...data,
+        title: `untitled-${Date.now()}-${Math.floor(Math.random() * 1000000)}`,
+      };
+      return await this.create(newData);
+    }
+
+    const existingRecords = await db
+      .select({
+        id: excelDataNegotiationTable.id,
+        title: excelDataNegotiationTable.title,
+        client: excelDataNegotiationTable.client,
+        user: excelDataNegotiationTable.user,
+        tags: excelDataNegotiationTable.tags,
+        step: excelDataNegotiationTable.step,
+        status: excelDataNegotiationTable.status,
+        value: excelDataNegotiationTable.value,
+        startsDate: excelDataNegotiationTable.startsDate,
+        observation: excelDataNegotiationTable.observation,
+        averageGuide: excelDataNegotiationTable.averageGuide,
+        partnerId: excelDataNegotiationTable.partnerId,
+      })
+      .from(excelDataNegotiationTable)
+      .where(eq(excelDataNegotiationTable.title, data.title))
+      .limit(1);
+
+    if (existingRecords.length > 0) {
+      const existing = existingRecords[0];
+
+      const updatedData: Partial<ExelDataNegotiation> = {
+        title: data.title ?? existing.title,
+        client: data.client ?? existing.client,
+        user: data.user ?? existing.user,
+        tags: data.tags ?? existing.tags,
+        step: data.step ?? existing.step,
+        status: data.status ?? existing.status,
+        value: data.value ?? existing.value,
+        startsDate: data.startsDate ?? existing.startsDate,
+        observation: data.observation ?? existing.observation,
+        partnerId: data.partnerId ?? existing.partnerId,
+        averageGuide: data.averageGuide ?? existing.averageGuide,
+      };
+
+      const updatedRecords = await db
+        .update(excelDataNegotiationTable)
+        .set(updatedData)
+        .where(eq(excelDataNegotiationTable.id, existing.id))
+        .returning();
+
+      return updatedRecords[0];
+    }
+
+    return await this.create(data);
   }
 }

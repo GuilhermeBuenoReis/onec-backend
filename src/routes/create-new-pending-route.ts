@@ -42,7 +42,7 @@ export const createPendingRoute: FastifyPluginAsyncZod = async app => {
       const pending = await pendingRepository.create(request.body);
 
       if (!pending?.id) {
-        throw new Error('Erro ao cadastrar parceiro');
+        throw new Error('Erro ao cadastrar a pendência');
       }
 
       return reply.status(201).send({
