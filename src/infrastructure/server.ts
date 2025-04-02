@@ -44,6 +44,9 @@ import { getContractStatusCountByFilterRoute } from '../routes/get-status-filter
 import { getOnePartnerRoute } from '../routes/get-one-partner';
 import { getOnePendingRoute } from '../routes/get-one-pending';
 import { upsertDataNegotiationRoute } from '../routes/upsert-negotiation';
+import { createCredentialRoute } from '../routes/create-credentials-route';
+import { createClientRoute } from '../routes/create-client-route';
+import { getCredentialClientRoute } from '../routes/get-credentials-and-clients';
 
 config();
 
@@ -108,6 +111,9 @@ app.register(getContractStatusCountByFilterRoute);
 app.register(getOnePartnerRoute);
 app.register(getOnePendingRoute);
 app.register(upsertDataNegotiationRoute);
+app.register(createCredentialRoute);
+app.register(createClientRoute);
+app.register(getCredentialClientRoute);
 
 app
   .listen({

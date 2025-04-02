@@ -161,3 +161,41 @@ export const portalControllTable = pgTable('portal_controll', {
     .notNull()
     .defaultNow(),
 });
+
+//Planilha Padrão de Contestação de Remuneração
+
+export const credentialsTable = pgTable('credentials_table', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  channelHead: text('channel_head'),
+  partner: text('partner'),
+  cnpj: text('cnpj'),
+  agentIndicator: text('agent_indicator'),
+
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+export const clientTable = pgTable('client_table', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  enterprise: text('enterprise'),
+  cnpj: text('cnpj'),
+  product: text('product'),
+  competenceMonth: text('competence_month'),
+  contestation: text('contestation'),
+  returned: text('return'),
+
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});

@@ -2688,6 +2688,281 @@
           }
         }
       }
+    },
+    "/credential": {
+      "post": {
+        "operationId": "createCredential",
+        "tags": [
+          "credential"
+        ],
+        "description": "Create a new Credential",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "channelHead": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "cnpj": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "agentIndicator": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "partner": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "channelHead",
+                  "cnpj",
+                  "agentIndicator",
+                  "partner"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "enum": [
+                    "null"
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/client": {
+      "post": {
+        "operationId": "createClient",
+        "tags": [
+          "client"
+        ],
+        "description": "Create a new Client",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "enterprise": {
+                    "type": "string"
+                  },
+                  "competenceMonth": {
+                    "type": "string"
+                  },
+                  "cnpj": {
+                    "type": "string"
+                  },
+                  "contestation": {
+                    "type": "string"
+                  },
+                  "returned": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "enterprise",
+                  "competenceMonth",
+                  "cnpj",
+                  "contestation",
+                  "returned"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "enum": [
+                    "null"
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/credential-client": {
+      "get": {
+        "operationId": "listCredentialClient",
+        "tags": [
+          "credential",
+          "client"
+        ],
+        "description": "Lista os pares de credential e client agregados em um array JSON, com um novo id para cada objeto",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "credentials": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "channelHead": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "partner": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "cnpj": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "agentIndicator": {
+                            "type": "string",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "channelHead",
+                          "partner",
+                          "cnpj",
+                          "agentIndicator"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "clients": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "enterprise": {
+                            "type": "string"
+                          },
+                          "competenceMonth": {
+                            "type": "string"
+                          },
+                          "cnpj": {
+                            "type": "string"
+                          },
+                          "contestation": {
+                            "type": "string"
+                          },
+                          "returned": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "enterprise",
+                          "competenceMonth",
+                          "cnpj",
+                          "contestation",
+                          "returned"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "credentials",
+                      "clients"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
