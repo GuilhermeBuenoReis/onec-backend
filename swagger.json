@@ -2781,19 +2781,28 @@
                 "type": "object",
                 "properties": {
                   "enterprise": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "competenceMonth": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "cnpj": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "contestation": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "returned": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "product": {
+                    "type": "string",
+                    "nullable": true
                   }
                 },
                 "required": [
@@ -2801,7 +2810,8 @@
                   "competenceMonth",
                   "cnpj",
                   "contestation",
-                  "returned"
+                  "returned",
+                  "product"
                 ],
                 "additionalProperties": false
               }

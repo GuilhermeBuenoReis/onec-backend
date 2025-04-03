@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { DrizzleCredentialClientRepository } from '../infrastructure/db/cruds/drizzle-credential-client-repository';
 import { authenticateUserHook } from '../http/hooks/authenticate';
+import { DrizzleCredentialRepository } from '../infrastructure/db/cruds/drizzle-credential-repository';
 
 export const createCredentialRoute: FastifyPluginAsyncZod = async app => {
   app.post(
@@ -27,7 +27,7 @@ export const createCredentialRoute: FastifyPluginAsyncZod = async app => {
       },
     },
     async (request, reply) => {
-      const drizzleOrm = new DrizzleCredentialClientRepository();
+      const drizzleOrm = new DrizzleCredentialRepository();
 
       const { channelHead, cnpj, agentIndicator, partner } = request.body;
 

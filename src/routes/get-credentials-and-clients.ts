@@ -1,28 +1,6 @@
 import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { authenticateUserHook } from '../http/hooks/authenticate';
 import { DrizzleCredentialClientRepository } from '../infrastructure/db/cruds/drizzle-credential-client-repository';
-
-interface CredentialClientData {
-  contestation: {
-    id: string;
-    credential: {
-      id: string;
-      channelHead: string | null;
-      partner: string | null;
-      cnpj: string | null;
-      agentIndicator: string | null;
-    };
-    client: {
-      id: string;
-      enterprise: string;
-      competenceMonth: string;
-      cnpj: string;
-      contestation: string;
-      returned: string;
-    };
-  };
-}
 
 export const getCredentialClientRoute: FastifyPluginAsyncZod = async app => {
   app.get(
@@ -64,17 +42,18 @@ export const getCredentialClientRoute: FastifyPluginAsyncZod = async app => {
     async (request, reply) => {
       const drizzleOrm = new DrizzleCredentialClientRepository();
 
-      const result =
-        (await drizzleOrm.selectCredentialsAndClients()) as CredentialClientData;
-      const { contestation } = result;
+      // A query retorna um array de registros, cada um contendo um objeto JSON "contestation"
+      const executedResult = await drizzleOrm.selectCredentialsAndClients();
 
-      const response = [
-        {
+      // Mapeia cada registro para o formato esperado na resposta
+      const response = executedResult.map((row: any) => {
+        const contestation = row.contestation;
+        return {
           id: contestation.id,
           credentials: contestation.credential,
           clients: contestation.client,
-        },
-      ];
+        };
+      });
 
       return reply.status(200).send(response);
     }
