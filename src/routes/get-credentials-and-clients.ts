@@ -42,10 +42,8 @@ export const getCredentialClientRoute: FastifyPluginAsyncZod = async app => {
     async (request, reply) => {
       const drizzleOrm = new DrizzleCredentialClientRepository();
 
-      // A query retorna um array de registros, cada um contendo um objeto JSON "contestation"
       const executedResult = await drizzleOrm.selectCredentialsAndClients();
 
-      // Mapeia cada registro para o formato esperado na resposta
       const response = executedResult.map((row: any) => {
         const contestation = row.contestation;
         return {
