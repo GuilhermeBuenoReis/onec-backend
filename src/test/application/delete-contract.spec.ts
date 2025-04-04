@@ -32,7 +32,7 @@ describe('delete a contract', () => {
       contractTotal: '10000',
       percentage: 15,
       signedContract: new Date().toISOString(),
-      statusId: await status,
+      statusId: 'status exemplo',
       averageGuide: 500,
       partner: 'Parceiro Exemplo',
       partnerCommission: 5,

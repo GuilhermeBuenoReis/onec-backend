@@ -18,6 +18,7 @@ describe('select contracs', () => {
       type: 'Ativo',
       count: 2,
     });
+
     const contractData = {
       id: '2',
       city: 'Cidade Exemplo',
@@ -31,7 +32,7 @@ describe('select contracs', () => {
       contractTotal: '10000',
       percentage: 15,
       signedContract: new Date().toISOString(),
-      statusId: await status,
+      statusId: 'Status exempo',
       averageGuide: 500,
       partner: 'Parceiro Exemplo',
       partnerCommission: 5,
