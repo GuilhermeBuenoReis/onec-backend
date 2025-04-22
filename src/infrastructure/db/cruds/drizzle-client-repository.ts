@@ -26,6 +26,7 @@ export class DrizzleClientRepository implements ClientRepository {
     const response = await db.select().from(clientTable);
     return response;
   }
+
   async update(id: string, data: Partial<Client>): Promise<Client | null> {
     const response = await db
       .update(clientTable)
