@@ -154,6 +154,9 @@ export const portalControllTable = pgTable('portal_controll', {
   tax: real('tax'),
   value: real('value'),
   situation: text('situation'),
+
+  partnerId: text('partner_id').references(() => partnerTable.id),
+
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),

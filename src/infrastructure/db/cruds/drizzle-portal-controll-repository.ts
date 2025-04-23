@@ -22,7 +22,8 @@ export class DrizzlePortalControllRepository
       portalControllData.honorary,
       portalControllData.tax,
       portalControllData.value,
-      portalControllData.situation
+      portalControllData.situation,
+      portalControllData.partnerId
     );
 
     const response = await db
@@ -40,16 +41,15 @@ export class DrizzlePortalControllRepository
         tax: portalControll.tax,
         value: portalControll.value,
         situation: portalControll.situation,
+        partnerId: portalControll.partnerId!,
       })
       .returning();
 
-    const createdPending = response[0];
-
-    if (!createdPending) {
-      throw new Error('Dados do parceiro incorretos!');
+    const created = response[0];
+    if (!created) {
+      throw new Error('Falha ao criar controle de portal.');
     }
-
-    return createdPending;
+    return created;
   }
 
   async select(): Promise<PortalControll[]> {
@@ -67,6 +67,7 @@ export class DrizzlePortalControllRepository
         tax: portalControllTable.tax,
         value: portalControllTable.value,
         situation: portalControllTable.situation,
+        partnerId: portalControllTable.partnerId,
       })
       .from(portalControllTable);
 

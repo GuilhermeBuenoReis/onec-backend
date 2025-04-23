@@ -24,11 +24,10 @@ export const createPortalControllRoute: FastifyPluginAsyncZod = async app => {
           tax: z.number().nullable(),
           value: z.number().nullable(),
           situation: z.string().nullable(),
+          partnerId: z.string(), // ← novo campo obrigatório
         }),
         response: {
-          201: z.object({
-            id: z.string(),
-          }),
+          201: z.object({ id: z.string() }),
         },
       },
     },
@@ -42,9 +41,7 @@ export const createPortalControllRoute: FastifyPluginAsyncZod = async app => {
         throw new Error('Erro ao cadastrar os dados do portal de controle');
       }
 
-      return reply.status(201).send({
-        id: portalcontroll.id,
-      });
+      return reply.status(201).send({ id: portalcontroll.id });
     }
   );
 };

@@ -1,0 +1,2 @@
+ALTER TABLE "portal_controll" ADD COLUMN "partner_id" text;--> statement-breakpoint
+ALTER TABLE "portal_controll" ADD CONSTRAINT "portal_controll_partner_id_partners_id_fk" FOREIGN KEY ("partner_id") REFERENCES "public"."partners"("id") ON DELETE no action ON UPDATE no action;

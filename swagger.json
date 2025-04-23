@@ -2059,6 +2059,9 @@
                   "situation": {
                     "type": "string",
                     "nullable": true
+                  },
+                  "partnerId": {
+                    "type": "string"
                   }
                 },
                 "required": [
@@ -2072,7 +2075,8 @@
                   "honorary",
                   "tax",
                   "value",
-                  "situation"
+                  "situation",
+                  "partnerId"
                 ],
                 "additionalProperties": false
               }
@@ -2260,10 +2264,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
-                    "type": "string",
-                    "nullable": true
-                  },
                   "enterprise": {
                     "type": "string",
                     "nullable": true
@@ -2295,6 +2295,9 @@
                   "situation": {
                     "type": "string",
                     "nullable": true
+                  },
+                  "partnerId": {
+                    "type": "string"
                   }
                 },
                 "additionalProperties": false

@@ -7,16 +7,13 @@ export const updatePortalControllRoute: FastifyPluginAsyncZod = async app => {
   app.put(
     '/portalcontrolls/:id',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'updatePortalControll',
         tags: ['portalcontrolls'],
         description: 'Update a portalcontroll',
-        params: z.object({
-          id: z.string(),
-        }),
+        params: z.object({ id: z.string() }),
         body: z.object({
-          id: z.string().nullable().optional(),
           enterprise: z.string().nullable().optional(),
           product: z.string().nullable().optional(),
           percentageHonorary: z.number().nullable().optional(),
@@ -25,32 +22,24 @@ export const updatePortalControllRoute: FastifyPluginAsyncZod = async app => {
           tax: z.number().nullable().optional(),
           value: z.number().nullable().optional(),
           situation: z.string().nullable().optional(),
+          partnerId: z.string().optional(),
         }),
         response: {
-          200: z.object({
-            id: z.string(),
-          }),
-          404: z.object({
-            message: z.string(),
-          }),
+          200: z.object({ id: z.string() }),
+          404: z.object({ message: z.string() }),
         },
       },
     },
     async (request, reply) => {
       const { id } = request.params;
       const portalcontrollRepository = new DrizzlePortalControllRepository();
-      const updatedPortalControll = await portalcontrollRepository.update(
-        id,
-        request.body
-      );
+      const updated = await portalcontrollRepository.update(id, request.body);
 
-      if (!updatedPortalControll) {
+      if (!updated) {
         return reply.status(404).send({ message: 'Controle não encontrado' });
       }
 
-      return reply.status(200).send({
-        id: updatedPortalControll.id,
-      });
+      return reply.status(200).send({ id: updated.id });
     }
   );
 };

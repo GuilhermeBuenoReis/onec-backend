@@ -14,6 +14,7 @@ export class PortalControll {
     public honorary: number | null,
     public tax: number | null,
     public value: number | null,
-    public situation: string | null
+    public situation: string | null,
+    public partnerId: string | null
   ) {}
 }
