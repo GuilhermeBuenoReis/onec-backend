@@ -12,6 +12,9 @@ describe('Update PortalControll', () => {
   it('should be possible to update the portalcontroll', async () => {
     const portalcontrollData = {
       id: '1',
+      monthOfCalculation: '2022-01-01',
+      competenceMonth: '2022-01-01',
+      contract: 1,
       enterprise: 'clinix',
       product: 'app',
       percentageHonorary: 12,
@@ -20,10 +23,14 @@ describe('Update PortalControll', () => {
       tax: 1.5,
       value: 1,
       situation: 'pago',
+      partnerId: 'partnerId',
     };
 
     const portalcontroll = new PortalControll(
-      '1',
+      portalcontrollData.id,
+      portalcontrollData.monthOfCalculation,
+      portalcontrollData.competenceMonth,
+      portalcontrollData.contract,
       portalcontrollData.enterprise,
       portalcontrollData.product,
       portalcontrollData.percentageHonorary,
@@ -31,7 +38,8 @@ describe('Update PortalControll', () => {
       portalcontrollData.honorary,
       portalcontrollData.tax,
       portalcontrollData.value,
-      portalcontrollData.situation
+      portalcontrollData.situation,
+      portalcontrollData.partnerId
     );
 
     await repository.create(portalcontroll);

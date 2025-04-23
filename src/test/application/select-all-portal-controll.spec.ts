@@ -22,6 +22,7 @@ describe('select contracs', () => {
       tax: 1.5,
       value: 1,
       situation: 'pago',
+      partnerId: 'partnerId',
     };
 
     const portalcontroll1 = new PortalControll(
@@ -36,7 +37,8 @@ describe('select contracs', () => {
       portalcontrollData.honorary,
       portalcontrollData.tax,
       portalcontrollData.value,
-      portalcontrollData.situation
+      portalcontrollData.situation,
+      portalcontrollData.partnerId
     );
     const portalcontroll2 = new PortalControll(
       undefined,
@@ -50,7 +52,8 @@ describe('select contracs', () => {
       portalcontrollData.honorary,
       portalcontrollData.tax,
       portalcontrollData.value,
-      portalcontrollData.situation
+      portalcontrollData.situation,
+      portalcontrollData.partnerId
     );
 
     await repository.create(portalcontroll1);

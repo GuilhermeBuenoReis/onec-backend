@@ -16,6 +16,7 @@ describe('Create PortalControll', () => {
       tax: 1.5,
       value: 1,
       situation: 'pago',
+      partnerId: 'partnerId',
     };
 
     const portalcontroll = new PortalControll(
@@ -30,7 +31,8 @@ describe('Create PortalControll', () => {
       portalcontrollData.honorary,
       portalcontrollData.tax,
       portalcontrollData.value,
-      portalcontrollData.situation
+      portalcontrollData.situation,
+      portalcontrollData.partnerId
     );
 
     const repository = new InMemoryPortalControllRepository();
