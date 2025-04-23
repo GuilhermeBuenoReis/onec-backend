@@ -47,6 +47,11 @@ import { upsertDataNegotiationRoute } from '../routes/upsert-negotiation';
 import { createCredentialRoute } from '../routes/create-credentials-route';
 import { createClientRoute } from '../routes/create-client-route';
 import { getCredentialClientRoute } from '../routes/get-credentials-and-clients';
+import { updateCredentialRoute } from '../routes/update-credentials';
+import { deleteCredentialRoute } from '../routes/delete-credentials';
+import { getClientRoute } from '../routes/get-client';
+import { deleteClientRoute } from '../routes/delete-client';
+import { updateClientRoute } from '../routes/update-client';
 
 config();
 
@@ -114,6 +119,11 @@ app.register(upsertDataNegotiationRoute);
 app.register(createCredentialRoute);
 app.register(createClientRoute);
 app.register(getCredentialClientRoute);
+app.register(updateCredentialRoute);
+app.register(deleteCredentialRoute);
+app.register(getClientRoute);
+app.register(updateClientRoute);
+app.register(deleteClientRoute);
 
 app
   .listen({

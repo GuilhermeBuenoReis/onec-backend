@@ -7,7 +7,7 @@ export const getCredentialRoute: FastifyPluginAsyncZod = async app => {
   app.get(
     '/credential',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'getCredential',
         tags: ['credential'],

@@ -1,17 +1,17 @@
 import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { DrizzleCredentialRepository } from '../infrastructure/db/cruds/drizzle-credential-repository';
+import { DrizzleClientRepository } from '../infrastructure/db/cruds/drizzle-client-repository';
 import { authenticateUserHook } from '../http/hooks/authenticate';
 
-export const deleteCredentialRoute: FastifyPluginAsyncZod = async app => {
+export const deleteClientRoute: FastifyPluginAsyncZod = async app => {
   app.delete(
-    '/credential/:id',
+    '/client/:id',
     {
       // onRequest: [authenticateUserHook],
       schema: {
-        operationId: 'deleteCredential',
-        tags: ['credential'],
-        description: 'Delete a credential',
+        operationId: 'deleteClient',
+        tags: ['client'],
+        description: 'Delete a client',
         params: z.object({
           id: z.string(),
         }),
@@ -27,16 +27,16 @@ export const deleteCredentialRoute: FastifyPluginAsyncZod = async app => {
     },
     async (request, reply) => {
       const { id } = request.params;
-      const drizzleOrm = new DrizzleCredentialRepository();
+      const drizzleOrm = new DrizzleClientRepository();
       const deleted = await drizzleOrm.delete(id);
 
       if (!deleted) {
-        return reply.status(404).send({ message: 'Credencial não encontrada' });
+        return reply.status(404).send({ message: 'Cliente não encontrado' });
       }
 
       return reply
         .status(200)
-        .send({ message: 'Credencial deletada com sucesso!' });
+        .send({ message: 'Cliente deletada com sucesso!' });
     }
   );
 };
