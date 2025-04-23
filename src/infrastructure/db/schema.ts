@@ -162,8 +162,6 @@ export const portalControllTable = pgTable('portal_controll', {
     .defaultNow(),
 });
 
-//Planilha Padrão de Contestação de Remuneração
-
 export const credentialsTable = pgTable('credentials_table', {
   id: text('id')
     .primaryKey()
