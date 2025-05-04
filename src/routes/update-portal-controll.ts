@@ -20,6 +20,7 @@ export const updatePortalControllRoute: FastifyPluginAsyncZod = async app => {
           compensation: z.number().nullable().optional(),
           honorary: z.number().nullable().optional(),
           tax: z.number().nullable().optional(),
+          tj: z.number().nullable().optional(),
           value: z.number().nullable().optional(),
           situation: z.string().nullable().optional(),
           partnerId: z.string().optional(),

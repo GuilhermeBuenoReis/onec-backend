@@ -2052,6 +2052,10 @@
                     "type": "number",
                     "nullable": true
                   },
+                  "tj": {
+                    "type": "number",
+                    "nullable": true
+                  },
                   "value": {
                     "type": "number",
                     "nullable": true
@@ -2074,6 +2078,7 @@
                   "compensation",
                   "honorary",
                   "tax",
+                  "tj",
                   "value",
                   "situation",
                   "partnerId"
@@ -2100,93 +2105,6 @@
                     "id"
                   ],
                   "additionalProperties": false
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "operationId": "getPortalControlls",
-        "tags": [
-          "portalcontrolls"
-        ],
-        "description": "Get a list of portalcontrolls",
-        "responses": {
-          "200": {
-            "description": "Default Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string",
-                        "nullable": true
-                      },
-                      "monthOfCalculation": {
-                        "type": "string",
-                        "nullable": true
-                      },
-                      "competenceMonth": {
-                        "type": "string",
-                        "nullable": true
-                      },
-                      "contract": {
-                        "type": "number",
-                        "nullable": true
-                      },
-                      "enterprise": {
-                        "type": "string",
-                        "nullable": true
-                      },
-                      "product": {
-                        "type": "string",
-                        "nullable": true
-                      },
-                      "percentageHonorary": {
-                        "type": "number",
-                        "nullable": true
-                      },
-                      "compensation": {
-                        "type": "number",
-                        "nullable": true
-                      },
-                      "honorary": {
-                        "type": "number",
-                        "nullable": true
-                      },
-                      "tax": {
-                        "type": "number",
-                        "nullable": true
-                      },
-                      "value": {
-                        "type": "number",
-                        "nullable": true
-                      },
-                      "situation": {
-                        "type": "string",
-                        "nullable": true
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "monthOfCalculation",
-                      "competenceMonth",
-                      "contract",
-                      "enterprise",
-                      "product",
-                      "percentageHonorary",
-                      "compensation",
-                      "honorary",
-                      "tax",
-                      "value",
-                      "situation"
-                    ],
-                    "additionalProperties": false
-                  }
                 }
               }
             }
@@ -2285,6 +2203,10 @@
                     "nullable": true
                   },
                   "tax": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "tj": {
                     "type": "number",
                     "nullable": true
                   },
@@ -3321,6 +3243,326 @@
                   },
                   "required": [
                     "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/portalcontrolls/{partnerId}/upload-json": {
+      "post": {
+        "operationId": "uploadJsonPortalControlls",
+        "tags": [
+          "portalcontrolls"
+        ],
+        "description": "Recebe JSON com múltiplas abas. Realiza full load na primeira vez e incremental (última aba) depois.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sheets": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "data": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "Mês Apuração": {},
+                              "Mês Competência": {},
+                              "Contrato": {},
+                              "Empresa": {},
+                              "Produto": {},
+                              "% Honorario": {},
+                              "Compensação": {},
+                              "Honorários": {},
+                              "Imposto": {},
+                              "Valor R$": {}
+                            },
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "data"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "sheets"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "partnerId",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/portal/portalcontrolls": {
+      "get": {
+        "operationId": "getPortalControlls",
+        "tags": [
+          "portalcontrolls"
+        ],
+        "description": "Retorna todos os registros de PortalControlls para o parceiro informado via querystring",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "in": "query",
+            "name": "partnerId",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "monthOfCalculation": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "competenceMonth": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "contract": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "enterprise": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "product": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "percentageHonorary": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "compensation": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "honorary": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "tax": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "tj": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "value": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "situation": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "partnerId": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "monthOfCalculation",
+                      "competenceMonth",
+                      "contract",
+                      "enterprise",
+                      "product",
+                      "percentageHonorary",
+                      "compensation",
+                      "honorary",
+                      "tax",
+                      "tj",
+                      "value",
+                      "situation",
+                      "partnerId"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/portalcontrolls/import": {
+      "post": {
+        "operationId": "importPortalControlls",
+        "tags": [
+          "portalcontrolls"
+        ],
+        "description": "Importa registros de PortalControll via upload CSV/JSON e faz upsert no banco",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "monthOfCalculation": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "competenceMonth": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "contract": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "enterprise": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "product": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "percentageHonorary": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "compensation": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "honorary": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "tax": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "value": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "situation": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "partnerId": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "partnerId"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "imported": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "imported"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
                   ],
                   "additionalProperties": false
                 }

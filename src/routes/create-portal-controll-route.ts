@@ -22,6 +22,7 @@ export const createPortalControllRoute: FastifyPluginAsyncZod = async app => {
           compensation: z.number().nullable(),
           honorary: z.number().nullable(),
           tax: z.number().nullable(),
+          tj: z.number().nullable(),
           value: z.number().nullable(),
           situation: z.string().nullable(),
           partnerId: z.string(), // ← novo campo obrigatório

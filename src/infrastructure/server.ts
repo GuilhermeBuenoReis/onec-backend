@@ -52,10 +52,12 @@ import { deleteCredentialRoute } from '../routes/delete-credentials';
 import { getClientRoute } from '../routes/get-client';
 import { deleteClientRoute } from '../routes/delete-client';
 import { updateClientRoute } from '../routes/update-client';
+import { uploadJsonRoute } from '../routes/upload-json-route';
+import { importPortalControllsRoute } from '../routes/upset-portal-controll';
 
 config();
 
-const app = fastify().withTypeProvider<ZodTypeProvider>();
+const app = fastify({ logger: true }).withTypeProvider<ZodTypeProvider>();
 
 app.register(fastifyCors, {
   origin: (origin, callback) => {
@@ -108,7 +110,6 @@ app.register(getPendingsRoute);
 app.register(deletePendingRoute);
 app.register(updatePendingRoute);
 app.register(createPortalControllRoute);
-app.register(getPortalControllsRoute);
 app.register(deletePortalControllRoute);
 app.register(updatePortalControllRoute);
 app.register(getContractStatusCountRoute);
@@ -124,6 +125,9 @@ app.register(deleteCredentialRoute);
 app.register(getClientRoute);
 app.register(updateClientRoute);
 app.register(deleteClientRoute);
+app.register(uploadJsonRoute);
+app.register(getPortalControllsRoute);
+app.register(importPortalControllsRoute);
 
 app
   .listen({

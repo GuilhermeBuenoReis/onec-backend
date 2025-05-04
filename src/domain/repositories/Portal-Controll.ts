@@ -8,4 +8,8 @@ export interface PortalControllRepository {
     portalcontroll: Partial<Omit<PortalControll, 'id'>>
   ): Promise<PortalControll | null>;
   delete(id: string): Promise<boolean>;
+
+  count(): Promise<number>;
+  deleteByCompetenceMonth(month: string): Promise<number>;
+  bulkCreate(data: PortalControll[]): Promise<PortalControll[]>;
 }

@@ -1,0 +1,1 @@
+ALTER TABLE "portal_controll" ALTER COLUMN "partner_id" SET NOT NULL;

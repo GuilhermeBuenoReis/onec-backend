@@ -1,0 +1,1 @@
+ALTER TABLE "portal_controll" ADD COLUMN "tj" real;
