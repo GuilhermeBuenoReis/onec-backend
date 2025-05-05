@@ -36,14 +36,12 @@ import { getPendingsRoute } from '../routes/get-pendings';
 import { deletePendingRoute } from '../routes/delete-pending';
 import { updatePendingRoute } from '../routes/update-pending';
 import { createPortalControllRoute } from '../routes/create-portal-controll-route';
-import { getPortalControllsRoute } from '../routes/get-portal-controlls';
 import { deletePortalControllRoute } from '../routes/delete-portal-controll-route';
 import { updatePortalControllRoute } from '../routes/update-portal-controll';
 import { getContractStatusCountRoute } from '../routes/get-count-status';
 import { getContractStatusCountByFilterRoute } from '../routes/get-status-filter';
 import { getOnePartnerRoute } from '../routes/get-one-partner';
 import { getOnePendingRoute } from '../routes/get-one-pending';
-import { upsertDataNegotiationRoute } from '../routes/upsert-negotiation';
 import { createCredentialRoute } from '../routes/create-credentials-route';
 import { createClientRoute } from '../routes/create-client-route';
 import { getCredentialClientRoute } from '../routes/get-credentials-and-clients';
@@ -53,7 +51,7 @@ import { getClientRoute } from '../routes/get-client';
 import { deleteClientRoute } from '../routes/delete-client';
 import { updateClientRoute } from '../routes/update-client';
 import { uploadJsonRoute } from '../routes/upload-json-route';
-import { importPortalControllsRoute } from '../routes/upset-portal-controll';
+import { getPortalControllsBySelectParternRoute } from '../routes/get-portal-controlls-by-partner';
 
 config();
 
@@ -116,7 +114,6 @@ app.register(getContractStatusCountRoute);
 app.register(getContractStatusCountByFilterRoute);
 app.register(getOnePartnerRoute);
 app.register(getOnePendingRoute);
-app.register(upsertDataNegotiationRoute);
 app.register(createCredentialRoute);
 app.register(createClientRoute);
 app.register(getCredentialClientRoute);
@@ -126,8 +123,7 @@ app.register(getClientRoute);
 app.register(updateClientRoute);
 app.register(deleteClientRoute);
 app.register(uploadJsonRoute);
-app.register(getPortalControllsRoute);
-app.register(importPortalControllsRoute);
+app.register(getPortalControllsBySelectParternRoute);
 
 app
   .listen({

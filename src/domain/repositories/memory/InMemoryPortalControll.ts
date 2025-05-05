@@ -54,4 +54,13 @@ export class InMemoryPortalControllRepository
     this.portalcontrolls.splice(portalcontrollIndex, 1);
     return true;
   }
+
+  selectByPartner(partnerId: string): Promise<PortalControll[]> {
+    return new Promise(resolve => {
+      const portalcontrolls = this.portalcontrolls.filter(
+        portalcontroll => portalcontroll.partnerId === partnerId
+      );
+      resolve(portalcontrolls);
+    });
+  }
 }

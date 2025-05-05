@@ -9,7 +9,7 @@ describe('select portall-controlls', () => {
     repository = new InMemoryPortalControllRepository();
   });
 
-  it('shoud be able selects all portalcontrolls', async () => {
+  it('shoud be able selects all portalcontrolls by partner', async () => {
     const portalcontrollData = {
       monthOfCalculation: '2022-01-01',
       competenceMonth: '2022-01-01',
@@ -61,12 +61,14 @@ describe('select portall-controlls', () => {
 
     await repository.create(portalcontroll1);
     await repository.create(portalcontroll2);
+    const partner = 'partnerId';
 
-    const result = await repository.select();
+    const result = await repository.selectByPartner(partner);
 
     expect(result).toHaveLength(2);
     expect(result).toEqual(
       expect.arrayContaining([portalcontroll1, portalcontroll2])
     );
+    expect(result[0].partnerId).toEqual(partner);
   });
 });
