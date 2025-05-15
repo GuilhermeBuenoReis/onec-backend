@@ -52,6 +52,7 @@ import { deleteClientRoute } from '../routes/delete-client';
 import { updateClientRoute } from '../routes/update-client';
 import { uploadJsonRoute } from '../routes/upload-json-route';
 import { getPortalControllsBySelectParternRoute } from '../routes/get-portal-controlls-by-partner';
+import { getContractByIdRoute } from '../routes/get-contract-by-id';
 
 config();
 
@@ -124,6 +125,7 @@ app.register(updateClientRoute);
 app.register(deleteClientRoute);
 app.register(uploadJsonRoute);
 app.register(getPortalControllsBySelectParternRoute);
+app.register(getContractByIdRoute);
 
 app
   .listen({

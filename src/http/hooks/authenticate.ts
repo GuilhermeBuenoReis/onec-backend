@@ -3,7 +3,6 @@ import type { FastifyReply, FastifyRequest } from 'fastify';
 function parseCookies(cookieHeader?: string): Record<string, string> {
   const cookies: Record<string, string> = {};
   if (!cookieHeader) return cookies;
-  // biome-ignore lint/complexity/noForEach: <explanation>
   cookieHeader.split(';').forEach(cookie => {
     const [name, ...rest] = cookie.split('=');
     if (!name) return;

@@ -127,4 +127,32 @@ export class DrizzleContractRepository implements ContractRepository {
       .where(sql`TRIM(${contractTable.status}) ILIKE ${filter.trim()}`);
     return response;
   }
+
+  async selectById(id: string): Promise<Contract | null> {
+    const response = await db
+      .select({
+        id: contractTable.id,
+        city: contractTable.city,
+        client: contractTable.client,
+        state: contractTable.state,
+        cnpj: contractTable.cnpj,
+        sindic: contractTable.sindic,
+        year: contractTable.year,
+        matter: contractTable.matter,
+        forecast: contractTable.forecast,
+        contractTotal: contractTable.contractTotal,
+        percentage: contractTable.percentage,
+        signedContract: contractTable.signedContract,
+        status: contractTable.status,
+        averageGuide: contractTable.averageGuide,
+        partner: contractTable.partner,
+        partnerCommission: contractTable.partnerCommission,
+        counter: contractTable.counter,
+        email: contractTable.email,
+      })
+      .from(contractTable)
+      .where(eq(contractTable.id, id));
+
+    return response[0] || null;
+  }
 }

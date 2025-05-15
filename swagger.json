@@ -1377,6 +1377,148 @@
             }
           }
         }
+      },
+      "get": {
+        "operationId": "getContractById",
+        "tags": [
+          "contract"
+        ],
+        "description": "Get contract by id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "client": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "cnpj": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "sindic": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "year": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "matter": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "forecast": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "contractTotal": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "percentage": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "signedContract": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "status": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "averageGuide": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "partner": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "partnerCommission": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "counter": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "email": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "city",
+                    "client",
+                    "state",
+                    "cnpj",
+                    "sindic",
+                    "year",
+                    "matter",
+                    "forecast",
+                    "contractTotal",
+                    "percentage",
+                    "signedContract",
+                    "status",
+                    "averageGuide",
+                    "partner",
+                    "partnerCommission",
+                    "counter",
+                    "email"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/login": {

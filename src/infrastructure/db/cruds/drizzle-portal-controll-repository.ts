@@ -2,7 +2,7 @@ import { PortalControll } from '../../../domain/entities/portal-controll';
 import type { PortalControllRepository } from '../../../domain/repositories/Portal-Controll';
 import { db } from '..';
 import { portalControllTable } from '../schema';
-import { eq, sql } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 
 export class DrizzlePortalControllRepository
   implements PortalControllRepository
