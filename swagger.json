@@ -328,7 +328,8 @@
                       "type": "string"
                     },
                     "name": {
-                      "type": "string"
+                      "type": "string",
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -825,7 +826,8 @@
                   "type": "object",
                   "properties": {
                     "title": {
-                      "type": "string"
+                      "type": "string",
+                      "nullable": true
                     }
                   },
                   "required": [
@@ -3266,81 +3268,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/portalcontrolls/{partnerId}/upload-json": {
-      "post": {
-        "operationId": "uploadJsonPortalControlls",
-        "tags": [
-          "portalcontrolls"
-        ],
-        "description": "Recebe JSON com múltiplas abas. Realiza full load na primeira vez e incremental (última aba) depois.",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "sheets": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "name": {
-                          "type": "string"
-                        },
-                        "data": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "Mês Apuração": {},
-                              "Mês Competência": {},
-                              "Contrato": {},
-                              "Empresa": {},
-                              "Produto": {},
-                              "% Honorario": {},
-                              "Compensação": {},
-                              "Honorários": {},
-                              "Imposto": {},
-                              "Valor R$": {}
-                            },
-                            "additionalProperties": false
-                          }
-                        }
-                      },
-                      "required": [
-                        "name",
-                        "data"
-                      ],
-                      "additionalProperties": false
-                    }
-                  }
-                },
-                "required": [
-                  "sheets"
-                ],
-                "additionalProperties": false
-              }
-            }
-          },
-          "required": true
-        },
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "in": "path",
-            "name": "partnerId",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Default Response"
           }
         }
       }

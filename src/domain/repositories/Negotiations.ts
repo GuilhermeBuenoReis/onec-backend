@@ -1,4 +1,4 @@
-import type { ExelDataNegotiation } from '../../domain/entities/ExelDataNegotiation';
+import type { ExelDataNegotiation } from '../../domain/entities/Negotiations';
 
 export interface ExelDataNegotiationRepository {
   create(

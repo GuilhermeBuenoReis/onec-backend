@@ -1,23 +1,15 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { InMemoryContractRepository } from '../../domain/repositories/memory/inMemoryContractRepository';
 import { Contract } from '../../domain/entities/Contract';
-import { InMemoryStatusRepository } from '../../domain/repositories/memory/InMemoryStatusRepository';
 
 describe('create a new contract', () => {
   let repository: InMemoryContractRepository;
-  let statusRepository: InMemoryStatusRepository;
 
   beforeEach(() => {
     repository = new InMemoryContractRepository();
-    statusRepository = new InMemoryStatusRepository();
   });
 
   it('should be possible to update the contract', async () => {
-    const status = statusRepository.create({
-      id: '123',
-      type: 'Ativo',
-      count: 2,
-    });
     const contractData = {
       id: '1',
       city: 'Cidade Exemplo',
@@ -31,7 +23,7 @@ describe('create a new contract', () => {
       contractTotal: '10000',
       percentage: 15,
       signedContract: new Date().toISOString(),
-      statusId: 'status exemplo',
+      status: 'status exemplo',
       averageGuide: 500,
       partner: 'Parceiro Exemplo',
       partnerCommission: 5,
@@ -52,7 +44,7 @@ describe('create a new contract', () => {
       contractData.contractTotal,
       contractData.percentage,
       contractData.signedContract,
-      contractData.statusId,
+      contractData.status,
       contractData.averageGuide,
       contractData.partner,
       contractData.partnerCommission,

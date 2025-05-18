@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { InMemoryExelDataNegotiationRepository } from '../../domain/repositories/memory/InMemoryExelDataNegotiationRepository';
-import { ExelDataNegotiation } from '../../domain/entities/ExelDataNegotiation';
+import { InMemoryExelDataNegotiationRepository } from '../../domain/repositories/memory/InMemoryNegotiationRepository';
+import { ExelDataNegotiation } from '../../domain/entities/Negotiations';
 
 describe('Select Negotiations', () => {
   let repository: InMemoryExelDataNegotiationRepository;

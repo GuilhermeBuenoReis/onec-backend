@@ -1,7 +1,6 @@
-// /tests/exelDataNegotiation/createExelDataNegotiation.test.ts
 import { describe, expect, it, beforeEach } from 'vitest';
-import { ExelDataNegotiation } from '../../domain/entities/ExelDataNegotiation';
-import { InMemoryExelDataNegotiationRepository } from '../../domain/repositories/memory/InMemoryExelDataNegotiationRepository';
+import { ExelDataNegotiation } from '../../domain/entities/Negotiations';
+import { InMemoryExelDataNegotiationRepository } from '../../domain/repositories/memory/InMemoryNegotiationRepository';
 
 describe('Create ExelDataNegotiation', () => {
   let repository: InMemoryExelDataNegotiationRepository;

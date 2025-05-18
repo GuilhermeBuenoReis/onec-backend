@@ -10,7 +10,6 @@ describe('Update User', () => {
       role: 'admin',
     };
 
-    // Cria o usuário
     const createdUser = await repository.create(userData);
     if (!createdUser) {
       throw new Error('Falha na criação do usuário');

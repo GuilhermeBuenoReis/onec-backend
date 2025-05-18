@@ -1,6 +1,6 @@
 import type { ContractRepository } from '../../../domain/repositories/Contract';
 import { db } from '..';
-import { contractTable } from '../schema';
+import { contracts } from '../schema';
 import { eq, sql } from 'drizzle-orm';
 import { Contract } from '../../../domain/entities/Contract';
 
@@ -28,7 +28,7 @@ export class DrizzleContractRepository implements ContractRepository {
     );
 
     const response = await db
-      .insert(contractTable)
+      .insert(contracts)
       .values({
         id: contract.id,
         city: contract.city,
@@ -63,42 +63,42 @@ export class DrizzleContractRepository implements ContractRepository {
   async select(): Promise<Contract[]> {
     const response = await db
       .select({
-        id: contractTable.id,
-        city: contractTable.city,
-        client: contractTable.client,
-        state: contractTable.state,
-        cnpj: contractTable.cnpj,
-        sindic: contractTable.sindic,
-        year: contractTable.year,
-        matter: contractTable.matter,
-        forecast: contractTable.forecast,
-        contractTotal: contractTable.contractTotal,
-        percentage: contractTable.percentage,
-        signedContract: contractTable.signedContract,
-        status: contractTable.status,
-        averageGuide: contractTable.averageGuide,
-        partner: contractTable.partner,
-        partnerCommission: contractTable.partnerCommission,
-        counter: contractTable.counter,
-        email: contractTable.email,
+        id: contracts.id,
+        city: contracts.city,
+        client: contracts.client,
+        state: contracts.state,
+        cnpj: contracts.cnpj,
+        sindic: contracts.sindic,
+        year: contracts.year,
+        matter: contracts.matter,
+        forecast: contracts.forecast,
+        contractTotal: contracts.contractTotal,
+        percentage: contracts.percentage,
+        signedContract: contracts.signedContract,
+        status: contracts.status,
+        averageGuide: contracts.averageGuide,
+        partner: contracts.partner,
+        partnerCommission: contracts.partnerCommission,
+        counter: contracts.counter,
+        email: contracts.email,
       })
-      .from(contractTable);
+      .from(contracts);
 
     return response;
   }
   async update(id: string, data: Partial<Contract>): Promise<Contract | null> {
     const response = await db
-      .update(contractTable)
+      .update(contracts)
       .set(data)
-      .where(eq(contractTable.id, id))
+      .where(eq(contracts.id, id))
       .returning();
 
     return response[0] || null;
   }
   async delete(id: string): Promise<boolean> {
     const response = await db
-      .delete(contractTable)
-      .where(eq(contractTable.id, id))
+      .delete(contracts)
+      .where(eq(contracts.id, id))
       .returning();
 
     return response.length > 0;
@@ -109,11 +109,11 @@ export class DrizzleContractRepository implements ContractRepository {
   > {
     const result = await db
       .select({
-        status: contractTable.status,
+        status: contracts.status,
         count: sql<number>`COUNT(*)`.as('count'),
       })
-      .from(contractTable)
-      .groupBy(contractTable.status);
+      .from(contracts)
+      .groupBy(contracts.status);
 
     return result;
   }
@@ -121,37 +121,37 @@ export class DrizzleContractRepository implements ContractRepository {
   async selectStatusFilter(filter: string) {
     const response = await db
       .select({
-        status: contractTable.status,
+        status: contracts.status,
       })
-      .from(contractTable)
-      .where(sql`TRIM(${contractTable.status}) ILIKE ${filter.trim()}`);
+      .from(contracts)
+      .where(sql`TRIM(${contracts.status}) ILIKE ${filter.trim()}`);
     return response;
   }
 
   async selectById(id: string): Promise<Contract | null> {
     const response = await db
       .select({
-        id: contractTable.id,
-        city: contractTable.city,
-        client: contractTable.client,
-        state: contractTable.state,
-        cnpj: contractTable.cnpj,
-        sindic: contractTable.sindic,
-        year: contractTable.year,
-        matter: contractTable.matter,
-        forecast: contractTable.forecast,
-        contractTotal: contractTable.contractTotal,
-        percentage: contractTable.percentage,
-        signedContract: contractTable.signedContract,
-        status: contractTable.status,
-        averageGuide: contractTable.averageGuide,
-        partner: contractTable.partner,
-        partnerCommission: contractTable.partnerCommission,
-        counter: contractTable.counter,
-        email: contractTable.email,
+        id: contracts.id,
+        city: contracts.city,
+        client: contracts.client,
+        state: contracts.state,
+        cnpj: contracts.cnpj,
+        sindic: contracts.sindic,
+        year: contracts.year,
+        matter: contracts.matter,
+        forecast: contracts.forecast,
+        contractTotal: contracts.contractTotal,
+        percentage: contracts.percentage,
+        signedContract: contracts.signedContract,
+        status: contracts.status,
+        averageGuide: contracts.averageGuide,
+        partner: contracts.partner,
+        partnerCommission: contracts.partnerCommission,
+        counter: contracts.counter,
+        email: contracts.email,
       })
-      .from(contractTable)
-      .where(eq(contractTable.id, id));
+      .from(contracts)
+      .where(eq(contracts.id, id));
 
     return response[0] || null;
   }

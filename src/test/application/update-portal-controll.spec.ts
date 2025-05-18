@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { PortalControll } from '../../domain/entities/portal-controll';
+import { PortalControll } from '../../domain/entities/Portal-Controlls';
 import { InMemoryPortalControllRepository } from '../../domain/repositories/memory/InMemoryPortalControll';
 
 describe('Update PortalControll', () => {
@@ -21,6 +21,7 @@ describe('Update PortalControll', () => {
       compensation: 5,
       honorary: 25000,
       tax: 1.5,
+      tj: 1.5,
       value: 1,
       situation: 'pago',
       partnerId: 'partnerId',
@@ -37,6 +38,7 @@ describe('Update PortalControll', () => {
       portalcontrollData.compensation,
       portalcontrollData.honorary,
       portalcontrollData.tax,
+      portalcontrollData.tj,
       portalcontrollData.value,
       portalcontrollData.situation,
       portalcontrollData.partnerId

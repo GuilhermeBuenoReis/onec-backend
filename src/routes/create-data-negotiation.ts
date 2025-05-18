@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { DrizzleExelDataNegotiationRepository } from '../infrastructure/db/cruds/drizzle-data-negotiation-repository';
+import { DrizzleExelDataNegotiationRepository } from '../infrastructure/db/cruds/drizzle-negotiation-repository';
 import { authenticateUserHook } from '../http/hooks/authenticate';
 
 export const createDataNegotiationRoute: FastifyPluginAsyncZod = async app => {

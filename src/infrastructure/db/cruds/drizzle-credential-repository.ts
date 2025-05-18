@@ -2,7 +2,7 @@ import { eq } from 'drizzle-orm';
 import { db } from '..';
 import { Credential } from '../../../domain/entities/Credential';
 import type { CredentialRepository } from '../../../domain/repositories/Credentials';
-import { credentialsTable } from '../schema';
+import { credentials } from '../schema';
 
 export class DrizzleCredentialRepository implements CredentialRepository {
   async createCredential(
@@ -17,7 +17,7 @@ export class DrizzleCredentialRepository implements CredentialRepository {
     );
 
     const response = await db
-      .insert(credentialsTable)
+      .insert(credentials)
       .values(newCredential)
       .returning();
 
@@ -36,8 +36,8 @@ export class DrizzleCredentialRepository implements CredentialRepository {
   }
 
   select(): Promise<Credential[]> {
-    const credentials = db.select().from(credentialsTable);
-    return credentials;
+    const response = db.select().from(credentials);
+    return response;
   }
 
   async update(
@@ -45,17 +45,17 @@ export class DrizzleCredentialRepository implements CredentialRepository {
     data: Partial<Credential>
   ): Promise<Credential | null> {
     const response = await db
-      .update(credentialsTable)
+      .update(credentials)
       .set(data)
-      .where(eq(credentialsTable.id, id))
+      .where(eq(credentials.id, id))
       .returning();
 
     return response[0] || null;
   }
   async delete(id: string): Promise<boolean> {
     const response = await db
-      .delete(credentialsTable)
-      .where(eq(credentialsTable.id, id))
+      .delete(credentials)
+      .where(eq(credentials.id, id))
       .returning();
 
     return response.length > 0;

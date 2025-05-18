@@ -1,4 +1,4 @@
-import type { PortalControll } from '../../entities/portal-controll';
+import type { PortalControll } from '../../entities/Portal-Controlls';
 import type { PortalControllRepository } from '../../repositories/Portal-Controll';
 
 export class InMemoryPortalControllRepository

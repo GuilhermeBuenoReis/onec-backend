@@ -1,7 +1,7 @@
 import { Partner } from '../../../domain/entities/Partner';
 import type { PartnerRepository } from '../../../domain/repositories/Partner';
 import { db } from '..';
-import { partnerTable } from '../schema';
+import { partners } from '../schema';
 import { eq } from 'drizzle-orm';
 
 export class DrizzlePartnerRepository implements PartnerRepository {
@@ -26,7 +26,7 @@ export class DrizzlePartnerRepository implements PartnerRepository {
     );
 
     const response = await db
-      .insert(partnerTable)
+      .insert(partners)
       .values({
         id: partner.id,
         name: partner.name,
@@ -59,24 +59,24 @@ export class DrizzlePartnerRepository implements PartnerRepository {
   async select(): Promise<Partner[]> {
     const response = await db
       .select({
-        id: partnerTable.id,
-        name: partnerTable.name,
-        cpfOrCnpj: partnerTable.cpfOrCnpj,
-        city: partnerTable.city,
-        state: partnerTable.state,
-        commission: partnerTable.commission,
-        portal: partnerTable.portal,
-        channelHead: partnerTable.channelHead,
-        regional: partnerTable.regional,
-        coordinator: partnerTable.coordinator,
-        agent: partnerTable.agent,
-        indicator: partnerTable.indicator,
-        contract: partnerTable.contract,
-        phone: partnerTable.phone,
-        email: partnerTable.email,
-        responsible: partnerTable.responsible,
+        id: partners.id,
+        name: partners.name,
+        cpfOrCnpj: partners.cpfOrCnpj,
+        city: partners.city,
+        state: partners.state,
+        commission: partners.commission,
+        portal: partners.portal,
+        channelHead: partners.channelHead,
+        regional: partners.regional,
+        coordinator: partners.coordinator,
+        agent: partners.agent,
+        indicator: partners.indicator,
+        contract: partners.contract,
+        phone: partners.phone,
+        email: partners.email,
+        responsible: partners.responsible,
       })
-      .from(partnerTable);
+      .from(partners);
 
     return response;
   }
@@ -86,9 +86,9 @@ export class DrizzlePartnerRepository implements PartnerRepository {
     partnerData: Partial<Omit<Partner, 'id'>>
   ): Promise<Partner | null> {
     const response = await db
-      .update(partnerTable)
+      .update(partners)
       .set(partnerData)
-      .where(eq(partnerTable.id, id))
+      .where(eq(partners.id, id))
       .returning();
 
     return response[0] ?? null;
@@ -96,8 +96,8 @@ export class DrizzlePartnerRepository implements PartnerRepository {
 
   async delete(id: string): Promise<boolean> {
     const response = await db
-      .delete(partnerTable)
-      .where(eq(partnerTable.id, id))
+      .delete(partners)
+      .where(eq(partners.id, id))
       .returning();
 
     return response.length > 0;
@@ -106,25 +106,25 @@ export class DrizzlePartnerRepository implements PartnerRepository {
   async selectOnePartner(id: string): Promise<Partner | null> {
     const response = await db
       .select({
-        id: partnerTable.id,
-        name: partnerTable.name,
-        cpfOrCnpj: partnerTable.cpfOrCnpj,
-        city: partnerTable.city,
-        state: partnerTable.state,
-        commission: partnerTable.commission,
-        portal: partnerTable.portal,
-        channelHead: partnerTable.channelHead,
-        regional: partnerTable.regional,
-        coordinator: partnerTable.coordinator,
-        agent: partnerTable.agent,
-        indicator: partnerTable.indicator,
-        contract: partnerTable.contract,
-        phone: partnerTable.phone,
-        email: partnerTable.email,
-        responsible: partnerTable.responsible,
+        id: partners.id,
+        name: partners.name,
+        cpfOrCnpj: partners.cpfOrCnpj,
+        city: partners.city,
+        state: partners.state,
+        commission: partners.commission,
+        portal: partners.portal,
+        channelHead: partners.channelHead,
+        regional: partners.regional,
+        coordinator: partners.coordinator,
+        agent: partners.agent,
+        indicator: partners.indicator,
+        contract: partners.contract,
+        phone: partners.phone,
+        email: partners.email,
+        responsible: partners.responsible,
       })
-      .from(partnerTable)
-      .where(eq(partnerTable.id, id));
+      .from(partners)
+      .where(eq(partners.id, id));
 
     return response[0] ?? null;
   }

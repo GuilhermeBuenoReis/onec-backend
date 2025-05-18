@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import { DrizzlePartnerRepository } from '../infrastructure/db/cruds/drizzle-partner-repository';
-import { DrizzleExelDataNegotiationRepository } from '../infrastructure/db/cruds/drizzle-data-negotiation-repository';
+import { DrizzleExelDataNegotiationRepository } from '../infrastructure/db/cruds/drizzle-negotiation-repository';
 import { authenticateUserHook } from '../http/hooks/authenticate';
 
 export const updateNegotiationRoute: FastifyPluginAsyncZod = async app => {
@@ -30,7 +30,7 @@ export const updateNegotiationRoute: FastifyPluginAsyncZod = async app => {
         }),
         response: {
           200: z.object({
-            title: z.string(),
+            title: z.string().nullable(),
           }),
           404: z.object({
             message: z.string(),

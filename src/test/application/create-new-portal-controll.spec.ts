@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { PortalControll } from '../../domain/entities/portal-controll';
+import { PortalControll } from '../../domain/entities/Portal-Controlls';
 import { InMemoryPortalControllRepository } from '../../domain/repositories/memory/InMemoryPortalControll';
 
 describe('Create PortalControll', () => {
@@ -17,9 +17,9 @@ describe('Create PortalControll', () => {
       value: 1,
       situation: 'pago',
       partnerId: 'partnerId',
+      tj: 1,
     };
-
-    const portalcontroll = new PortalControll(
+    const portalControll = new PortalControll(
       undefined,
       portalcontrollData.monthOfCalculation,
       portalcontrollData.competenceMonth,
@@ -30,14 +30,15 @@ describe('Create PortalControll', () => {
       portalcontrollData.compensation,
       portalcontrollData.honorary,
       portalcontrollData.tax,
+      portalcontrollData.tj,
       portalcontrollData.value,
       portalcontrollData.situation,
       portalcontrollData.partnerId
     );
 
     const repository = new InMemoryPortalControllRepository();
-    const createdPortalControll = await repository.create(portalcontroll);
+    const createdPortalControll = await repository.create(portalControll);
 
-    expect(createdPortalControll).toEqual(portalcontroll);
+    expect(createdPortalControll).toEqual(portalControll);
   });
 });

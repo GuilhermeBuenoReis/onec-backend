@@ -1,7 +1,7 @@
 import { Pending } from '../../../domain/entities/Pending';
 import type { PendingRepository } from '../../../domain/repositories/Pending';
 import { db } from '..';
-import { pendingTable } from '../schema';
+import { pendingIssues } from '../schema';
 import { eq } from 'drizzle-orm';
 
 export class DrizzlePendingRepository implements PendingRepository {
@@ -20,7 +20,7 @@ export class DrizzlePendingRepository implements PendingRepository {
     );
 
     const response = await db
-      .insert(pendingTable)
+      .insert(pendingIssues)
       .values({
         client: pending.client,
         callReason: pending.callReason,
@@ -44,18 +44,18 @@ export class DrizzlePendingRepository implements PendingRepository {
   async select(): Promise<Pending[]> {
     const response = await db
       .select({
-        id: pendingTable.id,
-        client: pendingTable.client,
-        callReason: pendingTable.callReason,
-        status: pendingTable.status,
-        priority: pendingTable.priority,
-        responsible: pendingTable.responsible,
-        category: pendingTable.category,
-        description: pendingTable.description,
-        createdAt: pendingTable.createdAt,
-        updatedAt: pendingTable.updatedAt,
+        id: pendingIssues.id,
+        client: pendingIssues.client,
+        callReason: pendingIssues.callReason,
+        status: pendingIssues.status,
+        priority: pendingIssues.priority,
+        responsible: pendingIssues.responsible,
+        category: pendingIssues.category,
+        description: pendingIssues.description,
+        createdAt: pendingIssues.createdAt,
+        updatedAt: pendingIssues.updatedAt,
       })
-      .from(pendingTable);
+      .from(pendingIssues);
 
     return response;
   }
@@ -65,9 +65,9 @@ export class DrizzlePendingRepository implements PendingRepository {
     pendingData: Partial<Omit<Pending, 'id'>>
   ): Promise<Pending | null> {
     const response = await db
-      .update(pendingTable)
+      .update(pendingIssues)
       .set(pendingData)
-      .where(eq(pendingTable.id, id))
+      .where(eq(pendingIssues.id, id))
       .returning();
 
     return response[0] ?? null;
@@ -75,8 +75,8 @@ export class DrizzlePendingRepository implements PendingRepository {
 
   async delete(id: string): Promise<boolean> {
     const response = await db
-      .delete(pendingTable)
-      .where(eq(pendingTable.id, id))
+      .delete(pendingIssues)
+      .where(eq(pendingIssues.id, id))
       .returning();
 
     return response.length > 0;
@@ -85,19 +85,19 @@ export class DrizzlePendingRepository implements PendingRepository {
   async selectOnePending(id: string): Promise<Pending | null> {
     const response = await db
       .select({
-        id: pendingTable.id,
-        client: pendingTable.client,
-        callReason: pendingTable.callReason,
-        status: pendingTable.status,
-        priority: pendingTable.priority,
-        responsible: pendingTable.responsible,
-        category: pendingTable.category,
-        description: pendingTable.description,
-        createdAt: pendingTable.createdAt,
-        updatedAt: pendingTable.updatedAt,
+        id: pendingIssues.id,
+        client: pendingIssues.client,
+        callReason: pendingIssues.callReason,
+        status: pendingIssues.status,
+        priority: pendingIssues.priority,
+        responsible: pendingIssues.responsible,
+        category: pendingIssues.category,
+        description: pendingIssues.description,
+        createdAt: pendingIssues.createdAt,
+        updatedAt: pendingIssues.updatedAt,
       })
-      .from(pendingTable)
-      .where(eq(pendingTable.id, id));
+      .from(pendingIssues)
+      .where(eq(pendingIssues.id, id));
 
     return response[0] ?? null;
   }

@@ -1,7 +1,7 @@
-import { PortalControll } from '../../../domain/entities/portal-controll';
+import { PortalControll } from '../../../domain/entities/Portal-Controlls';
 import type { PortalControllRepository } from '../../../domain/repositories/Portal-Controll';
 import { db } from '..';
-import { portalControllTable } from '../schema';
+import { portalControls } from '../schema';
 import { eq } from 'drizzle-orm';
 
 export class DrizzlePortalControllRepository
@@ -28,7 +28,7 @@ export class DrizzlePortalControllRepository
     );
 
     const response = await db
-      .insert(portalControllTable)
+      .insert(portalControls)
       .values({
         id: portalControll.id,
         monthOfCalculation: portalControll.monthOfCalculation,
@@ -60,22 +60,22 @@ export class DrizzlePortalControllRepository
   async select(): Promise<PortalControll[]> {
     const response = await db
       .select({
-        id: portalControllTable.id,
-        monthOfCalculation: portalControllTable.monthOfCalculation,
-        competenceMonth: portalControllTable.competenceMonth,
-        contract: portalControllTable.contract,
-        enterprise: portalControllTable.enterprise,
-        product: portalControllTable.product,
-        percentageHonorary: portalControllTable.percentageHonorary,
-        compensation: portalControllTable.compensation,
-        honorary: portalControllTable.honorary,
-        tax: portalControllTable.tax,
-        tj: portalControllTable.tj,
-        value: portalControllTable.value,
-        situation: portalControllTable.situation,
-        partnerId: portalControllTable.partnerId,
+        id: portalControls.id,
+        monthOfCalculation: portalControls.monthOfCalculation,
+        competenceMonth: portalControls.competenceMonth,
+        contract: portalControls.contract,
+        enterprise: portalControls.enterprise,
+        product: portalControls.product,
+        percentageHonorary: portalControls.percentageHonorary,
+        compensation: portalControls.compensation,
+        honorary: portalControls.honorary,
+        tax: portalControls.tax,
+        tj: portalControls.tj,
+        value: portalControls.value,
+        situation: portalControls.situation,
+        partnerId: portalControls.partnerId,
       })
-      .from(portalControllTable);
+      .from(portalControls);
 
     return response.map(item => ({
       ...item,
@@ -86,23 +86,23 @@ export class DrizzlePortalControllRepository
   async selectByPartner(partnerId: string): Promise<PortalControll[]> {
     const response = await db
       .select({
-        id: portalControllTable.id,
-        monthOfCalculation: portalControllTable.monthOfCalculation,
-        competenceMonth: portalControllTable.competenceMonth,
-        contract: portalControllTable.contract,
-        enterprise: portalControllTable.enterprise,
-        product: portalControllTable.product,
-        percentageHonorary: portalControllTable.percentageHonorary,
-        compensation: portalControllTable.compensation,
-        honorary: portalControllTable.honorary,
-        tax: portalControllTable.tax,
-        tj: portalControllTable.tj,
-        value: portalControllTable.value,
-        situation: portalControllTable.situation,
-        partnerId: portalControllTable.partnerId,
+        id: portalControls.id,
+        monthOfCalculation: portalControls.monthOfCalculation,
+        competenceMonth: portalControls.competenceMonth,
+        contract: portalControls.contract,
+        enterprise: portalControls.enterprise,
+        product: portalControls.product,
+        percentageHonorary: portalControls.percentageHonorary,
+        compensation: portalControls.compensation,
+        honorary: portalControls.honorary,
+        tax: portalControls.tax,
+        tj: portalControls.tj,
+        value: portalControls.value,
+        situation: portalControls.situation,
+        partnerId: portalControls.partnerId,
       })
-      .from(portalControllTable)
-      .where(eq(portalControllTable.partnerId, partnerId));
+      .from(portalControls)
+      .where(eq(portalControls.partnerId, partnerId));
 
     return response.map(item => ({
       ...item,
@@ -115,9 +115,9 @@ export class DrizzlePortalControllRepository
     portalControll: Partial<Omit<PortalControll, 'id'>>
   ): Promise<PortalControll | null> {
     const response = await db
-      .update(portalControllTable)
+      .update(portalControls)
       .set(portalControll)
-      .where(eq(portalControllTable.id, id))
+      .where(eq(portalControls.id, id))
       .returning();
 
     const updated = response[0];
@@ -132,8 +132,8 @@ export class DrizzlePortalControllRepository
 
   async delete(id: string): Promise<boolean> {
     const response = await db
-      .delete(portalControllTable)
-      .where(eq(portalControllTable.id, id))
+      .delete(portalControls)
+      .where(eq(portalControls.id, id))
       .returning();
 
     return response.length > 0;

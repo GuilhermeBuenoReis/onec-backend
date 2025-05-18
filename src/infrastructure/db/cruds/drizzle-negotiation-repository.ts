@@ -1,8 +1,7 @@
-// File: DrizzleExelDataNegotiationRepository.ts
-import { ExelDataNegotiation } from '../../../domain/entities/ExelDataNegotiation';
-import type { ExelDataNegotiationRepository } from '../../../domain/repositories/ExelDataNegotiation';
+import { ExelDataNegotiation } from '../../../domain/entities/Negotiations';
+import type { ExelDataNegotiationRepository } from '../../../domain/repositories/Negotiations';
 import { db } from '..';
-import { excelDataNegotiationTable } from '../schema';
+import { negotiations } from '../schema';
 import { eq } from 'drizzle-orm';
 
 export class DrizzleExelDataNegotiationRepository
@@ -27,7 +26,7 @@ export class DrizzleExelDataNegotiationRepository
     );
 
     const response = await db
-      .insert(excelDataNegotiationTable)
+      .insert(negotiations)
       .values({
         title: negotiation.title,
         client: negotiation.client,
@@ -55,20 +54,20 @@ export class DrizzleExelDataNegotiationRepository
   async select(): Promise<ExelDataNegotiation[]> {
     const response = await db
       .select({
-        id: excelDataNegotiationTable.id,
-        title: excelDataNegotiationTable.title,
-        client: excelDataNegotiationTable.client,
-        user: excelDataNegotiationTable.user,
-        tags: excelDataNegotiationTable.tags,
-        step: excelDataNegotiationTable.step,
-        status: excelDataNegotiationTable.status,
-        value: excelDataNegotiationTable.value,
-        startsDate: excelDataNegotiationTable.startsDate,
-        observation: excelDataNegotiationTable.observation,
-        averageGuide: excelDataNegotiationTable.averageGuide,
-        partnerId: excelDataNegotiationTable.partnerId,
+        id: negotiations.id,
+        title: negotiations.title,
+        client: negotiations.client,
+        user: negotiations.user,
+        tags: negotiations.tags,
+        step: negotiations.step,
+        status: negotiations.status,
+        value: negotiations.value,
+        startsDate: negotiations.startsDate,
+        observation: negotiations.observation,
+        averageGuide: negotiations.averageGuide,
+        partnerId: negotiations.partnerId,
       })
-      .from(excelDataNegotiationTable);
+      .from(negotiations);
 
     return response;
   }
@@ -78,9 +77,9 @@ export class DrizzleExelDataNegotiationRepository
     data: Partial<ExelDataNegotiation>
   ): Promise<ExelDataNegotiation | null> {
     const response = await db
-      .update(excelDataNegotiationTable)
+      .update(negotiations)
       .set(data)
-      .where(eq(excelDataNegotiationTable.id, id))
+      .where(eq(negotiations.id, id))
       .returning();
 
     return response[0] || null;
@@ -88,8 +87,8 @@ export class DrizzleExelDataNegotiationRepository
 
   async delete(id: string): Promise<boolean> {
     const response = await db
-      .delete(excelDataNegotiationTable)
-      .where(eq(excelDataNegotiationTable.id, id))
+      .delete(negotiations)
+      .where(eq(negotiations.id, id))
       .returning();
 
     return response.length > 0;
@@ -108,21 +107,21 @@ export class DrizzleExelDataNegotiationRepository
 
     const existingRecords = await db
       .select({
-        id: excelDataNegotiationTable.id,
-        title: excelDataNegotiationTable.title,
-        client: excelDataNegotiationTable.client,
-        user: excelDataNegotiationTable.user,
-        tags: excelDataNegotiationTable.tags,
-        step: excelDataNegotiationTable.step,
-        status: excelDataNegotiationTable.status,
-        value: excelDataNegotiationTable.value,
-        startsDate: excelDataNegotiationTable.startsDate,
-        observation: excelDataNegotiationTable.observation,
-        averageGuide: excelDataNegotiationTable.averageGuide,
-        partnerId: excelDataNegotiationTable.partnerId,
+        id: negotiations.id,
+        title: negotiations.title,
+        client: negotiations.client,
+        user: negotiations.user,
+        tags: negotiations.tags,
+        step: negotiations.step,
+        status: negotiations.status,
+        value: negotiations.value,
+        startsDate: negotiations.startsDate,
+        observation: negotiations.observation,
+        averageGuide: negotiations.averageGuide,
+        partnerId: negotiations.partnerId,
       })
-      .from(excelDataNegotiationTable)
-      .where(eq(excelDataNegotiationTable.title, data.title))
+      .from(negotiations)
+      .where(eq(negotiations.title, data.title))
       .limit(1);
 
     if (existingRecords.length > 0) {
@@ -143,9 +142,9 @@ export class DrizzleExelDataNegotiationRepository
       };
 
       const updatedRecords = await db
-        .update(excelDataNegotiationTable)
+        .update(negotiations)
         .set(updatedData)
-        .where(eq(excelDataNegotiationTable.id, existing.id))
+        .where(eq(negotiations.id, existing.id))
         .returning();
 
       return updatedRecords[0];

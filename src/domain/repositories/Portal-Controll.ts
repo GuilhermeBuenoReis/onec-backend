@@ -1,4 +1,4 @@
-import type { PortalControll } from '../entities/portal-controll';
+import type { PortalControll } from '../entities/Portal-Controlls';
 
 export interface PortalControllRepository {
   create(portalcontroll: PortalControll): Promise<PortalControll | null>;

@@ -9,7 +9,23 @@ export const statusEnum = pgEnum('status', [
   'Em migração',
 ]);
 
-export const partnerTable = pgTable('partners', {
+export const pendingStatusEnum = pgEnum('pending_status', [
+  'Aberto',
+  'Encaminhado',
+  'Pendente',
+  'Concluído',
+]);
+
+export const pendingCategoryEnum = pgEnum('pending_category', [
+  'SAC',
+  'Atendimento',
+  'Financeiro',
+  'Diretoria',
+  'Comercial',
+  'Auditoria',
+]);
+
+export const partners = pgTable('partners', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
@@ -36,7 +52,7 @@ export const partnerTable = pgTable('partners', {
     .defaultNow(),
 });
 
-export const excelDataNegotiationTable = pgTable('excel_data_negotiations', {
+export const negotiationImports = pgTable('negotiation_imports', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
@@ -59,7 +75,7 @@ export const excelDataNegotiationTable = pgTable('excel_data_negotiations', {
     .defaultNow(),
 });
 
-export const contractTable = pgTable('contract_table', {
+export const contracts = pgTable('contracts', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
@@ -88,7 +104,7 @@ export const contractTable = pgTable('contract_table', {
     .defaultNow(),
 });
 
-export const userTable = pgTable('users_table', {
+export const users = pgTable('users', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
@@ -103,23 +119,7 @@ export const userTable = pgTable('users_table', {
     .defaultNow(),
 });
 
-export const pendingStatusEnum = pgEnum('pending_status', [
-  'Aberto',
-  'Encaminhado',
-  'Pendente',
-  'Concluído',
-]);
-
-export const pendingCategoryEnum = pgEnum('pending_category', [
-  'SAC',
-  'Atendimento',
-  'Financeiro',
-  'Diretoria',
-  'Comercial',
-  'Auditoria',
-]);
-
-export const pendingTable = pgTable('pending_table', {
+export const pendingIssues = pgTable('pending_issues', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
@@ -138,11 +138,10 @@ export const pendingTable = pgTable('pending_table', {
     .defaultNow(),
 });
 
-export const portalControllTable = pgTable('portal_controll', {
+export const portalControls = pgTable('portal_controls', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
-
   monthOfCalculation: text('month_of_calculation'),
   competenceMonth: text('competence_month'),
   contract: real('contract'),
@@ -155,11 +154,9 @@ export const portalControllTable = pgTable('portal_controll', {
   tj: real('tj'),
   value: real('value'),
   situation: text('situation'),
-
   partnerId: text('partner_id')
     .notNull()
-    .references(() => partnerTable.id),
-
+    .references(() => partners.id),
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
@@ -168,7 +165,7 @@ export const portalControllTable = pgTable('portal_controll', {
     .defaultNow(),
 });
 
-export const credentialsTable = pgTable('credentials_table', {
+export const credentials = pgTable('credentials', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
@@ -176,7 +173,6 @@ export const credentialsTable = pgTable('credentials_table', {
   partner: text('partner'),
   cnpj: text('cnpj'),
   agentIndicator: text('agent_indicator'),
-
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
@@ -185,7 +181,7 @@ export const credentialsTable = pgTable('credentials_table', {
     .defaultNow(),
 });
 
-export const clientTable = pgTable('client_table', {
+export const clients = pgTable('clients', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
@@ -195,7 +191,6 @@ export const clientTable = pgTable('client_table', {
   competenceMonth: text('competence_month'),
   contestation: text('contestation'),
   returned: text('return'),
-
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),

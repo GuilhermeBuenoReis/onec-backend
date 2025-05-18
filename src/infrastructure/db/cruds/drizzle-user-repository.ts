@@ -1,7 +1,7 @@
 // src/infrastructure/repositories/DrizzleUserRepository.ts
 import type { UserRepository } from '../../../domain/repositories/User';
 import { db } from '..';
-import { userTable } from '../schema';
+import { users } from '../schema';
 import { eq } from 'drizzle-orm';
 import { User } from '../../../domain/entities/User';
 
@@ -15,7 +15,7 @@ export class DrizzleUserRepository implements UserRepository {
     );
 
     const response = await db
-      .insert(userTable)
+      .insert(users)
       .values({
         id: user.id,
         email: user.email,
@@ -36,12 +36,12 @@ export class DrizzleUserRepository implements UserRepository {
   async select(): Promise<User[]> {
     const response = await db
       .select({
-        id: userTable.id,
-        email: userTable.email,
-        passwordHash: userTable.passwordHash,
-        role: userTable.role,
+        id: users.id,
+        email: users.email,
+        passwordHash: users.passwordHash,
+        role: users.role,
       })
-      .from(userTable);
+      .from(users);
 
     return response.map(
       row => new User(row.id, row.email, row.passwordHash, row.role)
@@ -50,19 +50,16 @@ export class DrizzleUserRepository implements UserRepository {
 
   async update(id: string, data: Partial<User>): Promise<User | null> {
     const response = await db
-      .update(userTable)
+      .update(users)
       .set(data)
-      .where(eq(userTable.id, id))
+      .where(eq(users.id, id))
       .returning();
 
     return response[0] || null;
   }
 
   async delete(id: string): Promise<boolean> {
-    const response = await db
-      .delete(userTable)
-      .where(eq(userTable.id, id))
-      .returning();
+    const response = await db.delete(users).where(eq(users.id, id)).returning();
 
     return response.length > 0;
   }
@@ -70,13 +67,13 @@ export class DrizzleUserRepository implements UserRepository {
   async findByEmail(email: string): Promise<User | null> {
     const response = await db
       .select({
-        id: userTable.id,
-        email: userTable.email,
-        passwordHash: userTable.passwordHash,
-        role: userTable.role,
+        id: users.id,
+        email: users.email,
+        passwordHash: users.passwordHash,
+        role: users.role,
       })
-      .from(userTable)
-      .where(eq(userTable.email, email))
+      .from(users)
+      .where(eq(users.email, email))
       .limit(1);
 
     const foundUser = response[0];

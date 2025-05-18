@@ -35,7 +35,7 @@ export const updatePartnerRoute: FastifyPluginAsyncZod = async app => {
         response: {
           200: z.object({
             id: z.string(),
-            name: z.string(),
+            name: z.string().nullable(),
           }),
           404: z.object({
             message: z.string(),

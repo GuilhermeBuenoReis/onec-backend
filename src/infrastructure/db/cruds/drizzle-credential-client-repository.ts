@@ -1,6 +1,6 @@
 import { sql } from 'drizzle-orm';
 import { db } from '..';
-import { clientTable, credentialsTable } from '../schema';
+import { clients, credentials } from '../schema';
 import { createId } from '@paralleldrive/cuid2';
 
 export class DrizzleCredentialClientRepository {
@@ -16,7 +16,7 @@ export class DrizzleCredentialClientRepository {
           partner::text,
           cnpj::text,
           agent_indicator::text AS "agentIndicator"
-        FROM ${credentialsTable}
+        FROM ${credentials}
       ),
       clients_with_rn AS (
         SELECT 
@@ -27,7 +27,7 @@ export class DrizzleCredentialClientRepository {
           cnpj::text,
           contestation::text,
           "return"::text AS returned
-        FROM ${clientTable}
+        FROM ${clients}
       )
       SELECT JSON_BUILD_OBJECT(
                'id', ${newId}::text,

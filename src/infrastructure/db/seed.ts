@@ -1,5 +1,5 @@
 import { db } from '.';
-import { userTable } from './schema';
+import { users } from './schema';
 import bcrypt from 'bcrypt';
 import { createId } from '@paralleldrive/cuid2';
 import { env } from '../../env';
@@ -26,7 +26,7 @@ async function seedUsers() {
   for (const user of adminUsers) {
     const passwordHash = await bcrypt.hash(user.password, 10);
     await db
-      .insert(userTable)
+      .insert(users)
       .values({
         id: createId(),
         email: user.email,

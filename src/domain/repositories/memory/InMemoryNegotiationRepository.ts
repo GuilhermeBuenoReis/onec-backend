@@ -1,4 +1,4 @@
-import type { ExelDataNegotiation } from '../../entities/ExelDataNegotiation';
+import type { ExelDataNegotiation } from '../../entities/Negotiations';
 
 export class InMemoryExelDataNegotiationRepository {
   private negotiations: ExelDataNegotiation[] = [];

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { InMemoryPortalControllRepository } from '../../domain/repositories/memory/InMemoryPortalControll';
-import { PortalControll } from '../../domain/entities/portal-controll';
+import { PortalControll } from '../../domain/entities/Portal-Controlls';
 
 describe('select portall-controlls', () => {
   let repository: InMemoryPortalControllRepository;

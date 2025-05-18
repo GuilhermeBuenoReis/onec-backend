@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { InMemoryExelDataNegotiationRepository } from '../../domain/repositories/memory/InMemoryExelDataNegotiationRepository';
-import { ExelDataNegotiation } from '../../domain/entities/ExelDataNegotiation';
+import { InMemoryExelDataNegotiationRepository } from '../../domain/repositories/memory/InMemoryNegotiationRepository';
+import { ExelDataNegotiation } from '../../domain/entities/Negotiations';
 
 describe('Update Negotiation', () => {
   let repository: InMemoryExelDataNegotiationRepository;
@@ -24,7 +24,6 @@ describe('Update Negotiation', () => {
       averageGuide: 500,
     };
 
-    // Usando id fixo para o teste
     const negotiation = new ExelDataNegotiation(
       '1',
       negotiationData.title,
