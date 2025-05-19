@@ -1,0 +1,1 @@
+ALTER TABLE "client_receipt" ALTER COLUMN "receipt_date" SET DATA TYPE text;

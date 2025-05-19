@@ -52,7 +52,7 @@ export const partners = pgTable('partners', {
     .defaultNow(),
 });
 
-export const negotiationImports = pgTable('negotiation_imports', {
+export const negotiations = pgTable('negotiation_imports', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
@@ -191,6 +191,28 @@ export const clients = pgTable('clients', {
   competenceMonth: text('competence_month'),
   contestation: text('contestation'),
   returned: text('return'),
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+export const clientReceipt = pgTable('client_receipt', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+  receiptDate: text('receipt_date'),
+  competence: text('competence'),
+  cnpj: text('cnpj'),
+  clientName: text('client_name'),
+  percentage: real('percentage'),
+  compensationMonth: text('compensation_month'),
+  honorary: real('honorary'),
+  tax: real('tax'),
+  status: text('status'),
+
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),

@@ -53,7 +53,6 @@ describe('delete a contract', () => {
     );
 
     await repository.create(contract);
-
     const deletionResult = await repository.delete('1');
     expect(deletionResult).toBe(true);
 
