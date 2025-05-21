@@ -52,6 +52,10 @@ import { deleteClientRoute } from '../routes/delete-client';
 import { updateClientRoute } from '../routes/update-client';
 import { getPortalControllsBySelectParternRoute } from '../routes/get-portal-controlls-by-partner';
 import { getContractByIdRoute } from '../routes/get-contract-by-id';
+import { createClientReceiptRoute } from '../routes/create-client-receipt-route';
+import { updateClientReceiptRoute } from '../routes/update-client-receipt-route';
+import { deleteClientReceiptRoute } from '../routes/delete-client-receipt-route';
+import { getClientReceiptRoute } from '../routes/get-client-receipt-route';
 
 config();
 
@@ -124,6 +128,10 @@ app.register(updateClientRoute);
 app.register(deleteClientRoute);
 app.register(getPortalControllsBySelectParternRoute);
 app.register(getContractByIdRoute);
+app.register(createClientReceiptRoute);
+app.register(getClientReceiptRoute);
+app.register(deleteClientReceiptRoute);
+app.register(updateClientReceiptRoute);
 
 app
   .listen({

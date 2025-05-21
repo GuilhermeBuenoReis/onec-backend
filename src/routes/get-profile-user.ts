@@ -7,7 +7,7 @@ export const getProfileUser: FastifyPluginAsyncZod = async app => {
   app.get(
     '/users',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'getProfileUser',
         tags: ['Users'],

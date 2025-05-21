@@ -2,7 +2,7 @@ import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import { DrizzleClientReceiptRepository } from '../infrastructure/db/cruds/drizzle-client-receipt-repository';
 
-export const updateClientRoute: FastifyPluginAsyncZod = async app => {
+export const updateClientReceiptRoute: FastifyPluginAsyncZod = async app => {
   app.put(
     '/client-receipt/:id',
     {

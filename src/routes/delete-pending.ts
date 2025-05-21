@@ -7,7 +7,7 @@ export const deletePendingRoute: FastifyPluginAsyncZod = async app => {
   app.delete(
     '/pendings/:id',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'deletePending',
         tags: ['pendings'],

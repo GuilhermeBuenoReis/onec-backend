@@ -7,7 +7,7 @@ export const updatePartnerRoute: FastifyPluginAsyncZod = async app => {
   app.put(
     '/partners/:id',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'updatePartner',
         tags: ['partners'],

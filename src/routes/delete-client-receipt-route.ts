@@ -4,7 +4,7 @@ import { DrizzleClientRepository } from '../infrastructure/db/cruds/drizzle-clie
 import { authenticateUserHook } from '../http/hooks/authenticate';
 import { DrizzleClientReceiptRepository } from '../infrastructure/db/cruds/drizzle-client-receipt-repository';
 
-export const deleteClientRoute: FastifyPluginAsyncZod = async app => {
+export const deleteClientReceiptRoute: FastifyPluginAsyncZod = async app => {
   app.delete(
     '/client-receipt/:id',
     {

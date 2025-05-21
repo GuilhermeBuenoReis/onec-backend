@@ -7,7 +7,7 @@ export const deletePortalControllRoute: FastifyPluginAsyncZod = async app => {
   app.delete(
     '/portalcontrolls/:id',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'deletePortalControll',
         tags: ['portalcontrolls'],

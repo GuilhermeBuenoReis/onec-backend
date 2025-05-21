@@ -3399,6 +3399,345 @@
           }
         }
       }
+    },
+    "/client-receipt": {
+      "post": {
+        "operationId": "createClientReceipt",
+        "tags": [
+          "clientReceipt"
+        ],
+        "description": "Create a new Client Receipt",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "receiptDate": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "competence": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "cnpj": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "clientName": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "percentage": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "compensationMonth": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "honorary": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "tax": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "receiptDate",
+                  "competence",
+                  "cnpj",
+                  "clientName",
+                  "percentage",
+                  "compensationMonth",
+                  "honorary",
+                  "tax",
+                  "status"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "enum": [
+                    "null"
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getClient-receipt",
+        "tags": [
+          "clientReceipt"
+        ],
+        "description": "Get a list of client Receipt",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "receiptDate": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "competence": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "cnpj": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "clientName": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "percentage": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "compensationMonth": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "honorary": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "tax": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "status": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+                      "receiptDate",
+                      "competence",
+                      "cnpj",
+                      "clientName",
+                      "percentage",
+                      "compensationMonth",
+                      "honorary",
+                      "tax",
+                      "status"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/client-receipt/{id}": {
+      "delete": {
+        "operationId": "deleteClientReceipt",
+        "tags": [
+          "clientReceipt"
+        ],
+        "description": "Delete a client receipt",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateClientReceipt",
+        "tags": [
+          "clientReceipt"
+        ],
+        "description": "Update a client Receipt",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "receiptDate": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "competence": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "cnpj": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "clientName": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "percentage": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "compensationMonth": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "honorary": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "tax": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

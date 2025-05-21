@@ -8,7 +8,7 @@ export const getNegotiationRoute: FastifyPluginAsyncZod = async app => {
   app.get(
     '/negotiation',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'getNegotiation',
         tags: ['negotiation'],

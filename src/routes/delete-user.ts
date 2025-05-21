@@ -7,7 +7,7 @@ export const deleteUserRoute: FastifyPluginAsyncZod = async app => {
   app.delete(
     '/users/:id',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'deleteUser',
         tags: ['Users'],

@@ -7,7 +7,7 @@ export const deletePartnerRoute: FastifyPluginAsyncZod = async app => {
   app.delete(
     '/partners/:id',
     {
-      onRequest: [authenticateUserHook],
+      // onRequest: [authenticateUserHook],
       schema: {
         operationId: 'deletePartner',
         tags: ['partners'],
