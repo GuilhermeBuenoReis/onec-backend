@@ -16,6 +16,7 @@ export const getClientReceiptRoute: FastifyPluginAsyncZod = async app => {
         response: {
           200: z.array(
             z.object({
+              id: z.string(),
               receiptDate: z.string().nullable(),
               competence: z.string().nullable(),
               cnpj: z.string().nullable(),

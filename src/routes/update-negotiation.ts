@@ -25,6 +25,7 @@ export const updateNegotiationRoute: FastifyPluginAsyncZod = async app => {
           status: z.string().optional(),
           value: z.number().optional(),
           startsDate: z.string().nullable().optional(),
+          partnerId: z.string().nullable().optional(),
           observation: z.string().nullable().optional(),
           averageGuide: z.number().nullable().optional(),
         }),

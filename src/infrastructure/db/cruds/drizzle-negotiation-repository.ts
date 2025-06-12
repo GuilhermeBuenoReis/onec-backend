@@ -152,4 +152,26 @@ export class DrizzleExelDataNegotiationRepository
 
     return await this.create(data);
   }
+
+  async selectById(id: string): Promise<ExelDataNegotiation[]> {
+    const response = await db
+      .select({
+        id: negotiations.id,
+        title: negotiations.title,
+        client: negotiations.client,
+        user: negotiations.user,
+        tags: negotiations.tags,
+        step: negotiations.step,
+        status: negotiations.status,
+        value: negotiations.value,
+        startsDate: negotiations.startsDate,
+        observation: negotiations.observation,
+        averageGuide: negotiations.averageGuide,
+        partnerId: negotiations.partnerId,
+      })
+      .from(negotiations)
+      .where(eq(negotiations.id, id));
+
+    return response;
+  }
 }

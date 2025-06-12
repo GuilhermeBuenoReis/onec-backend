@@ -1,5 +1,5 @@
-import { ExelDataNegotiation } from '../../domain/entities/ExelDataNegotiation';
-import type { ExelDataNegotiationRepository } from '../../domain/repositories/ExelDataNegotiation';
+import { ExelDataNegotiation } from '../../domain/entities/Negotiations';
+import type { ExelDataNegotiationRepository } from '../../domain/repositories/Negotiations';
 
 export class CreateNegotiation {
   constructor(

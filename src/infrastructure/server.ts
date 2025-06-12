@@ -56,6 +56,8 @@ import { createClientReceiptRoute } from '../routes/create-client-receipt-route'
 import { updateClientReceiptRoute } from '../routes/update-client-receipt-route';
 import { deleteClientReceiptRoute } from '../routes/delete-client-receipt-route';
 import { getClientReceiptRoute } from '../routes/get-client-receipt-route';
+import { getNegotiationByIdRoute } from '../routes/get-negotiation-by-id';
+import { createId } from '@paralleldrive/cuid2';
 
 config();
 
@@ -132,6 +134,7 @@ app.register(createClientReceiptRoute);
 app.register(getClientReceiptRoute);
 app.register(deleteClientReceiptRoute);
 app.register(updateClientReceiptRoute);
+app.register(getNegotiationByIdRoute);
 
 app
   .listen({
@@ -150,6 +153,7 @@ if (env.NODE_ENV === 'development') {
 
     writeFile(specFile, spec).then(() => {
       console.log('Swagger spec generated!');
+      console.log(createId());
     });
   });
 }

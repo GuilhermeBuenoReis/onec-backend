@@ -153,6 +153,6 @@ export class DrizzleContractRepository implements ContractRepository {
       .from(contracts)
       .where(eq(contracts.id, id));
 
-    return response[0] || null;
+    return response[0] ?? null;
   }
 }

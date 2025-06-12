@@ -10,7 +10,9 @@ export const getContractByIdRoute: FastifyPluginAsyncZod = async app => {
         operationId: 'getContractById',
         tags: ['contract'],
         description: 'Get contract by id',
-        params: z.object({ id: z.string() }),
+        params: z.object({
+          id: z.string(),
+        }),
         response: {
           200: z.object({
             id: z.string(),
@@ -37,7 +39,7 @@ export const getContractByIdRoute: FastifyPluginAsyncZod = async app => {
       },
     },
     async (request, reply) => {
-      const { id } = request.params;
+      const { id } = request.params as { id: string };
       const repo = new DrizzleContractRepository();
       const contract = await repo.selectById(id);
       if (!contract) {

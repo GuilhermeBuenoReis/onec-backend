@@ -4,15 +4,18 @@ import { DrizzlePartnerRepository } from '../infrastructure/db/cruds/drizzle-par
 import { DrizzleExelDataNegotiationRepository } from '../infrastructure/db/cruds/drizzle-negotiation-repository';
 import { authenticateUserHook } from '../http/hooks/authenticate';
 
-export const getNegotiationRoute: FastifyPluginAsyncZod = async app => {
+export const getNegotiationByIdRoute: FastifyPluginAsyncZod = async app => {
   app.get(
-    '/negotiation',
+    '/negotiation/:id',
     {
       // onRequest: [authenticateUserHook],
       schema: {
-        operationId: 'getNegotiation',
+        operationId: 'getNegotiationById',
         tags: ['negotiation'],
-        description: 'Get a list of Negotiation',
+        description: 'Get a list of Negotiation by id',
+        params: z.object({
+          id: z.string(),
+        }),
         response: {
           200: z.array(
             z.object({
@@ -33,9 +36,10 @@ export const getNegotiationRoute: FastifyPluginAsyncZod = async app => {
         },
       },
     },
-    async (_, reply) => {
+    async (request, reply) => {
+      const { id } = request.params;
       const drizzleOrm = new DrizzleExelDataNegotiationRepository();
-      const negotiations = await drizzleOrm.select();
+      const negotiations = await drizzleOrm.selectById(id);
 
       const formattedNegotiations = negotiations.map(item => ({
         ...item,

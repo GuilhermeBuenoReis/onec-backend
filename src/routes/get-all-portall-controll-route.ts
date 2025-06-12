@@ -7,7 +7,7 @@ export const getAllPortalControllsRoute: FastifyPluginAsyncZod = async app => {
     '/portal/portalcontrolls',
     {
       schema: {
-        operationId: 'getPortalControllsBySelectParternRoute',
+        operationId: 'getAllPortalControlls',
         tags: ['portalcontrolls'],
         description:
           'Retorna todos os registros de PortalControlls para o parceiro informado via querystring',

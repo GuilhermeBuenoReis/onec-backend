@@ -1,4 +1,4 @@
-import { PortalControll } from '../../domain/entities/portal-controll';
+import { PortalControll } from '../../domain/entities/Portal-Controlls';
 import type { PortalControllRepository } from '../../domain/repositories/Portal-Controll';
 
 export class PartnerService {
@@ -14,6 +14,11 @@ export class PartnerService {
     tax,
     value,
     situation,
+    competenceMonth,
+    contract,
+    monthOfCalculation,
+    tj,
+    partnerId,
   }: PortalControll): Promise<PortalControll | null> {
     const portalControll = new PortalControll(
       id,
@@ -24,7 +29,12 @@ export class PartnerService {
       honorary,
       tax,
       value,
-      situation
+      situation,
+      competenceMonth,
+      contract,
+      monthOfCalculation,
+      tj,
+      partnerId
     );
 
     return await this.portalControllRepository.create(portalControll);

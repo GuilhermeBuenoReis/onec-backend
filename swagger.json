@@ -731,6 +731,10 @@
                       "averageGuide": {
                         "type": "number",
                         "nullable": true
+                      },
+                      "partnerId": {
+                        "type": "string",
+                        "nullable": true
                       }
                     },
                     "required": [
@@ -744,7 +748,8 @@
                       "value",
                       "startsDate",
                       "observation",
-                      "averageGuide"
+                      "averageGuide",
+                      "partnerId"
                     ],
                     "additionalProperties": false
                   }
@@ -790,6 +795,10 @@
                     "type": "number"
                   },
                   "startsDate": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "partnerId": {
                     "type": "string",
                     "nullable": true
                   },
@@ -910,6 +919,101 @@
                     "message"
                   ],
                   "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getNegotiationById",
+        "tags": [
+          "negotiation"
+        ],
+        "description": "Get a list of Negotiation by id",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "client": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "user": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "tags": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "step": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "startsDate": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "observation": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "averageGuide": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "partnerId": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "client",
+                      "user",
+                      "tags",
+                      "step",
+                      "status",
+                      "value",
+                      "startsDate",
+                      "observation",
+                      "averageGuide",
+                      "partnerId"
+                    ],
+                    "additionalProperties": false
+                  }
                 }
               }
             }
@@ -3518,6 +3622,9 @@
                   "items": {
                     "type": "object",
                     "properties": {
+                      "id": {
+                        "type": "string"
+                      },
                       "receiptDate": {
                         "type": "string",
                         "nullable": true
@@ -3556,6 +3663,7 @@
                       }
                     },
                     "required": [
+                      "id",
                       "receiptDate",
                       "competence",
                       "cnpj",
