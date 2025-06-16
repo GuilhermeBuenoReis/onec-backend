@@ -2,140 +2,125 @@
 
 ## 📌 Sobre o Projeto
 
-O **ONEC Backend** é um sistema desenvolvido para a gestão de **negociações, contratos e parceiros**, trazendo mais eficiência e automação para a administração de processos empresariais. O projeto foi desenvolvido como um **freelancer** para atender necessidades específicas de gerenciamento e controle.
-
-Este backend é baseado no **Fastify**, garantindo alta performance e escalabilidade, e utiliza **Drizzle ORM** para gerenciamento de banco de dados, além de autenticação JWT e outras ferramentas modernas para segurança e confiabilidade.
+O **ONEC Backend** é responsável pela gestão de **negociações, contratos e parceiros**, fornecendo automação de fluxos de trabalho empresariais. Desenvolvido como freelancer com foco em performance e segurança, utiliza **Fastify**, **Drizzle ORM** e autenticação JWT.
 
 ---
 
 ## 🚀 Tecnologias Utilizadas
 
-### 🔹 **Principais Dependências:**
-- **[Fastify](https://www.fastify.io/)** → Framework web rápido e leve.
-- **[Drizzle ORM](https://orm.drizzle.team/)** → ORM moderno e tipado para bancos SQL.
-- **[Postgres](https://www.postgresql.org/)** → Banco de dados relacional robusto.
-- **[Zod](https://zod.dev/)** → Validação de dados com tipagem forte.
-- **[bcrypt](https://www.npmjs.com/package/bcrypt)** → Hash de senhas para segurança dos usuários.
-- **[JWT (JSON Web Token)](https://www.npmjs.com/package/jose)** → Autenticação segura.
-- **[Day.js](https://day.js.org/)** → Manipulação de datas de forma eficiente.
+**Dependências Principais:**
 
-### 🔹 **Ferramentas de Desenvolvimento:**
-- **[Vitest](https://vitest.dev/)** → Testes unitários rápidos e eficientes.
-- **[TypeScript](https://www.typescriptlang.org/)** → Tipagem estática para maior confiabilidade no código.
-- **[Tsup](https://github.com/egoist/tsup)** → Empacotamento eficiente do TypeScript.
-- **[TSX](https://www.npmjs.com/package/tsx)** → Execução de arquivos TypeScript diretamente.
-- **[Drizzle Kit](https://orm.drizzle.team/docs/cli)** → Ferramenta para migrações e manipulação de banco de dados.
+* **Fastify** → Framework HTTP de alta performance
+* **Drizzle ORM** → ORM tipado para SQL
+* **Postgres** → Banco de dados relacional
+* **Zod** → Validação de dados e variáveis de ambiente
+* **bcrypt** → Hash de senhas
+* **jose** → Geração e verificação de JWT
+* **Day.js** → Manipulação de datas
+* **dotenv** → Carregamento de variáveis de ambiente
+* **@fastify/\*** plugins (CORS, JWT, multipart, Swagger)
+* **@paralleldrive/cuid2** → IDs únicos
+* **cloudinary** → Upload de mídia
+* **xlsx** → Excel import/export
+
+**Ferramentas de Desenvolvimento:**
+
+* **TypeScript** → Tipagem estática
+* **Tsup** → Bundler para TypeScript
+* **TSX** → Execução de TS nativa
+* **Vitest** → Testes unitários
+* **Drizzle Kit** → CLI de migrações
+* **dotenv-cli** → Scripts com .env específico
+* **Biome** → Lint e formatação
 
 ---
 
 ## 📦 Estrutura do Projeto
 
 ```
-📂 onec-backend
- ┣ 📂 src
- ┃ ┣ 📂 application
- ┃ ┃ ┣ 📂 services → Regras de negócio e lógica de autenticação.
- ┃ ┣ 📂 domain
- ┃ ┃ ┣ 📂 entities → Definição das entidades do sistema.
- ┃ ┃ ┣ 📂 repositories → Interfaces dos repositórios.
- ┃ ┣ 📂 infrastructure
- ┃ ┃ ┣ 📂 db → Configuração do banco de dados e migrações.
- ┃ ┃ ┣ 📂 server.ts → Inicialização do servidor Fastify.
- ┣ 📂 tests
- ┃ ┣ 📂 application → Testes dos serviços e regras de negócio.
- ┣ 📄 package.json → Dependências e scripts do projeto.
- ┣ 📄 .env → Configurações sensíveis (banco de dados, JWT, etc.).
+onec-backend/
+├─ src/
+│  ├─ application/
+│  │  └─ services/         # Lógica de negócio (AuthService, ContractService, etc.)
+│  ├─ domain/
+│  │  ├─ entities/         # Modelos de domínio
+│  │  └─ repositories/      # Interfaces e implementações (Memory, Drizzle)
+│  ├─ infrastructure/
+│  │  ├─ config/           # Configurações (e.g., jwt.ts com Zod)
+│  │  ├─ db/
+│  │  │  ├─ migrations/    # Migrações Drizzle Kit
+│  │  │  └─ seed.ts        # Seed de dados
+│  │  └─ server.ts         # Inicia Fastify e plugins
+│  └─ tests/
+│     └─ application/      # Testes dos services
+├─ .env                    # Variáveis para dev/prod
+├─ .env.test               # Variáveis para testes
+├─ drizzle.config.ts       # Configuração Drizzle Kit
+├─ tsconfig.json           # TS config
+└─ package.json            # Dependências e scripts
 ```
 
 ---
 
-## 🛠️ Configuração e Execução
+## 🔧 Variáveis de Ambiente
 
-### 🔹 **1. Pré-requisitos**
-- Node.js `>=18.12`
-- PNPM `>=10.4.1`
-- Banco de Dados **PostgreSQL**
+Validação via Zod (`src/env.ts`):
 
-### 🔹 **2. Clonar o Repositório**
-```sh
-$ git clone https://github.com/seu-usuario/onec-backend.git
-$ cd onec-backend
+```ts
+import { z } from 'zod';
+
+export const envSchema = z.object({
+  NODE_ENV: z.enum(['development', 'test', 'production']).optional().default('production'),
+  DATABASE_URL: z.string().url(),
+  JWT_SECRET: z.string(),
+  ADMIN1_EMAIL: z.string(),
+  ADMIN1_PASSWORD: z.string(),
+  ADMIN2_EMAIL: z.string(),
+  ADMIN2_PASSWORD: z.string(),
+  ADMIN3_EMAIL: z.string(),
+  ADMIN3_PASSWORD: z.string(),
+});
 ```
 
-### 🔹 **3. Instalar Dependências**
-```sh
-$ pnpm install
-```
+Arquivos de ambiente:
 
-### 🔹 **4. Configurar Variáveis de Ambiente**
-Crie um arquivo **.env** na raiz do projeto e adicione as configurações necessárias, como conexão com o banco de dados:
-
-```
-DATABASE_URL=postgres://usuario:senha@localhost:5432/onec
-JWT_SECRET=seu_token_secreto
-```
-
-### 🔹 **5. Rodar as Migrações do Banco de Dados**
-```sh
-$ pnpm run db:migrate:test
-```
-
-### 🔹 **6. Iniciar o Servidor em Modo de Desenvolvimento**
-```sh
-$ pnpm run dev
-```
-
-### 🔹 **7. Rodar os Testes**
-```sh
-$ pnpm run test
-```
+* **.env** → ambiente de dev/prod
+* **.env.test** → ambiente de testes
 
 ---
 
-## ✅ Testes Automatizados
-Este projeto possui **testes unitários** para garantir o funcionamento correto dos serviços.
+## 🛠️ Scripts e Execução
 
-Para rodar os testes:
-```sh
-$ pnpm run test
-```
-Ou em modo **watch**:
-```sh
-$ pnpm run test:watch
-```
-
-Os testes utilizam **Vitest**, garantindo um feedback rápido e preciso.
-
----
-
-## 📤 Deploy e CI/CD
-O projeto está configurado para rodar os testes automaticamente a cada commit no GitHub, utilizando **GitHub Actions**.
-
-- Toda vez que um commit for feito na branch `main`, os testes serão executados automaticamente.
-- Em caso de falha, o commit será identificado como problemático.
+* `pnpm install` → Instalar dependências
+* `pnpm run dev` → Dev-mode (TSX watch + .env)
+* `pnpm run build` → Gerar bundle (Tsup)
+* `pnpm run start` → Executar build em produção
+* `pnpm run seed` → Popular banco com seed
+* `pnpm run db:migrate:test` → Migrações com `.env.test`
+* `pnpm run test` → Testes unitários (Vitest)
+* `pnpm run test:watch` → Testes em watch
+* `pnpm run test:ci` → Testes para CI
 
 ---
 
 ## 🔗 Endpoints (Swagger)
-Este backend expõe uma documentação interativa via **Swagger UI**.
 
-Após iniciar o servidor, acesse:
+Após iniciar o servidor em `http://localhost:3000`:
+
 ```
-http://localhost:3000/docs
+GET /docs
 ```
-para visualizar e testar os endpoints disponíveis.
+
+Acesse a interface Swagger para explorar e testar endpoints.
 
 ---
 
 ## 📝 Licença
-Este projeto foi desenvolvido como freelancer e não possui uma licença pública.
+
+Desenvolvido como freelancer; sem licença pública.
 
 ---
 
 ## 🤝 Contato
-Caso tenha dúvidas ou precise de suporte, entre em contato:
 
-📧 **guilhermebuenoreis@gmail.com**
-
-🚀 **ONEC Backend - Gestão eficiente de negociações e contratos!**
-
+📧 [guilhermebuenoreis@gmail.com](mailto:guilhermebuenoreis@gmail.com)
