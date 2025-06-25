@@ -3,7 +3,7 @@ import { fastifyCors } from '@fastify/cors';
 import { fastifyJwt } from '@fastify/jwt';
 import { fastifySwagger } from '@fastify/swagger';
 import { fastifySwaggerUi } from '@fastify/swagger-ui';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
 import { env } from '../env';
 import {
   jsonSchemaTransform,
@@ -11,7 +11,7 @@ import {
   validatorCompiler,
   type ZodTypeProvider,
 } from 'fastify-type-provider-zod';
-import { resolve } from 'node:path';
+import path, { resolve } from 'node:path';
 import { writeFile } from 'node:fs/promises';
 import fastifyMultipart from '@fastify/multipart';
 
@@ -58,17 +58,19 @@ import { deleteClientReceiptRoute } from '../routes/delete-client-receipt-route'
 import { getClientReceiptRoute } from '../routes/get-client-receipt-route';
 import { getNegotiationByIdRoute } from '../routes/get-negotiation-by-id';
 import { createId } from '@paralleldrive/cuid2';
+import { getPortalControllsBySelectByIdRoute } from '../routes/get-portal-controll-by-id';
 
-config();
+dotenv.config({ path: '/home/onec/onec-project/onec-backend/.env' });
+console.log('> database url:', process.env.DATABASE_URL);
+
+
 
 const app = fastify({ logger: true }).withTypeProvider<ZodTypeProvider>();
 
 app.register(fastifyCors, {
-  origin: (origin, callback) => {
-    callback(null, origin || '*');
-  },
+  origin: 'https://onecsis.com.br',
   credentials: true,
-});
+})
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
@@ -87,7 +89,7 @@ app.register(fastifySwagger, {
     },
   },
   transform: jsonSchemaTransform,
-});
+}); 
 
 app.register(fastifySwaggerUi, {
   routePrefix: '/docs',
@@ -135,6 +137,7 @@ app.register(getClientReceiptRoute);
 app.register(deleteClientReceiptRoute);
 app.register(updateClientReceiptRoute);
 app.register(getNegotiationByIdRoute);
+app.register(getPortalControllsBySelectByIdRoute);
 
 app
   .listen({

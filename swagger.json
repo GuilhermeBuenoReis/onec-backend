@@ -3846,6 +3846,132 @@
           }
         }
       }
+    },
+    "/portal/portalcontrolls/{id}": {
+      "get": {
+        "operationId": "getPortalControllsBySelectById",
+        "tags": [
+          "portalcontrolls"
+        ],
+        "description": "Retorna todos os registros de PortalControlls para o parceiro informado via querystring",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "monthOfCalculation": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "competenceMonth": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "contract": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "enterprise": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "product": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "percentageHonorary": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "compensation": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "honorary": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "tax": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "tj": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "value": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "situation": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "partnerId": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "monthOfCalculation",
+                      "competenceMonth",
+                      "contract",
+                      "enterprise",
+                      "product",
+                      "percentageHonorary",
+                      "compensation",
+                      "honorary",
+                      "tax",
+                      "tj",
+                      "value",
+                      "situation",
+                      "partnerId"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

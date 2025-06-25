@@ -138,4 +138,28 @@ export class DrizzlePortalControllRepository
 
     return response.length > 0;
   }
+
+  async getControllById(id: string): Promise<PortalControll[]> {
+
+  const response = await db.select({
+      id: portalControls.id,
+      monthOfCalculation: portalControls.monthOfCalculation,
+      competenceMonth: portalControls.competenceMonth,
+      contract: portalControls.contract,
+      enterprise: portalControls.enterprise,
+      product: portalControls.product,
+      percentageHonorary: portalControls.percentageHonorary,
+      compensation: portalControls.compensation,
+      honorary: portalControls.honorary,
+      tax: portalControls.tax,
+      tj: portalControls.tj,
+      value: portalControls.value,
+      situation: portalControls.situation,
+      partnerId: portalControls.partnerId,
+    })
+      .from(portalControls)
+      .where(eq(portalControls.id, id));
+
+    return response;
+  }
 }

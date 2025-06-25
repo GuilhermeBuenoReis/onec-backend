@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsup src",
     "dev": "tsx watch --env-file=.env src/infrastructure/server.ts",
-    "start": "node dist/http/server.js",
+    "start": "dotenv -e ./.env -- node dist/infrastructure/server.js",
     "seed": "tsx --env-file=.env src/infrastructure/db/seed.ts",
     "pretest": "npm run db:migrate:test",
     "pretest:watch": "npm run db:migrate:test",

@@ -1,5 +1,3 @@
-name: onec-server
-
 services:
   pg: 
     image: bitnami/postgresql:14.15.0
