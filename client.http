@@ -1,0 +1,38 @@
+### Login
+POST http://localhost:3333/api/auth/login
+Content-Type: application/json
+
+  {
+    "email": "admin1@example.com",
+    "password": "senha123"
+  }
+
+### Criar um novo client receipt
+POST http://localhost:3333/api/client-receipt
+Content-Type: application/json
+
+{
+  "receiptDate": "2025-07-09",
+  "competence": "07/2025",
+  "cnpj": "12.345.678/0001-90",
+  "clientName": "Cliente Exemplo",
+  "percentage": 15.5,
+  "compensationMonth": "Agosto",
+  "honorary": 5000.00,
+  "tax": 1200.00,
+  "status": "Em aberto"
+}
+
+### Criar um novo cliente
+POST http://localhost:3333/api/client
+Content-Type: application/json
+
+{
+  "enterprise": "Empresa Exemplo",
+  "cnpj": "12.345.678/0001-90",
+  "competenceMonth": "07/2025",
+  "product": "Produto Premium",
+  "contestation": "Nenhuma contestação",
+  "returned": "Sim"
+}
+

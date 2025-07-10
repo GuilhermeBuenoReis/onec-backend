@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1752067795602,
+      "tag": "0000_melted_rhodey",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1752070414482,
+      "tag": "0001_true_wrecking_crew",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1752071504961,
+      "tag": "0002_common_spitfire",
+      "breakpoints": true
+    }
+  ]
+}
