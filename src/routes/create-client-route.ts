@@ -1,6 +1,5 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { DrizzleCredentialClientRepository } from '../infrastructure/db/cruds/drizzle-credential-client-repository';
+import { z } from 'zod';
 import { authenticateUserHook } from '../http/hooks/authenticate';
 import { DrizzleClientRepository } from '../infrastructure/db/cruds/drizzle-client-repository';
 
@@ -8,7 +7,7 @@ export const createClientRoute: FastifyPluginAsyncZod = async app => {
   app.post(
     '/client',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'createClient',
         tags: ['client'],

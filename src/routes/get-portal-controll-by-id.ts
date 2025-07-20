@@ -1,5 +1,5 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
+import { z } from 'zod';
 import { DrizzlePortalControllRepository } from '../../src/infrastructure/db/cruds/drizzle-portal-controll-repository';
 
 function sanitizeNumber(value: unknown): number | null {
@@ -37,7 +37,7 @@ export const getPortalControllsBySelectByIdRoute: FastifyPluginAsyncZod =
           description:
             'Retorna todos os registros de PortalControlls para o parceiro informado via querystring',
           params: z.object({
-            id: z.string()
+            id: z.string(),
           }),
           response: {
             200: z.array(
@@ -68,12 +68,11 @@ export const getPortalControllsBySelectByIdRoute: FastifyPluginAsyncZod =
           const repo = new DrizzlePortalControllRepository();
           const rawResponse = await repo.getControllById(id);
 
+          const sanitizedResponse = (rawResponse ?? []).map(item =>
+            sanitizeItem(item, [...NUMERIC_FIELDS])
+          );
 
-        const sanitizedResponse = (rawResponse ?? []).map(item =>
-        sanitizeItem(item, [...NUMERIC_FIELDS])
-        );
-
-        return reply.status(200).send(sanitizedResponse);
+          return reply.status(200).send(sanitizedResponse);
         } catch (err) {
           request.log.error(err, '❌ Erro em selectByPartner');
           return reply.status(500).send({ error: 'Erro interno no servidor' });

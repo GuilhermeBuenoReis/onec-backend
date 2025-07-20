@@ -1,14 +1,14 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { DrizzleClientRepository } from '../infrastructure/db/cruds/drizzle-client-repository';
+import { z } from 'zod';
 import { authenticateUserHook } from '../http/hooks/authenticate';
 import { DrizzleClientReceiptRepository } from '../infrastructure/db/cruds/drizzle-client-receipt-repository';
+import { DrizzleClientRepository } from '../infrastructure/db/cruds/drizzle-client-repository';
 
 export const deleteClientReceiptRoute: FastifyPluginAsyncZod = async app => {
   app.delete(
     '/client-receipt/:id',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'deleteClientReceipt',
         tags: ['clientReceipt'],

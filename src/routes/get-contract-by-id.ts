@@ -1,5 +1,6 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
+import { z } from 'zod';
+import { authenticateUserHook } from '../http/hooks/authenticate';
 import { DrizzleContractRepository } from '../infrastructure/db/cruds/drizzle-contract-repository';
 
 export const getContractByIdRoute: FastifyPluginAsyncZod = async app => {
@@ -7,6 +8,7 @@ export const getContractByIdRoute: FastifyPluginAsyncZod = async app => {
     '/contract/:id',
     {
       schema: {
+        onRequest: [authenticateUserHook],
         operationId: 'getContractById',
         tags: ['contract'],
         description: 'Get contract by id',

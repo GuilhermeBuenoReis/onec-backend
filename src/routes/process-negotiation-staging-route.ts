@@ -1,5 +1,6 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import { z } from 'zod';
+import { authenticateUserHook } from '../http/hooks/authenticate';
 import { processNegotiationStaging } from '../infrastructure/db/staging/functions/process-negotiation-staging';
 
 export const processNegotiationStagingRoute: FastifyPluginAsyncZod =
@@ -8,6 +9,7 @@ export const processNegotiationStagingRoute: FastifyPluginAsyncZod =
       '/process-staging/negotiations',
       {
         schema: {
+          onRequest: [authenticateUserHook],
           operationId: 'processNegotiationStaging',
           tags: ['Staging'],
           summary:

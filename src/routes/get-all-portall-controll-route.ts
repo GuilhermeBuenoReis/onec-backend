@@ -1,12 +1,14 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
+import { z } from 'zod';
 import { DrizzlePortalControllRepository } from '../../src/infrastructure/db/cruds/drizzle-portal-controll-repository';
+import { authenticateUserHook } from '../http/hooks/authenticate';
 
 export const getAllPortalControllsRoute: FastifyPluginAsyncZod = async app => {
   app.get(
     '/portal/portalcontrolls',
     {
       schema: {
+        onRequest: [authenticateUserHook],
         operationId: 'getAllPortalControlls',
         tags: ['portalcontrolls'],
         description:

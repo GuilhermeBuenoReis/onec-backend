@@ -1,14 +1,14 @@
-import { z } from 'zod';
-import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import bcrypt from 'bcrypt';
-import { DrizzleUserRepository } from '../infrastructure/db/cruds/drizzle-user-repository';
+import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
+import { z } from 'zod';
 import { authenticateUserHook } from '../http/hooks/authenticate';
+import { DrizzleUserRepository } from '../infrastructure/db/cruds/drizzle-user-repository';
 
 export const updateUserRoute: FastifyPluginAsyncZod = async app => {
   app.put(
     '/users/:id',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'updateUser',
         tags: ['Users'],

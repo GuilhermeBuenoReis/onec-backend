@@ -1,13 +1,13 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { DrizzleCredentialRepository } from '../infrastructure/db/cruds/drizzle-credential-repository';
+import { z } from 'zod';
 import { authenticateUserHook } from '../http/hooks/authenticate';
+import { DrizzleCredentialRepository } from '../infrastructure/db/cruds/drizzle-credential-repository';
 
 export const deleteCredentialRoute: FastifyPluginAsyncZod = async app => {
   app.delete(
     '/credential/:id',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'deleteCredential',
         tags: ['credential'],

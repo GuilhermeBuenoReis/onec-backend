@@ -1,6 +1,7 @@
 import { createId } from '@paralleldrive/cuid2';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import { z } from 'zod';
+import { authenticateUserHook } from '../http/hooks/authenticate';
 import { db } from '../infrastructure/db/index';
 import { negotiationStaging } from '../infrastructure/db/schema';
 import { parseExcelToJsonNegotiation } from '../utils/parse-excel-to-json-negotiation';
@@ -10,6 +11,7 @@ export const uploadNegotiationXlsxRoute: FastifyPluginAsyncZod = async app => {
     '/upload-xlsx/negotiations',
     {
       schema: {
+        onRequest: [authenticateUserHook],
         consumes: ['multipart/form-data'],
         body: z.object({
           file: z.any(),

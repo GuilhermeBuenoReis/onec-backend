@@ -1,5 +1,5 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
+import { z } from 'zod';
 import { authenticateUserHook } from '../http/hooks/authenticate';
 import { DrizzleCredentialRepository } from '../infrastructure/db/cruds/drizzle-credential-repository';
 
@@ -7,7 +7,7 @@ export const createCredentialRoute: FastifyPluginAsyncZod = async app => {
   app.post(
     '/credential',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'createCredential',
         tags: ['credential'],

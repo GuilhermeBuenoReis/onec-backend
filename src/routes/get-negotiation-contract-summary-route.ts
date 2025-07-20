@@ -1,5 +1,6 @@
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import { z } from 'zod';
+import { authenticateUserHook } from '../http/hooks/authenticate';
 import { negotiationContractSummaryCte } from '../infrastructure/db/cte/negotiation_contract_summary_cte_';
 
 export const getContractNegotiationSummaryRoute: FastifyPluginAsyncZod =
@@ -7,7 +8,7 @@ export const getContractNegotiationSummaryRoute: FastifyPluginAsyncZod =
     app.get(
       '/contract-negotiation-summary',
       {
-        // onRequest: [authenticateUserHook],
+        onRequest: [authenticateUserHook],
         schema: {
           operationId: 'getContractNegotiationSummary',
           tags: ['contract'],

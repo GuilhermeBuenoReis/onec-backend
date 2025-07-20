@@ -1,13 +1,13 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { DrizzlePartnerRepository } from '../infrastructure/db/cruds/drizzle-partner-repository';
+import { z } from 'zod';
 import { authenticateUserHook } from '../http/hooks/authenticate';
+import { DrizzlePartnerRepository } from '../infrastructure/db/cruds/drizzle-partner-repository';
 
 export const updatePartnerRoute: FastifyPluginAsyncZod = async app => {
   app.put(
     '/partners/:id',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'updatePartner',
         tags: ['partners'],

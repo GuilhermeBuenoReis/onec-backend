@@ -1,6 +1,7 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
+import { z } from 'zod';
 import { DrizzlePortalControllRepository } from '../../src/infrastructure/db/cruds/drizzle-portal-controll-repository';
+import { authenticateUserHook } from '../http/hooks/authenticate';
 
 function sanitizeNumber(value: unknown): number | null {
   return typeof value === 'number' && !Number.isNaN(value) ? value : null;
@@ -32,6 +33,7 @@ export const getPortalControllsBySelectParternRoute: FastifyPluginAsyncZod =
       '/portal/portalcontrolls',
       {
         schema: {
+          onRequest: [authenticateUserHook],
           operationId: 'getPortalControllsBySelectParternRoute',
           tags: ['portalcontrolls'],
           description:

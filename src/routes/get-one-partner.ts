@@ -8,6 +8,7 @@ export const getOnePartnerRoute: FastifyPluginAsyncZod = async app => {
     '/partners/:id',
     {
       schema: {
+        onRequest: [authenticateUserHook],
         operationId: 'getOnePartner',
         tags: ['partners'],
         description: 'Get a single partner by id',

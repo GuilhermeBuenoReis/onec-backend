@@ -1,13 +1,13 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { DrizzlePendingRepository } from '../infrastructure/db/cruds/drizzle-pending-repository';
+import { z } from 'zod';
 import { authenticateUserHook } from '../http/hooks/authenticate';
+import { DrizzlePendingRepository } from '../infrastructure/db/cruds/drizzle-pending-repository';
 
 export const getPendingsRoute: FastifyPluginAsyncZod = async app => {
   app.get(
     '/pendings',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'getPendings',
         tags: ['pendings'],

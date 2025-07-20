@@ -1,5 +1,6 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
+import { z } from 'zod';
+import { authenticateUserHook } from '../http/hooks/authenticate';
 import { DrizzleContractRepository } from '../infrastructure/db/cruds/drizzle-contract-repository';
 
 export const getContractStatusCountByFilterRoute: FastifyPluginAsyncZod =
@@ -8,6 +9,7 @@ export const getContractStatusCountByFilterRoute: FastifyPluginAsyncZod =
       '/contract/status-count/filter',
       {
         schema: {
+          onRequest: [authenticateUserHook],
           operationId: 'getContractStatusCountByFilter',
           tags: ['contract'],
           description: 'Get count of contracts by status using a filter',

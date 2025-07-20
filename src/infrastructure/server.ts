@@ -65,7 +65,6 @@ import { updatePortalControllRoute } from '../routes/update-portal-controll';
 import { updateUserRoute } from '../routes/update-user';
 
 dotenv.config({ path: '/home/onec/onec-project/onec-backend/.env' });
-console.log('> database url:', process.env.DATABASE_URL);
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 

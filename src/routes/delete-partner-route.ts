@@ -1,13 +1,13 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { DrizzlePartnerRepository } from '../infrastructure/db/cruds/drizzle-partner-repository';
+import { z } from 'zod';
 import { authenticateUserHook } from '../http/hooks/authenticate';
+import { DrizzlePartnerRepository } from '../infrastructure/db/cruds/drizzle-partner-repository';
 
 export const deletePartnerRoute: FastifyPluginAsyncZod = async app => {
   app.delete(
     '/partners/:id',
     {
-      // onRequest: [authenticateUserHook],
+      onRequest: [authenticateUserHook],
       schema: {
         operationId: 'deletePartner',
         tags: ['partners'],
