@@ -8,6 +8,7 @@ const envSchema = z.object({
 
   DATABASE_URL: z.string().url(),
   JWT_SECRET: z.string(),
+  OPENAI_API_KEY: z.string(),
   ADMIN1_EMAIL: z.string(),
   ADMIN1_PASSWORD: z.string(),
   ADMIN2_EMAIL: z.string(),

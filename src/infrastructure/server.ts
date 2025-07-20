@@ -1,95 +1,99 @@
-import { fastify } from 'fastify';
+import { writeFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 import { fastifyCors } from '@fastify/cors';
 import { fastifyJwt } from '@fastify/jwt';
+import fastifyMultipart from '@fastify/multipart';
 import { fastifySwagger } from '@fastify/swagger';
 import { fastifySwaggerUi } from '@fastify/swagger-ui';
 import dotenv from 'dotenv';
-import { env } from '../env';
+import { fastify } from 'fastify';
 import {
+  type ZodTypeProvider,
   jsonSchemaTransform,
   serializerCompiler,
   validatorCompiler,
-  type ZodTypeProvider,
 } from 'fastify-type-provider-zod';
-import path, { resolve } from 'node:path';
-import { writeFile } from 'node:fs/promises';
-import fastifyMultipart from '@fastify/multipart';
+import { env } from '../env';
 
-import { createPartnerRoute } from '../routes/create-partner-route';
-import { getPartnersRoute } from '../routes/get-patners-route';
-import { updatePartnerRoute } from '../routes/update-partner-route';
-import { deletePartnerRoute } from '../routes/delete-partner-route';
-import { createDataNegotiationRoute } from '../routes/create-data-negotiation';
-import { getNegotiationRoute } from '../routes/get-negotiation';
-import { updateNegotiationRoute } from '../routes/update-negotiation';
-import { deleteNegotiationRoute } from '../routes/delete-negotiation';
-import { createContractRoute } from '../routes/create-contract';
-import { getContractRoute } from '../routes/get-contracts';
-import { updateContractRoute } from '../routes/update-contract';
-import { deleteContractRoute } from '../routes/delete-contracts';
+import { fastifyCookie } from '@fastify/cookie';
+import { createId } from '@paralleldrive/cuid2';
+import { uploadXlsxRoute } from '../routes/ai-upload';
 import { authenticateUserRoute } from '../routes/authenticate-user';
-import { getProfileUser } from '../routes/get-profile-user';
-import { updateUserRoute } from '../routes/update-user';
-import { deleteUserRoute } from '../routes/delete-user';
+import { createClientReceiptRoute } from '../routes/create-client-receipt-route';
+import { createClientRoute } from '../routes/create-client-route';
+import { createContractRoute } from '../routes/create-contract';
+import { createCredentialRoute } from '../routes/create-credentials-route';
+import { createDataNegotiationRoute } from '../routes/create-data-negotiation';
 import { createPendingRoute } from '../routes/create-new-pending-route';
-import { getPendingsRoute } from '../routes/get-pendings';
-import { deletePendingRoute } from '../routes/delete-pending';
-import { updatePendingRoute } from '../routes/update-pending';
+import { createPartnerRoute } from '../routes/create-partner-route';
 import { createPortalControllRoute } from '../routes/create-portal-controll-route';
+import { deleteClientRoute } from '../routes/delete-client';
+import { deleteClientReceiptRoute } from '../routes/delete-client-receipt-route';
+import { deleteContractRoute } from '../routes/delete-contracts';
+import { deleteCredentialRoute } from '../routes/delete-credentials';
+import { deleteNegotiationRoute } from '../routes/delete-negotiation';
+import { deletePartnerRoute } from '../routes/delete-partner-route';
+import { deletePendingRoute } from '../routes/delete-pending';
 import { deletePortalControllRoute } from '../routes/delete-portal-controll-route';
-import { updatePortalControllRoute } from '../routes/update-portal-controll';
+import { deleteUserRoute } from '../routes/delete-user';
+import { getClientRoute } from '../routes/get-client';
+import { getClientReceiptRoute } from '../routes/get-client-receipt-route';
+import { getContractByIdRoute } from '../routes/get-contract-by-id';
+import { getContractRoute } from '../routes/get-contracts';
 import { getContractStatusCountRoute } from '../routes/get-count-status';
-import { getContractStatusCountByFilterRoute } from '../routes/get-status-filter';
+import { getCredentialClientRoute } from '../routes/get-credentials-and-clients';
+import { getNegotiationRoute } from '../routes/get-negotiation';
+import { getNegotiationByIdRoute } from '../routes/get-negotiation-by-id';
+import { getContractNegotiationSummaryRoute } from '../routes/get-negotiation-contract-summary-route';
 import { getOnePartnerRoute } from '../routes/get-one-partner';
 import { getOnePendingRoute } from '../routes/get-one-pending';
-import { createCredentialRoute } from '../routes/create-credentials-route';
-import { createClientRoute } from '../routes/create-client-route';
-import { getCredentialClientRoute } from '../routes/get-credentials-and-clients';
-import { updateCredentialRoute } from '../routes/update-credentials';
-import { deleteCredentialRoute } from '../routes/delete-credentials';
-import { getClientRoute } from '../routes/get-client';
-import { deleteClientRoute } from '../routes/delete-client';
-import { updateClientRoute } from '../routes/update-client';
-import { getPortalControllsBySelectParternRoute } from '../routes/get-portal-controlls-by-partner';
-import { getContractByIdRoute } from '../routes/get-contract-by-id';
-import { createClientReceiptRoute } from '../routes/create-client-receipt-route';
-import { updateClientReceiptRoute } from '../routes/update-client-receipt-route';
-import { deleteClientReceiptRoute } from '../routes/delete-client-receipt-route';
-import { getClientReceiptRoute } from '../routes/get-client-receipt-route';
-import { getNegotiationByIdRoute } from '../routes/get-negotiation-by-id';
-import { createId } from '@paralleldrive/cuid2';
+import { getPartnersRoute } from '../routes/get-patners-route';
+import { getPendingsRoute } from '../routes/get-pendings';
 import { getPortalControllsBySelectByIdRoute } from '../routes/get-portal-controll-by-id';
+import { getPortalControllsBySelectParternRoute } from '../routes/get-portal-controlls-by-partner';
+import { getProfileUser } from '../routes/get-profile-user';
+import { getContractStatusCountByFilterRoute } from '../routes/get-status-filter';
+import { processNegotiationStagingRoute } from '../routes/process-negotiation-staging-route';
+import { updateClientRoute } from '../routes/update-client';
+import { updateClientReceiptRoute } from '../routes/update-client-receipt-route';
+import { updateContractRoute } from '../routes/update-contract';
+import { updateCredentialRoute } from '../routes/update-credentials';
+import { updateNegotiationRoute } from '../routes/update-negotiation';
+import { updatePartnerRoute } from '../routes/update-partner-route';
+import { updatePendingRoute } from '../routes/update-pending';
+import { updatePortalControllRoute } from '../routes/update-portal-controll';
+import { updateUserRoute } from '../routes/update-user';
 
 dotenv.config({ path: '/home/onec/onec-project/onec-backend/.env' });
 console.log('> database url:', process.env.DATABASE_URL);
 
+const app = fastify().withTypeProvider<ZodTypeProvider>();
 
-
-const app = fastify({ logger: true }).withTypeProvider<ZodTypeProvider>();
-
-app.register(fastifyCors, {
-  origin: 'https://onecsis.com.br',
-  credentials: true,
-})
-
+app.register(fastifyCors, { origin: '*' });
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
+
+app.register(fastifyMultipart);
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 });
 
-app.register(fastifyMultipart);
+app.register(fastifyCookie, {
+  secret: env.JWT_SECRET,
+  hook: 'onRequest',
+  parseOptions: {},
+});
 
 app.register(fastifySwagger, {
   openapi: {
     info: {
       title: 'onec',
-      version: '1.0.0',
+      version: '2.0.0',
     },
   },
   transform: jsonSchemaTransform,
-}); 
+});
 
 app.register(fastifySwaggerUi, {
   routePrefix: '/docs',
@@ -138,6 +142,9 @@ app.register(deleteClientReceiptRoute);
 app.register(updateClientReceiptRoute);
 app.register(getNegotiationByIdRoute);
 app.register(getPortalControllsBySelectByIdRoute);
+app.register(getContractNegotiationSummaryRoute);
+app.register(uploadXlsxRoute);
+app.register(processNegotiationStagingRoute);
 
 app
   .listen({

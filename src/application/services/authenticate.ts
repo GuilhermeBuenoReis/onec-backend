@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
+import { authenticateUser } from '../../config/jose';
 import type { UserRepository } from '../../domain/repositories/User';
-import { generateToken } from '../../config/jose';
 
 export class AuthenticationService {
   private userRepository: UserRepository;
@@ -20,7 +20,9 @@ export class AuthenticationService {
       return null;
     }
 
-    const token = await generateToken({ id: user.id, role: user.role });
+    const userId = user.id;
+
+    const token = await authenticateUser(userId);
     return token;
   }
 }

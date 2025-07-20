@@ -1,7 +1,7 @@
-import { z } from 'zod';
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
-import { DrizzlePendingRepository } from '../infrastructure/db/cruds/drizzle-pending-repository';
+import { z } from 'zod';
 import { authenticateUserHook } from '../http/hooks/authenticate';
+import { DrizzlePendingRepository } from '../infrastructure/db/cruds/drizzle-pending-repository';
 
 export const deletePendingRoute: FastifyPluginAsyncZod = async app => {
   app.delete(

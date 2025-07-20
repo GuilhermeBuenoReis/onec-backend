@@ -1,9 +1,9 @@
-// src/infrastructure/repositories/DrizzleUserRepository.ts
-import type { UserRepository } from '../../../domain/repositories/User';
-import { db } from '..';
-import { users } from '../schema';
 import { eq } from 'drizzle-orm';
+import { db } from '..';
+import { authenticateUser } from '../../../config/jose';
 import { User } from '../../../domain/entities/User';
+import type { UserRepository } from '../../../domain/repositories/User';
+import { users } from '../schema';
 
 export class DrizzleUserRepository implements UserRepository {
   async create(userData: Omit<User, 'id'>): Promise<User | null> {
@@ -88,5 +88,23 @@ export class DrizzleUserRepository implements UserRepository {
       foundUser.passwordHash,
       foundUser.role
     );
+  }
+
+  async authenticateUserByEmailAndPassword(email: string, password: string) {
+    const findUserAlredyExistInDataBase = await this.findByEmail(email);
+
+    if (
+      findUserAlredyExistInDataBase === null ||
+      findUserAlredyExistInDataBase === undefined
+    ) {
+      return {
+        message: 'Erro ao encontrar o usuário, garanta que ele exista!',
+      };
+    }
+    const userId = findUserAlredyExistInDataBase.id;
+
+    const token = await authenticateUser(userId);
+
+    return { token };
   }
 }

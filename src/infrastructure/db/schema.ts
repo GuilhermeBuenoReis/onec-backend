@@ -1,6 +1,6 @@
 import { createId } from '@paralleldrive/cuid2';
 import { pgEnum } from 'drizzle-orm/pg-core';
-import { pgTable, text, integer, real, timestamp } from 'drizzle-orm/pg-core';
+import { integer, pgTable, real, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const statusEnum = pgEnum('status', [
   'Ativos',
@@ -213,6 +213,35 @@ export const clientReceipt = pgTable('client_receipt', {
   honorary: real('honorary'),
   tax: real('tax'),
   status: text('status'),
+
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+export const negotiationStaging = pgTable('negotiation_staging', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+
+  title: text('title'),
+  client: text('client'),
+  user: text('user'),
+  tags: text('tags'),
+  step: text('step'),
+  status: text('status'),
+  value: real('value'),
+  startsDate: text('starts_date'),
+  observation: text('observation'),
+  partnerId: text('partner_id'),
+  averageGuide: real('average_guide'),
+
+  importStatus: text('import_status').default('pendente'),
+  errorMessage: text('error_message'),
+  importedBy: text('imported_by'),
 
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()

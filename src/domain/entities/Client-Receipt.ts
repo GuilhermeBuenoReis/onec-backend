@@ -2,7 +2,6 @@ import { createId } from '@paralleldrive/cuid2';
 
 export class ClientReceipt {
   constructor(
-    // biome-ignore lint/style/useDefaultParameterLast: <explanation>
     public id: string = createId(),
     public receiptDate: string | null,
     public competence: string | null,

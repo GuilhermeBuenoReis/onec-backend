@@ -1,9 +1,8 @@
-import { z } from 'zod';
-import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
 import bcrypt from 'bcrypt';
-import { generateToken } from '../config/jose';
+import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod';
+import { z } from 'zod';
+import { authenticateUser } from '../config/jose';
 import { DrizzleUserRepository } from '../infrastructure/db/cruds/drizzle-user-repository';
-import Cookies from 'universal-cookie';
 
 export const authenticateUserRoute: FastifyPluginAsyncZod = async app => {
   app.post(
@@ -23,43 +22,36 @@ export const authenticateUserRoute: FastifyPluginAsyncZod = async app => {
             token: z.string(),
           }),
           401: z.object({
-            error: z.string(),
+            message: z.string(),
           }),
         },
       },
     },
     async (request, reply) => {
       const { email, password } = request.body;
-      const userRepository = new DrizzleUserRepository();
+      const user_repository = new DrizzleUserRepository();
+      const authenticate_user =
+        await user_repository.authenticateUserByEmailAndPassword(
+          email,
+          password
+        );
+      const token = authenticate_user.token;
 
-      const user = await userRepository.findByEmail(email);
-      if (!user) {
-        return reply.status(401).send({ error: 'Credenciais inválidas' });
+      if (!token) {
+        reply.status(401).send({ message: 'Token não gerado, ou quebrado!' });
+        return;
       }
 
-      const isValid = await bcrypt.compare(password, user.passwordHash);
-      if (!isValid) {
-        return reply.status(401).send({ error: 'Credenciais inválidas' });
-      }
-
-      const token = await generateToken({ id: user.id, role: user.role });
-
-      const cookies = new Cookies(request.headers.cookie);
-
-      cookies.set('token', token, {
-        path: '/',
-        maxAge: 60 * 24 * 60 * 60,
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'development',
-        sameSite: 'strict',
-      });
-
-      const setCookieHeader = `token=${token}; Path=/; HttpOnly; Max-Age=${60 * 24 * 60 * 60}; SameSite=Strict${
-        process.env.NODE_ENV === 'development' ? '; Secure' : ''
-      }`;
-
-      reply.header('Set-Cookie', setCookieHeader);
-      return reply.status(200).send({ token });
+      reply
+        .setCookie('token', token, {
+          path: '/',
+          httpOnly: true,
+          sameSite: 'lax',
+          secure: process.env.NODE_ENV === 'production',
+          maxAge: 60 * 60 * 24 * 7,
+        })
+        .status(200)
+        .send({ token });
     }
   );
 };

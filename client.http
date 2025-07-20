@@ -1,0 +1,12 @@
+### Upload multipart com campo JSON aninhado
+POST http://localhost:3333/upload/xlsx-buffer
+Content-Type: multipart/form-data; boundary=----011000010111000001101001
+
+------011000010111000001101001
+Content-Disposition: form-data; name="field"
+Content-Type: application/json
+
+{
+  "child": "valor dentro do campo filho"
+}
+------011000010111000001101001--

@@ -2,7 +2,7 @@
   "openapi": "3.0.3",
   "info": {
     "title": "onec",
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "components": {
     "schemas": {}
@@ -98,8 +98,7 @@
                   "phone",
                   "email",
                   "responsible"
-                ],
-                "additionalProperties": false
+                ]
               }
             }
           },
@@ -107,17 +106,7 @@
         },
         "responses": {
           "201": {
-            "description": "Default Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "enum": [
-                    "null"
-                  ],
-                  "nullable": true
-                }
-              }
-            }
+            "description": "Default Response"
           }
         }
       },
@@ -293,15 +282,13 @@
                   },
                   "email": {
                     "type": "string",
-                    "format": "email",
                     "nullable": true
                   },
                   "responsible": {
                     "type": "string",
                     "nullable": true
                   }
-                },
-                "additionalProperties": false
+                }
               }
             }
           }
@@ -622,8 +609,7 @@
                   "startsDate",
                   "observation",
                   "averageGuide"
-                ],
-                "additionalProperties": false
+                ]
               }
             }
           },
@@ -810,8 +796,7 @@
                     "type": "number",
                     "nullable": true
                   }
-                },
-                "additionalProperties": false
+                }
               }
             }
           }
@@ -1121,8 +1106,7 @@
                   "partnerCommission",
                   "counter",
                   "email"
-                ],
-                "additionalProperties": false
+                ]
               }
             }
           },
@@ -1370,8 +1354,7 @@
                     "type": "string",
                     "nullable": true
                   }
-                },
-                "additionalProperties": false
+                }
               }
             }
           }
@@ -1642,7 +1625,8 @@
                 "properties": {
                   "email": {
                     "type": "string",
-                    "format": "email"
+                    "format": "email",
+                    "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                   },
                   "password": {
                     "type": "string"
@@ -1651,8 +1635,7 @@
                 "required": [
                   "email",
                   "password"
-                ],
-                "additionalProperties": false
+                ]
               }
             }
           },
@@ -1722,7 +1705,8 @@
                       },
                       "email": {
                         "type": "string",
-                        "format": "email"
+                        "format": "email",
+                        "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                       },
                       "role": {
                         "type": "string"
@@ -1776,7 +1760,8 @@
                 "properties": {
                   "email": {
                     "type": "string",
-                    "format": "email"
+                    "format": "email",
+                    "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
                   },
                   "password": {
                     "type": "string",
@@ -1785,8 +1770,7 @@
                   "role": {
                     "type": "string"
                   }
-                },
-                "additionalProperties": false
+                }
               }
             }
           }
@@ -1923,12 +1907,6 @@
                   },
                   "status": {
                     "type": "string",
-                    "enum": [
-                      "Aberto",
-                      "Encaminhado",
-                      "Pendente",
-                      "Concluído"
-                    ],
                     "nullable": true
                   },
                   "priority": {
@@ -1963,8 +1941,7 @@
                   "responsible",
                   "category",
                   "description"
-                ],
-                "additionalProperties": false
+                ]
               }
             }
           },
@@ -2021,12 +1998,6 @@
                       },
                       "status": {
                         "type": "string",
-                        "enum": [
-                          "Aberto",
-                          "Encaminhado",
-                          "Pendente",
-                          "Concluído"
-                        ],
                         "nullable": true
                       },
                       "priority": {
@@ -2039,14 +2010,6 @@
                       },
                       "category": {
                         "type": "string",
-                        "enum": [
-                          "SAC",
-                          "Atendimento",
-                          "Financeiro",
-                          "Diretoria",
-                          "Comercial",
-                          "Auditoria"
-                        ],
                         "nullable": true
                       },
                       "description": {
@@ -2161,12 +2124,6 @@
                   },
                   "status": {
                     "type": "string",
-                    "enum": [
-                      "Aberto",
-                      "Encaminhado",
-                      "Pendente",
-                      "Concluído"
-                    ],
                     "nullable": true
                   },
                   "priority": {
@@ -2179,22 +2136,13 @@
                   },
                   "category": {
                     "type": "string",
-                    "enum": [
-                      "SAC",
-                      "Atendimento",
-                      "Financeiro",
-                      "Diretoria",
-                      "Comercial",
-                      "Auditoria"
-                    ],
                     "nullable": true
                   },
                   "description": {
                     "type": "string",
                     "nullable": true
                   }
-                },
-                "additionalProperties": false
+                }
               }
             }
           }
@@ -2330,8 +2278,7 @@
                   "value",
                   "situation",
                   "partnerId"
-                ],
-                "additionalProperties": false
+                ]
               }
             }
           },
@@ -2469,8 +2416,7 @@
                   "partnerId": {
                     "type": "string"
                   }
-                },
-                "additionalProperties": false
+                }
               }
             }
           }
@@ -2584,8 +2530,7 @@
                 },
                 "required": [
                   "filter"
-                ],
-                "additionalProperties": false
+                ]
               }
             }
           },
@@ -2660,12 +2605,6 @@
                     },
                     "status": {
                       "type": "string",
-                      "enum": [
-                        "Aberto",
-                        "Encaminhado",
-                        "Pendente",
-                        "Concluído"
-                      ],
                       "nullable": true
                     },
                     "priority": {
@@ -2678,14 +2617,6 @@
                     },
                     "category": {
                       "type": "string",
-                      "enum": [
-                        "SAC",
-                        "Atendimento",
-                        "Financeiro",
-                        "Diretoria",
-                        "Comercial",
-                        "Auditoria"
-                      ],
                       "nullable": true
                     },
                     "description": {
@@ -2773,8 +2704,7 @@
                   "cnpj",
                   "agentIndicator",
                   "partner"
-                ],
-                "additionalProperties": false
+                ]
               }
             }
           },
@@ -2782,17 +2712,7 @@
         },
         "responses": {
           "201": {
-            "description": "Default Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "enum": [
-                    "null"
-                  ],
-                  "nullable": true
-                }
-              }
-            }
+            "description": "Default Response"
           },
           "400": {
             "description": "Default Response",
@@ -2861,8 +2781,7 @@
                   "contestation",
                   "returned",
                   "product"
-                ],
-                "additionalProperties": false
+                ]
               }
             }
           },
@@ -2870,17 +2789,7 @@
         },
         "responses": {
           "201": {
-            "description": "Default Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "enum": [
-                    "null"
-                  ],
-                  "nullable": true
-                }
-              }
-            }
+            "description": "Default Response"
           },
           "400": {
             "description": "Default Response",
@@ -3109,8 +3018,7 @@
                     "type": "string",
                     "nullable": true
                   }
-                },
-                "additionalProperties": false
+                }
               }
             }
           }
@@ -3261,8 +3169,7 @@
                     "type": "string",
                     "nullable": true
                   }
-                },
-                "additionalProperties": false
+                }
               }
             }
           }
@@ -3564,8 +3471,7 @@
                   "honorary",
                   "tax",
                   "status"
-                ],
-                "additionalProperties": false
+                ]
               }
             }
           },
@@ -3573,17 +3479,7 @@
         },
         "responses": {
           "201": {
-            "description": "Default Response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "enum": [
-                    "null"
-                  ],
-                  "nullable": true
-                }
-              }
-            }
+            "description": "Default Response"
           },
           "400": {
             "description": "Default Response",
@@ -3789,8 +3685,7 @@
                     "type": "string",
                     "nullable": true
                   }
-                },
-                "additionalProperties": false
+                }
               }
             }
           }
@@ -3964,6 +3859,289 @@
                   },
                   "required": [
                     "error"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contract-negotiation-summary": {
+      "get": {
+        "operationId": "getContractNegotiationSummary",
+        "tags": [
+          "contract"
+        ],
+        "description": "Retrieve merged contract and negotiation data",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "negotiationId": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "negotiationClient": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "user": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "tags": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "step": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "negotiationStatus": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "value": {
+                            "type": "number",
+                            "nullable": true
+                          },
+                          "startsDate": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "observation": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "partnerId": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "negotiationAverageGuide": {
+                            "type": "number",
+                            "nullable": true
+                          },
+                          "negotiationCreatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "negotiationUpdatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "contractId": {
+                            "type": "string"
+                          },
+                          "contractClient": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "city": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "state": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "cnpj": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "sindic": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "year": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "matter": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "forecast": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "contractTotal": {
+                            "type": "number",
+                            "nullable": true
+                          },
+                          "percentage": {
+                            "type": "number",
+                            "nullable": true
+                          },
+                          "signedContract": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "contractStatus": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "contractAverageGuide": {
+                            "type": "number",
+                            "nullable": true
+                          },
+                          "partner": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "partnerCommission": {
+                            "type": "number",
+                            "nullable": true
+                          },
+                          "counter": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "email": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "contractCreatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "contractUpdatedAt": {
+                            "type": "string",
+                            "format": "date-time"
+                          }
+                        },
+                        "required": [
+                          "negotiationId",
+                          "title",
+                          "negotiationClient",
+                          "user",
+                          "tags",
+                          "step",
+                          "negotiationStatus",
+                          "value",
+                          "startsDate",
+                          "observation",
+                          "partnerId",
+                          "negotiationAverageGuide",
+                          "negotiationCreatedAt",
+                          "negotiationUpdatedAt",
+                          "contractId",
+                          "contractClient",
+                          "city",
+                          "state",
+                          "cnpj",
+                          "sindic",
+                          "year",
+                          "matter",
+                          "forecast",
+                          "contractTotal",
+                          "percentage",
+                          "signedContract",
+                          "contractStatus",
+                          "contractAverageGuide",
+                          "partner",
+                          "partnerCommission",
+                          "counter",
+                          "email",
+                          "contractCreatedAt",
+                          "contractUpdatedAt"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "result"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/upload-xlsx": {
+      "post": {
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/process-staging/negotiations": {
+      "post": {
+        "operationId": "processNegotiationStaging",
+        "summary": "Processa negociações da tabela negotiation_staging para a negotiation_imports",
+        "tags": [
+          "Staging"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
                   ],
                   "additionalProperties": false
                 }
