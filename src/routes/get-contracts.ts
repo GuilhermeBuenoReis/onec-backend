@@ -33,6 +33,8 @@ export const getContractRoute: FastifyPluginAsyncZod = async app => {
               partnerCommission: z.number().nullable(),
               counter: z.string().nullable(),
               email: z.string().nullable(),
+              createdAt: z.date().nullable(),
+              updatedAt: z.date().nullable(),
             })
           ),
         },

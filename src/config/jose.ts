@@ -1,14 +1,11 @@
-import { SignJWT } from 'jose';
-import { env } from '../env';
+import type { FastifyInstance } from 'fastify';
 
-export async function authenticateUser(userId: string): Promise<string> {
-  const secret = new TextEncoder().encode(env.JWT_SECRET);
-
-  const token = await new SignJWT()
-    .setSubject(userId)
-    .setIssuedAt()
-    .setExpirationTime('7d')
-    .sign(secret);
-
-  return token;
+export function authenticateUser(
+  app: FastifyInstance,
+  user: { id: string; email: string; role: string }
+) {
+  return app.jwt.sign(
+    { id: user.id, email: user.email, role: user.role },
+    { expiresIn: '7d' }
+  );
 }

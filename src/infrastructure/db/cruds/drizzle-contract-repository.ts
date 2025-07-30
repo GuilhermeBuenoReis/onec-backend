@@ -1,11 +1,14 @@
-import type { ContractRepository } from '../../../domain/repositories/Contract';
-import { db } from '..';
-import { contracts } from '../schema';
+import { createId } from '@paralleldrive/cuid2';
 import { eq, sql } from 'drizzle-orm';
+import { db } from '..';
 import { Contract } from '../../../domain/entities/Contract';
+import type { ContractRepository } from '../../../domain/repositories/Contract';
+import { contracts, negotiations } from '../schema';
 
 export class DrizzleContractRepository implements ContractRepository {
-  async create(contractData: Omit<Contract, 'id'>): Promise<Contract | null> {
+  async create(
+    contractData: Omit<Contract, 'id'> & { referenceId?: string }
+  ): Promise<Contract | null> {
     const contract = new Contract(
       undefined,
       contractData.city,
@@ -26,6 +29,16 @@ export class DrizzleContractRepository implements ContractRepository {
       contractData.counter,
       contractData.email
     );
+
+    const negotiationMatch = contract.client
+      ? await db
+          .select({ referenceId: negotiations.referenceId })
+          .from(negotiations)
+          .where(eq(negotiations.client, contract.client))
+          .limit(1)
+      : [];
+
+    const referenceId = negotiationMatch.at(0)?.referenceId ?? createId();
 
     const response = await db
       .insert(contracts)
@@ -48,6 +61,7 @@ export class DrizzleContractRepository implements ContractRepository {
         partnerCommission: contract.partnerCommission,
         counter: contract.counter,
         email: contract.email,
+        referenceId,
       })
       .returning();
 
@@ -81,19 +95,47 @@ export class DrizzleContractRepository implements ContractRepository {
         partnerCommission: contracts.partnerCommission,
         counter: contracts.counter,
         email: contracts.email,
+        createdAt: contracts.createdAt,
+        updatedAt: contracts.updatedAt,
       })
       .from(contracts);
 
     return response;
   }
   async update(id: string, data: Partial<Contract>): Promise<Contract | null> {
+    const { createdAt, ...dataWithoutCreatedAt } = data;
+
     const response = await db
       .update(contracts)
-      .set(data)
+      .set({
+        ...dataWithoutCreatedAt,
+        updatedAt: new Date(),
+      })
       .where(eq(contracts.id, id))
-      .returning();
+      .returning({
+        id: contracts.id,
+        city: contracts.city,
+        client: contracts.client,
+        state: contracts.state,
+        cnpj: contracts.cnpj,
+        sindic: contracts.sindic,
+        year: contracts.year,
+        matter: contracts.matter,
+        forecast: contracts.forecast,
+        contractTotal: contracts.contractTotal,
+        percentage: contracts.percentage,
+        signedContract: contracts.signedContract,
+        status: contracts.status,
+        averageGuide: contracts.averageGuide,
+        partner: contracts.partner,
+        partnerCommission: contracts.partnerCommission,
+        counter: contracts.counter,
+        email: contracts.email,
+        createdAt: contracts.createdAt,
+        updatedAt: contracts.updatedAt,
+      });
 
-    return response[0] || null;
+    return response[0] ?? null;
   }
   async delete(id: string): Promise<boolean> {
     const response = await db
@@ -149,6 +191,8 @@ export class DrizzleContractRepository implements ContractRepository {
         partnerCommission: contracts.partnerCommission,
         counter: contracts.counter,
         email: contracts.email,
+        createdAt: contracts.createdAt,
+        updatedAt: contracts.updatedAt,
       })
       .from(contracts)
       .where(eq(contracts.id, id));

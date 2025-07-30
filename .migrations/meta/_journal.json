@@ -71,6 +71,20 @@
       "when": 1747662191923,
       "tag": "0009_cooing_vulture",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1753625106949,
+      "tag": "0010_faithful_rhino",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1753886847114,
+      "tag": "0011_small_tusk",
+      "breakpoints": true
     }
   ]
 }

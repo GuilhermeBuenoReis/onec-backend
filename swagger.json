@@ -631,8 +631,7 @@
                     }
                   },
                   "required": [
-                    "id",
-                    "name"
+                    "id"
                   ],
                   "additionalProperties": false
                 }
@@ -721,6 +720,14 @@
                       "partnerId": {
                         "type": "string",
                         "nullable": true
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "nullable": true
                       }
                     },
                     "required": [
@@ -735,7 +742,9 @@
                       "startsDate",
                       "observation",
                       "averageGuide",
-                      "partnerId"
+                      "partnerId",
+                      "createdAt",
+                      "updatedAt"
                     ],
                     "additionalProperties": false
                   }
@@ -760,25 +769,32 @@
                 "type": "object",
                 "properties": {
                   "title": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "client": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "user": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "tags": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "step": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "status": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": true
                   },
                   "value": {
-                    "type": "number"
+                    "type": "number",
+                    "nullable": true
                   },
                   "startsDate": {
                     "type": "string",
@@ -819,13 +835,86 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "title": {
-                      "type": "string",
-                      "nullable": true
+                    "negotiation": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "title": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "client": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "user": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "tags": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "step": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "status": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "value": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "startsDate": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "observation": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "partnerId": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "averageGuide": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "title",
+                        "client",
+                        "user",
+                        "tags",
+                        "step",
+                        "status",
+                        "value",
+                        "startsDate",
+                        "observation",
+                        "partnerId",
+                        "averageGuide",
+                        "createdAt",
+                        "updatedAt"
+                      ],
+                      "additionalProperties": false
                     }
                   },
                   "required": [
-                    "title"
+                    "negotiation"
                   ],
                   "additionalProperties": false
                 }
@@ -1128,8 +1217,7 @@
                     }
                   },
                   "required": [
-                    "id",
-                    "name"
+                    "id"
                   ],
                   "additionalProperties": false
                 }
@@ -1243,6 +1331,14 @@
                       "email": {
                         "type": "string",
                         "nullable": true
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "nullable": true
                       }
                     },
                     "required": [
@@ -1263,7 +1359,9 @@
                       "partner",
                       "partnerCommission",
                       "counter",
-                      "email"
+                      "email",
+                      "createdAt",
+                      "updatedAt"
                     ],
                     "additionalProperties": false
                   }
@@ -1377,12 +1475,116 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "message": {
-                      "type": "string"
+                    "contract": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "client": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "state": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "cnpj": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "sindic": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "year": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "matter": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "forecast": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "contractTotal": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "percentage": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "signedContract": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "status": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "averageGuide": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "partner": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "partnerCommission": {
+                          "type": "number",
+                          "nullable": true
+                        },
+                        "counter": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "email": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "nullable": true
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "nullable": true
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "city",
+                        "client",
+                        "state",
+                        "cnpj",
+                        "sindic",
+                        "year",
+                        "matter",
+                        "forecast",
+                        "contractTotal",
+                        "percentage",
+                        "signedContract",
+                        "status",
+                        "averageGuide",
+                        "partner",
+                        "partnerCommission",
+                        "counter",
+                        "email",
+                        "createdAt",
+                        "updatedAt"
+                      ],
+                      "additionalProperties": false
                     }
                   },
                   "required": [
-                    "message"
+                    "contract"
                   ],
                   "additionalProperties": false
                 }
@@ -1649,11 +1851,15 @@
                 "schema": {
                   "type": "object",
                   "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
                     "token": {
                       "type": "string"
                     }
                   },
                   "required": [
+                    "success",
                     "token"
                   ],
                   "additionalProperties": false
@@ -3872,7 +4078,8 @@
       "get": {
         "operationId": "getContractNegotiationSummary",
         "tags": [
-          "contract"
+          "contract",
+          "negotiation"
         ],
         "description": "Retrieve merged contract and negotiation data",
         "responses": {
@@ -4130,6 +4337,565 @@
             }
           },
           "500": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/me": {
+      "get": {
+        "operationId": "getMe",
+        "tags": [
+          "Users"
+        ],
+        "description": "Retorna o perfil do usuário autenticado",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+                    },
+                    "role": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "email",
+                    "role"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contestation": {
+      "post": {
+        "operationId": "createContestation",
+        "tags": [
+          "contestation"
+        ],
+        "description": "Create a new Contestation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "product": {
+                    "type": "string"
+                  },
+                  "competence": {
+                    "type": "string"
+                  },
+                  "cnpj": {
+                    "type": "string"
+                  },
+                  "client": {
+                    "type": "string"
+                  },
+                  "percentage": {
+                    "type": "number"
+                  },
+                  "compensation": {
+                    "type": "number"
+                  },
+                  "honorary": {
+                    "type": "number"
+                  },
+                  "tax": {
+                    "type": "number"
+                  },
+                  "valueTj": {
+                    "type": "number"
+                  },
+                  "toPay": {
+                    "type": "number"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "observation": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                },
+                "required": [
+                  "product",
+                  "competence",
+                  "cnpj",
+                  "client",
+                  "percentage",
+                  "compensation",
+                  "honorary",
+                  "tax",
+                  "valueTj",
+                  "toPay",
+                  "status",
+                  "observation"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Default Response"
+          },
+          "400": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getContestation",
+        "tags": [
+          "contestation"
+        ],
+        "description": "Get a list of contestation",
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "product": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "competence": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "cnpj": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "client": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "percentage": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "compensation": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "honorary": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "tax": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "valueTj": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "toPay": {
+                        "type": "number",
+                        "nullable": true
+                      },
+                      "status": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "observation": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "nullable": true
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "nullable": true
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "product",
+                      "competence",
+                      "cnpj",
+                      "client",
+                      "percentage",
+                      "compensation",
+                      "honorary",
+                      "tax",
+                      "valueTj",
+                      "toPay",
+                      "status",
+                      "observation",
+                      "createdAt",
+                      "updatedAt"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contestation/{id}": {
+      "get": {
+        "operationId": "getContestationById",
+        "tags": [
+          "contestation"
+        ],
+        "description": "Get a contestation by ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "product": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "competence": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "cnpj": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "client": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "percentage": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "compensation": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "honorary": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "tax": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "valueTj": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "toPay": {
+                      "type": "number",
+                      "nullable": true
+                    },
+                    "status": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "observation": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "nullable": true
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "product",
+                    "competence",
+                    "cnpj",
+                    "client",
+                    "percentage",
+                    "compensation",
+                    "honorary",
+                    "tax",
+                    "valueTj",
+                    "toPay",
+                    "status",
+                    "observation",
+                    "createdAt",
+                    "updatedAt"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateContestation",
+        "tags": [
+          "contestation"
+        ],
+        "description": "Update a contestation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "product": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "competence": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "cnpj": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "client": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "percentage": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "compensation": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "honorary": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "tax": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "valueTj": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "toPay": {
+                    "type": "number",
+                    "nullable": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "nullable": true
+                  },
+                  "observation": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteContestation",
+        "tags": [
+          "contestation"
+        ],
+        "description": "Delete a contestation",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "404": {
             "description": "Default Response",
             "content": {
               "application/json": {

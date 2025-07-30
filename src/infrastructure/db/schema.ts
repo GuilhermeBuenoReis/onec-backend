@@ -56,6 +56,9 @@ export const negotiations = pgTable('negotiation_imports', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
+
+  referenceId: text('reference_id'),
+
   title: text('title'),
   client: text('client'),
   user: text('user'),
@@ -79,6 +82,9 @@ export const contracts = pgTable('contracts', {
   id: text('id')
     .primaryKey()
     .$defaultFn(() => createId()),
+
+  referenceId: text('reference_id'),
+
   city: text('city'),
   client: text('clients'),
   state: text('state'),
@@ -249,4 +255,30 @@ export const negotiationStaging = pgTable('negotiation_staging', {
   updatedAt: timestamp('updated_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
+});
+
+export const contestation = pgTable('contestation', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => createId()),
+
+  product: text('product'),
+  competence: text('competence'),
+  cnpj: text('cnpj'),
+  client: text('client'),
+  percentage: real('percentage'),
+  compensation: real('compensation'),
+  honorary: real('honorary'),
+  tax: real('tax'),
+  valueTj: real('value_tj'),
+  toPay: real('to_pay'),
+  status: text('status'),
+  observation: text('observation'),
+
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
+    .defaultNow()
+    .notNull(),
 });

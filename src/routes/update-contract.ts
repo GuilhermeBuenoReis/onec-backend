@@ -36,7 +36,28 @@ export const updateContractRoute: FastifyPluginAsyncZod = async app => {
         }),
         response: {
           200: z.object({
-            message: z.string(),
+            contract: z.object({
+              id: z.string(),
+              city: z.string().nullable(),
+              client: z.string().nullable(),
+              state: z.string().nullable(),
+              cnpj: z.string().nullable(),
+              sindic: z.string().nullable(),
+              year: z.string().nullable(),
+              matter: z.string().nullable(),
+              forecast: z.string().nullable(),
+              contractTotal: z.string().nullable(),
+              percentage: z.number().nullable(),
+              signedContract: z.string().nullable(),
+              status: z.string().nullable(),
+              averageGuide: z.number().nullable(),
+              partner: z.string().nullable(),
+              partnerCommission: z.number().nullable(),
+              counter: z.string().nullable(),
+              email: z.string().nullable(),
+              createdAt: z.date().nullable(),
+              updatedAt: z.date().nullable(),
+            }),
           }),
           404: z.object({
             message: z.string(),
@@ -47,14 +68,15 @@ export const updateContractRoute: FastifyPluginAsyncZod = async app => {
     async (request, reply) => {
       const { id } = request.params;
       const drizzleOrm = new DrizzleContractRepository();
-      const updatedcontract = await drizzleOrm.update(id, request.body);
 
-      if (!updatedcontract) {
+      const updatedContract = await drizzleOrm.update(id, request.body);
+
+      if (!updatedContract) {
         return reply.status(404).send({ message: 'Algo deu errado!' });
       }
 
       return reply.status(200).send({
-        message: 'Item atualizado com sucesso!',
+        contract: updatedContract,
       });
     }
   );

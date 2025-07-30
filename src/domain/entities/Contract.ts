@@ -20,7 +20,9 @@ export class Contract {
     public partner: string | null,
     public partnerCommission: number | null,
     public counter: string | null,
-    public email: string | null
+    public email: string | null,
+    public createdAt: Date | null = null,
+    public updatedAt: Date | null = null
   ) {
     if (!id || id.trim() === '') {
       throw new Error('Não foi encontrado o contrato para ser deletado!');

@@ -598,6 +598,7 @@ packages:
   '@faker-js/faker@9.5.1':
     resolution: {integrity: sha512-0fzMEDxkExR2cn731kpDaCCnBGBUOIXEi2S1N5l8Hltp6aPf4soTMJ+g4k8r2sI5oB+rpwIW8Uy/6jkwGpnWPg==}
     engines: {node: '>=18.0.0', npm: '>=9.0.0'}
+    deprecated: Please update to a newer version
 
   '@fastify/accept-negotiator@2.0.1':
     resolution: {integrity: sha512-/c/TW2bO/v9JeEgoD/g1G5GxGeCF1Hafdf79WPmUlgYiBXummY0oX3VVq4yFkKKVBKDNlaDUYoab7g38RpPqCQ==}
@@ -616,9 +617,6 @@ packages:
 
   '@fastify/deepmerge@2.0.2':
     resolution: {integrity: sha512-3wuLdX5iiiYeZWP6bQrjqhrcvBIf0NHbQH1Ur1WbHvoiuTYUEItgygea3zs8aHpiitn0lOB8gX20u1qO+FDm7Q==}
-
-  '@fastify/error@4.0.0':
-    resolution: {integrity: sha512-OO/SA8As24JtT1usTUTKgGH7uLvhfwZPwlptRi2Dp5P4KKmJI3gvsZ8MIHnNwDs4sLf/aai5LzTyl66xr7qMxA==}
 
   '@fastify/error@4.2.0':
     resolution: {integrity: sha512-RSo3sVDXfHskiBZKBPRgnQTtIqpi/7zhJOEmAxCiBcM7d0uwdGdxLlsCaLzGs8v8NnxIRlfG0N51p5yFaOentQ==}
@@ -2236,8 +2234,6 @@ snapshots:
 
   '@fastify/deepmerge@2.0.2': {}
 
-  '@fastify/error@4.0.0': {}
-
   '@fastify/error@4.2.0': {}
 
   '@fastify/fast-json-stringify-compiler@5.0.2':
@@ -2248,7 +2244,7 @@ snapshots:
 
   '@fastify/jwt@9.0.4':
     dependencies:
-      '@fastify/error': 4.0.0
+      '@fastify/error': 4.2.0
       '@lukeed/ms': 2.0.2
       fast-jwt: 5.0.5
       fastify-plugin: 5.0.1
@@ -2526,7 +2522,7 @@ snapshots:
 
   avvio@9.1.0:
     dependencies:
-      '@fastify/error': 4.0.0
+      '@fastify/error': 4.2.0
       fastq: 1.19.1
 
   balanced-match@1.0.2: {}
@@ -2801,7 +2797,7 @@ snapshots:
   fastify@5.2.1:
     dependencies:
       '@fastify/ajv-compiler': 4.0.2
-      '@fastify/error': 4.0.0
+      '@fastify/error': 4.2.0
       '@fastify/fast-json-stringify-compiler': 5.0.2
       '@fastify/proxy-addr': 5.0.0
       abstract-logging: 2.0.1

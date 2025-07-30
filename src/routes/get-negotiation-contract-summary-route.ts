@@ -11,7 +11,7 @@ export const getContractNegotiationSummaryRoute: FastifyPluginAsyncZod =
         onRequest: [authenticateUserHook],
         schema: {
           operationId: 'getContractNegotiationSummary',
-          tags: ['contract'],
+          tags: ['contract', 'negotiation'],
           description: 'Retrieve merged contract and negotiation data',
           response: {
             200: z.object({

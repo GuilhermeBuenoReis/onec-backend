@@ -27,6 +27,8 @@ export const getNegotiationRoute: FastifyPluginAsyncZod = async app => {
               observation: z.string().nullable(),
               averageGuide: z.number().nullable(),
               partnerId: z.string().nullable(),
+              createdAt: z.date().nullable(),
+              updatedAt: z.date().nullable(),
             })
           ),
         },

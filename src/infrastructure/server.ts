@@ -21,6 +21,7 @@ import { uploadXlsxRoute } from '../routes/ai-upload';
 import { authenticateUserRoute } from '../routes/authenticate-user';
 import { createClientReceiptRoute } from '../routes/create-client-receipt-route';
 import { createClientRoute } from '../routes/create-client-route';
+import { createContestationRoute } from '../routes/create-contestation';
 import { createContractRoute } from '../routes/create-contract';
 import { createCredentialRoute } from '../routes/create-credentials-route';
 import { createDataNegotiationRoute } from '../routes/create-data-negotiation';
@@ -29,6 +30,7 @@ import { createPartnerRoute } from '../routes/create-partner-route';
 import { createPortalControllRoute } from '../routes/create-portal-controll-route';
 import { deleteClientRoute } from '../routes/delete-client';
 import { deleteClientReceiptRoute } from '../routes/delete-client-receipt-route';
+import { deleteContestationRoute } from '../routes/delete-contestation';
 import { deleteContractRoute } from '../routes/delete-contracts';
 import { deleteCredentialRoute } from '../routes/delete-credentials';
 import { deleteNegotiationRoute } from '../routes/delete-negotiation';
@@ -38,6 +40,8 @@ import { deletePortalControllRoute } from '../routes/delete-portal-controll-rout
 import { deleteUserRoute } from '../routes/delete-user';
 import { getClientRoute } from '../routes/get-client';
 import { getClientReceiptRoute } from '../routes/get-client-receipt-route';
+import { getContestationRoute } from '../routes/get-contestation';
+import { getContestationByIdRoute } from '../routes/get-contestation-by-id';
 import { getContractByIdRoute } from '../routes/get-contract-by-id';
 import { getContractRoute } from '../routes/get-contracts';
 import { getContractStatusCountRoute } from '../routes/get-count-status';
@@ -53,9 +57,11 @@ import { getPortalControllsBySelectByIdRoute } from '../routes/get-portal-contro
 import { getPortalControllsBySelectParternRoute } from '../routes/get-portal-controlls-by-partner';
 import { getProfileUser } from '../routes/get-profile-user';
 import { getContractStatusCountByFilterRoute } from '../routes/get-status-filter';
+import { getMeRoute } from '../routes/me-route';
 import { processNegotiationStagingRoute } from '../routes/process-negotiation-staging-route';
 import { updateClientRoute } from '../routes/update-client';
 import { updateClientReceiptRoute } from '../routes/update-client-receipt-route';
+import { updateContestationRoute } from '../routes/update-contestation';
 import { updateContractRoute } from '../routes/update-contract';
 import { updateCredentialRoute } from '../routes/update-credentials';
 import { updateNegotiationRoute } from '../routes/update-negotiation';
@@ -68,20 +74,27 @@ dotenv.config({ path: '/home/onec/onec-project/onec-backend/.env' });
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
-app.register(fastifyCors, { origin: '*' });
+app.register(fastifyCors, {
+  origin: 'http://localhost:5173',
+  credentials: true,
+});
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
 app.register(fastifyMultipart);
 
-app.register(fastifyJwt, {
-  secret: env.JWT_SECRET,
-});
-
 app.register(fastifyCookie, {
   secret: env.JWT_SECRET,
   hook: 'onRequest',
   parseOptions: {},
+});
+
+app.register(fastifyJwt, {
+  secret: env.JWT_SECRET,
+  cookie: {
+    cookieName: 'onec_token',
+    signed: false,
+  },
 });
 
 app.register(fastifySwagger, {
@@ -144,6 +157,12 @@ app.register(getPortalControllsBySelectByIdRoute);
 app.register(getContractNegotiationSummaryRoute);
 app.register(uploadXlsxRoute);
 app.register(processNegotiationStagingRoute);
+app.register(getMeRoute);
+app.register(createContestationRoute);
+app.register(getContestationRoute);
+app.register(getContestationByIdRoute);
+app.register(updateContestationRoute);
+app.register(deleteContestationRoute);
 
 app
   .listen({

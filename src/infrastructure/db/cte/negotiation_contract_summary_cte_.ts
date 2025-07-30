@@ -1,3 +1,4 @@
+import { createId } from '@paralleldrive/cuid2';
 import { eq, sql } from 'drizzle-orm';
 import { db } from '..';
 import { contracts, negotiations } from '../schema';
